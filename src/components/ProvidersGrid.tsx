@@ -1,18 +1,22 @@
-import { Building2, CheckCircle2, Search } from "lucide-react";
+import { CheckCircle2, FileText, HeartHandshake, Info } from "lucide-react";
 
-const topProviders = [
-  { name: "VNPT-Invoice", org: "Tập đoàn VNPT", count: "Phổ biến #1", color: "text-blue-600 bg-blue-50 border-blue-200" },
-  { name: "Viettel S-Invoice", org: "Tập đoàn Viettel", count: "Phổ biến #2", color: "text-purple-600 bg-purple-50 border-purple-200" },
-  { name: "MISA meInvoice", org: "Công ty Cổ phần MISA", count: "Phổ biến #3", color: "text-emerald-600 bg-emerald-50 border-emerald-200" },
-  { name: "BKAV eHoadon", org: "Tập đoàn BKAV", count: "Phổ biến", color: "text-amber-600 bg-amber-50 border-amber-200" },
-  { name: "Fast e-Invoice", org: "Công ty Phần mềm Fast", count: "Kế toán tin dùng", color: "text-sky-600 bg-sky-50 border-sky-200" },
-  { name: "EasyInvoice", org: "Softdreams", count: "Phổ biến SMB", color: "text-indigo-600 bg-indigo-50 border-indigo-200" },
-  { name: "Thái Sơn E-Invoice", org: "Công ty Phát triển Công nghệ Thái Sơn", count: "Doanh nghiệp FDI", color: "text-rose-600 bg-rose-50 border-rose-200" },
-  { name: "Mắt Bão SafeVAT", org: "Mắt Bão", count: "Thương mại điện tử", color: "text-cyan-600 bg-cyan-50 border-cyan-200" },
-  { name: "Mobifone Invoice", org: "Tổng công ty Mobifone", count: "Viễn thông", color: "text-blue-700 bg-blue-50 border-blue-200" },
-  { name: "FPT.eInvoice", org: "Tập đoàn FPT", count: "Tập đoàn lớn", color: "text-orange-600 bg-orange-50 border-orange-200" },
-  { name: "CyberBill", org: "Cyberlotus", count: "Dịch vụ thuế", color: "text-teal-600 bg-teal-50 border-teal-200" },
-  { name: "VinaCA SmartVAS", org: "VinaCA", count: "Chữ ký số & HĐ", color: "text-violet-600 bg-violet-50 border-violet-200" },
+const supportedPdfProviders = [
+  { name: "VNPT-Invoice", org: "Tập đoàn Bưu chính Viễn thông VNPT", tag: "Tải PDF/XML trực tiếp", color: "text-blue-700 bg-blue-50 border-blue-200" },
+  { name: "Viettel S-Invoice", org: "Tập đoàn Viễn thông Quân đội Viettel", tag: "Tải PDF/XML trực tiếp", color: "text-purple-700 bg-purple-50 border-purple-200" },
+  { name: "MISA meInvoice", org: "Công ty Cổ phần MISA", tag: "Tải PDF/XML trực tiếp", color: "text-emerald-700 bg-emerald-50 border-emerald-200" },
+  { name: "BKAV eHoadon", org: "Tập đoàn Công nghệ BKAV", tag: "Tải PDF/XML trực tiếp", color: "text-amber-700 bg-amber-50 border-amber-200" },
+  { name: "EasyInvoice", org: "Công ty Cổ phần Đầu tư Softdreams", tag: "Tải PDF/XML trực tiếp", color: "text-indigo-700 bg-indigo-50 border-indigo-200" },
+  { name: "Thái Sơn E-Invoice", org: "Công ty Phát triển Công nghệ Thái Sơn", tag: "Tải PDF/XML trực tiếp", color: "text-rose-700 bg-rose-50 border-rose-200" },
+  { name: "Mắt Bão SafeVAT", org: "Công ty Cổ phần Mắt Bão", tag: "Tải PDF/XML trực tiếp", color: "text-cyan-700 bg-cyan-50 border-cyan-200" },
+  { name: "CyberBill", org: "Công ty Cổ phần CyberLotus", tag: "Tải PDF/XML trực tiếp", color: "text-teal-700 bg-teal-50 border-teal-200" },
+  { name: "WinInvoice", org: "Công ty TNHH Win Tech Solution", tag: "Tải PDF/XML trực tiếp", color: "text-sky-700 bg-sky-50 border-sky-200" },
+  { name: "SmartSign / VinaCA", org: "Công ty Cổ phần chữ ký số VI NA", tag: "Tải PDF/XML trực tiếp", color: "text-violet-700 bg-violet-50 border-violet-200" },
+  { name: "Sapo Invoice", org: "Công ty Cổ phần Công nghệ Sapo", tag: "Tải PDF/XML trực tiếp", color: "text-orange-700 bg-orange-50 border-orange-200" },
+  { name: "Petrolimex", org: "Tập đoàn Xăng dầu Việt Nam", tag: "Tải PDF/XML trực tiếp", color: "text-blue-800 bg-blue-50 border-blue-200" },
+  { name: "Thế Giới Di Động", org: "MWG (TGDD, Điện Máy Xanh)", tag: "Tải PDF/XML trực tiếp", color: "text-yellow-700 bg-yellow-50 border-yellow-200" },
+  { name: "Bách Hóa Xanh", org: "Hệ thống Bách Hóa Xanh", tag: "Tải PDF/XML trực tiếp", color: "text-green-700 bg-green-50 border-green-200" },
+  { name: "VETC", org: "Công ty TNHH Thu phí tự động VETC", tag: "Tải PDF/XML trực tiếp", color: "text-emerald-800 bg-emerald-50 border-emerald-200" },
+  { name: "VnInvoice / VinInvoice", org: "Giải pháp HĐĐT Doanh nghiệp", tag: "Tải PDF/XML trực tiếp", color: "text-slate-700 bg-slate-100 border-slate-200" },
 ];
 
 export default function ProvidersGrid() {
@@ -21,27 +25,49 @@ export default function ProvidersGrid() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-3xl text-center">
           <span className="text-xs sm:text-sm font-bold uppercase tracking-wider text-blue-600">
-            Mạng Lưới Kết Nối Toàn Diện
+            Khả Năng Tương Thích Thực Tế
           </span>
           <h2 className="mt-2 text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl">
-            Tương thích với 136+ Nhà Cung Cấp Hóa Đơn Điện Tử
+            Hỗ trợ tải Hóa đơn gốc từ các Nhà Cung Cấp phổ biến
           </h2>
           <p className="mt-4 text-base text-slate-600">
-            Dù đối tác của bạn phát hành hóa đơn qua VNPT, Viettel, MISA hay bất kỳ đơn vị trung gian T-VAN nào, Next Invoice đều tự động nhận diện và hỗ trợ lấy link tra cứu file gốc tức thì.
+            Hệ thống tự động nhận diện đơn vị phát hành và hỗ trợ tải trực tiếp file PDF bản in và XML ký số từ hầu hết các nhà cung cấp giải pháp hóa đơn điện tử lớn.
           </p>
         </div>
 
-        {/* Grid Cards */}
-        <div className="mt-12 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4 sm:gap-4">
-          {topProviders.map((p, idx) => (
+        {/* Honest Transparency Quote Box requested by user */}
+        <div className="mt-10 mx-auto max-w-4xl rounded-2xl border border-blue-200 bg-gradient-to-r from-blue-50/90 via-sky-50/70 to-indigo-50/80 p-6 sm:p-7 shadow-sm">
+          <div className="flex items-start gap-4">
+            <div className="rounded-xl bg-blue-600 p-2.5 text-white shrink-0 mt-0.5 shadow-xs">
+              <HeartHandshake className="h-6 w-6" />
+            </div>
+            <div className="space-y-2">
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="inline-flex items-center gap-1 text-xs font-bold uppercase tracking-wider text-blue-700 bg-blue-100/80 px-2.5 py-0.5 rounded-full">
+                  <Info className="h-3.5 w-3.5" /> Minh bạch & Cầu thị
+                </span>
+                <span className="text-xs font-semibold text-slate-500">
+                  Cam kết đồng hành từ Đội ngũ Next Invoice
+                </span>
+              </div>
+              <p className="text-xs sm:text-sm text-slate-700 leading-relaxed font-medium">
+                &ldquo;Hiện tại hệ thống đang hỗ trợ tải được tầm 80% hóa đơn gốc từ các tổ chức cung cấp giải pháp hóa đơn điện tử. Do một số nhà cung cấp không có chia sẻ dữ liệu hóa đơn gốc cho Cổng thông tin Hóa đơn điện tử của Tổng cục Thuế. Đội ngũ thành viên NextInvoice luôn lắng nghe ý kiến người dùng để mang đến trải nghiệm tốt nhất người dùng đã tin dùng sản phẩm, dịch vụ của Next Invoice.&rdquo;
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Grid Cards of Actual Supported Providers */}
+        <div className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4 sm:gap-4">
+          {supportedPdfProviders.map((p, idx) => (
             <div
               key={idx}
-              className="flex flex-col justify-between rounded-2xl border border-slate-200 bg-slate-50/50 p-4 transition-all hover:bg-white hover:shadow-md hover:border-slate-300"
+              className="flex flex-col justify-between rounded-2xl border border-slate-200 bg-slate-50/60 p-4 transition-all hover:bg-white hover:shadow-md hover:border-slate-300"
             >
               <div>
                 <div className="flex items-center justify-between">
                   <span className={`inline-flex rounded-md border px-2 py-0.5 text-[11px] font-bold ${p.color}`}>
-                    {p.count}
+                    {p.tag}
                   </span>
                   <CheckCircle2 className="h-4 w-4 text-emerald-500" />
                 </div>
@@ -53,31 +79,13 @@ export default function ProvidersGrid() {
                 </p>
               </div>
               <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-400 font-medium">
-                <span>Hỗ trợ XML & PDF</span>
-                <span className="text-emerald-600 font-bold">100%</span>
+                <span className="flex items-center gap-1">
+                  <FileText className="h-3 w-3 text-slate-400" /> PDF & XML gốc
+                </span>
+                <span className="text-emerald-600 font-bold">Hỗ trợ</span>
               </div>
             </div>
           ))}
-        </div>
-
-        {/* Bottom Banner */}
-        <div className="mt-10 rounded-2xl bg-gradient-to-r from-blue-900 to-indigo-900 p-6 sm:p-8 text-white shadow-xl flex flex-col sm:flex-row items-center justify-between gap-6">
-          <div className="flex items-center gap-4 text-center sm:text-left">
-            <div className="rounded-xl bg-white/10 p-3 hidden sm:block">
-              <Building2 className="h-8 w-8 text-blue-300" />
-            </div>
-            <div>
-              <h3 className="text-lg sm:text-xl font-bold">
-                Doanh nghiệp của bạn có nhà cung cấp đặc thù riêng?
-              </h3>
-              <p className="text-xs sm:text-sm text-blue-200 mt-1">
-                Hệ thống liên tục cập nhật thuật toán bóc tách file gốc cho tất cả các đơn vị T-VAN mới nhất trên thị trường.
-              </p>
-            </div>
-          </div>
-          <span className="shrink-0 rounded-xl bg-blue-500/20 border border-blue-400/30 px-4 py-2 text-xs sm:text-sm font-bold text-blue-200">
-            Tự động cập nhật 24/7
-          </span>
         </div>
       </div>
     </section>

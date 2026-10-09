@@ -9,21 +9,21 @@ const stats = [
   },
   {
     icon: Layers,
-    value: "136+",
-    label: "Nhà cung cấp HĐĐT hỗ trợ",
-    description: "Nhận diện và hỗ trợ tra cứu file gốc từ VNPT, Viettel, MISA, BKAV, Fast...",
+    value: "~80%",
+    label: "Hóa đơn gốc tải trực tiếp",
+    description: "Hỗ trợ tải trực tiếp hóa đơn gốc từ hầu hết các nhà cung cấp phổ biến trên thị trường.",
   },
   {
     icon: ShieldCheck,
     value: "100%",
-    label: "Dữ liệu gốc chuẩn Tổng cục Thuế",
-    description: "Lưu trữ đầy đủ cả XML ký số và bản in PDF phục vụ thanh kiểm tra.",
+    label: "Dữ liệu chuẩn Tổng cục Thuế",
+    description: "Đồng bộ đầy đủ dữ liệu Mua vào và Bán ra có mã/không mã theo chuẩn TCT.",
   },
   {
     icon: Zap,
-    value: "3 Giây",
-    label: "Thời gian đồng bộ mỗi hóa đơn",
-    description: "Tự động phân loại, kiểm tra trạng thái MST và bóc tách dữ liệu chi tiết.",
+    value: "0.4s",
+    label: "Giải mã Captcha TCT bằng AI",
+    description: "Xử lý Captcha hình ảnh tức thì, đồng bộ nhanh chóng theo khoảng thời gian tùy chọn.",
   },
 ];
 

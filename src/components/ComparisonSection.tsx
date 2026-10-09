@@ -5,12 +5,12 @@ const comparisons = [
   {
     feature: "Đăng nhập & Lấy dữ liệu Tổng cục Thuế",
     manual: "Đăng nhập thủ công, gõ captcha nhiều lần, trang Thuế thường xuyên giật lag hoặc quá tải.",
-    nextInvoice: "Tự động hoàn toàn, giải Captcha bằng AI trong 0.4s, đồng bộ định kỳ lúc 06:00 sáng mỗi ngày.",
+    nextInvoice: "Đồng bộ nhanh chóng theo khoảng thời gian tùy chọn (ngày, tháng, quý), tự động giải Captcha bằng AI trong 0.4s.",
   },
   {
     feature: "Tải file bản gốc XML & PDF",
     manual: "Mở từng hóa đơn, copy mã tra cứu sang từng trang web NCC (VNPT, Viettel, MISA...) để tải về.",
-    nextInvoice: "Tự động nhận diện 136+ NCC và tải sẵn cả file XML ký số và PDF bản in. Hỗ trợ tải trọn gói 1 click.",
+    nextInvoice: "Tự động nhận diện nhà cung cấp và hỗ trợ tải trực tiếp PDF/XML gốc lên tới ~80% các đơn vị phổ biến. Hỗ trợ tải trọn gói 1-click.",
   },
   {
     feature: "Kiểm tra tính hợp lệ & Rủi ro NCC",

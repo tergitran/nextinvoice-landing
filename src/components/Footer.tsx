@@ -40,7 +40,7 @@ export default function Footer() {
             <ul className="space-y-2.5">
               <li>
                 <Link href="#features" className="hover:text-white transition">
-                  Đồng bộ tự động TCT
+                  Đồng bộ hóa đơn TCT
                 </Link>
               </li>
               <li>
@@ -60,7 +60,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link href="#providers" className="hover:text-white transition">
-                  136+ Nhà cung cấp HĐĐT
+                  Nhà cung cấp hỗ trợ
                 </Link>
               </li>
             </ul>

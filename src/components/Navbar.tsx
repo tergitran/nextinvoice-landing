@@ -44,7 +44,7 @@ export default function Navbar() {
             href="#providers"
             className="text-sm font-semibold text-slate-600 transition hover:text-blue-600"
           >
-            136+ Nhà cung cấp
+            Nhà cung cấp hỗ trợ
           </Link>
           <Link
             href="#security"
@@ -111,7 +111,7 @@ export default function Navbar() {
               onClick={() => setMobileMenuOpen(false)}
               className="text-base font-semibold text-slate-700 hover:text-blue-600"
             >
-              136+ Nhà cung cấp HĐĐT
+              Nhà cung cấp hỗ trợ
             </Link>
             <Link
               href="#security"

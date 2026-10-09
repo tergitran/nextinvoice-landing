@@ -10,7 +10,7 @@ const faqs = [
   },
   {
     q: "Phần mềm có tải được file XML và PDF gốc có chữ ký số không?",
-    a: "Chắc chắn có. Next Invoice liên kết trực tiếp với cổng tra cứu của 136+ nhà cung cấp (VNPT, Viettel, MISA, BKAV, Fast, EasyInvoice...). Hệ thống tải về cả file XML chứa chữ ký số gốc và file PDF bản thể hiện sắc nét, đảm bảo đầy đủ giá trị pháp lý khi thanh kiểm tra thuế.",
+    a: "Có. Hiện tại hệ thống đang hỗ trợ tải được tầm 80% hóa đơn gốc từ các tổ chức cung cấp giải pháp hóa đơn điện tử phổ biến (VNPT, Viettel, MISA, BKAV, EasyInvoice, Thái Sơn, Mắt Bão, CyberBill...). Đối với các đơn vị chưa hỗ trợ tải trực tiếp do không chia sẻ dữ liệu gốc cho Cổng TCT, hệ thống cung cấp đường link và hướng dẫn tra cứu chi tiết để kế toán lấy file nhanh nhất.",
   },
   {
     q: "Tôi làm kế toán dịch vụ quản lý nhiều công ty (MST) thì dùng như thế nào?",

@@ -32,9 +32,9 @@ const plans = [
     popular: true,
     features: [
       "Quản lý lên tới 03 Mã số thuế (MST)",
-      "Tự động đồng bộ mỗi sáng lúc 06:00",
+      "Đồng bộ nhanh không giới hạn lượt tra cứu",
       "Ưu tiên tốc độ giải Captcha AI siêu tốc",
-      "Tải trọn bộ ZIP 100% hóa đơn 1-click",
+      "Tải trọn bộ file ZIP hóa đơn gốc 1-click",
       "Cảnh báo rủi ro thuế & hóa đơn hủy tức thì",
       "Xuất Excel định dạng chuẩn MISA / Fast / Bravo",
       "Hỗ trợ kỹ thuật 24/7 qua Zalo & Hotline",

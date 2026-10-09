@@ -16,17 +16,17 @@ import {
 const features = [
   {
     id: "sync",
-    tabTitle: "Đồng bộ tự động TCT",
-    badge: "AI Powered",
+    tabTitle: "Đồng bộ hóa đơn TCT",
+    badge: "Giải Captcha AI",
     icon: RefreshCw,
-    title: "Tự động đồng bộ 100% từ Cổng Tổng cục Thuế",
+    title: "Đồng bộ hóa đơn Mua vào & Bán ra từ Tổng cục Thuế",
     description:
-      "Chỉ cần khai báo tài khoản Thuế một lần, Next Invoice sẽ tự động kết nối, tự giải Captcha bằng AI và kéo toàn bộ hóa đơn Mua vào - Bán ra mới nhất về hệ thống.",
+      "Khai báo tài khoản Thuế an toàn một lần, chọn khoảng thời gian cần tra cứu và nhấn Đồng bộ. Next Invoice tự động giải mã Captcha bằng AI và kéo toàn bộ hóa đơn về hệ thống.",
     highlights: [
-      "Tự động giải mã Captcha hình ảnh độ chính xác 99%",
-      "Hỗ trợ đồng bộ định kỳ hàng ngày hoặc 1-click tức thì",
-      "Kéo đầy đủ danh sách hóa đơn theo từng kỳ khai thuế",
-      "Không bao giờ bỏ sót hóa đơn người bán gửi muộn",
+      "Tự động giải mã Captcha hình ảnh TCT với độ chính xác cao",
+      "Tùy chọn khoảng thời gian đồng bộ linh hoạt theo ngày, tháng, quý",
+      "Kéo đầy đủ danh sách hóa đơn Mua vào và Bán ra có mã/không mã",
+      "Theo dõi tiến trình đồng bộ trực quan theo thời gian thực",
     ],
     previewBg: "bg-blue-600/5",
     previewBorder: "border-blue-200",
@@ -35,16 +35,16 @@ const features = [
   {
     id: "archive",
     tabTitle: "Tải trọn bộ XML & PDF",
-    badge: "Gốc 136+ NCC",
+    badge: "Bản gốc XML & PDF",
     icon: FileArchive,
-    title: "Tải & Lưu trữ trọn bộ bản gốc XML & PDF",
+    title: "Hỗ trợ tải File gốc XML & PDF từ các Nhà Cung Cấp",
     description:
-      "Không chỉ lưu trữ bảng kê, Next Invoice tự động kết nối đến cổng tra cứu của 136 nhà cung cấp (VNPT, Viettel, MISA, BKAV...) để lấy file gốc có chữ ký số hợp pháp.",
+      "Next Invoice kết nối đến cổng tra cứu của hầu hết các nhà cung cấp phổ biến (VNPT, Viettel, MISA, BKAV, EasyInvoice, Thái Sơn...) để lấy file gốc có chữ ký số, hỗ trợ tải hàng loạt file ZIP tiện lợi.",
     highlights: [
-      "Tải file XML gốc có chữ ký số điện tử của người bán",
-      "Tải PDF bản in thể hiện rõ nét, sẵn sàng in ấn",
-      "Lưu trữ đám mây an toàn, không lo thất lạc sau 10 năm",
-      "Tải hàng loạt (Bulk download) file nén ZIP trong 1 click",
+      "Tải trực tiếp file XML ký số gốc và file PDF bản in thể hiện",
+      "Hỗ trợ tải hàng loạt (Bulk download) đóng gói file ZIP 1-click",
+      "Tự động nhận diện nhà cung cấp và gợi ý đường link tra cứu",
+      "Lưu trữ đám mây an toàn, không lo thất lạc khi thanh kiểm tra",
     ],
     previewBg: "bg-indigo-600/5",
     previewBorder: "border-indigo-200",
@@ -181,19 +181,19 @@ export default function FeatureTabsSection() {
 
                     <div className="space-y-2.5 font-mono text-xs text-slate-600">
                       <div className="flex items-center justify-between rounded-lg bg-slate-50 p-2.5">
-                        <span>[06:00:01] Gửi yêu cầu đăng nhập Cổng HĐĐT...</span>
+                        <span>[10:15:01] Khởi tạo phiên kết nối Cổng HĐĐT...</span>
                         <span className="text-emerald-600 font-bold">200 OK</span>
                       </div>
                       <div className="flex items-center justify-between rounded-lg bg-slate-50 p-2.5">
-                        <span>[06:00:02] Giải mã Captcha hình ảnh TCT...</span>
+                        <span>[10:15:02] Giải mã Captcha hình ảnh TCT...</span>
                         <span className="text-blue-600 font-bold">Thành công (0.4s)</span>
                       </div>
                       <div className="flex items-center justify-between rounded-lg bg-slate-50 p-2.5">
-                        <span>[06:00:04] Cào hóa đơn Mua vào tháng 07/2026...</span>
-                        <span className="text-indigo-600 font-bold">Tìm thấy 48 hóa đơn mới</span>
+                        <span>[10:15:04] Kéo hóa đơn Mua vào theo kỳ tra cứu...</span>
+                        <span className="text-indigo-600 font-bold">Tìm thấy 48 hóa đơn</span>
                       </div>
                       <div className="flex items-center justify-between rounded-lg bg-emerald-50 p-2.5 text-emerald-900 border border-emerald-200">
-                        <span>[06:00:06] Hoàn tất đồng bộ dữ liệu vào cơ sở dữ liệu!</span>
+                        <span>[10:15:06] Hoàn tất nạp dữ liệu vào hệ thống!</span>
                         <span className="font-bold">Hoàn tất</span>
                       </div>
                     </div>

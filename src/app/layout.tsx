@@ -11,7 +11,7 @@ const jakarta = Plus_Jakarta_Sans({
 export const metadata: Metadata = {
   title: "Next Invoice — Phần mềm Quản lý & Tự động Đồng bộ Hóa đơn Điện tử từ Tổng cục Thuế",
   description:
-    "Giải pháp tự động hóa quản lý hóa đơn điện tử cho doanh nghiệp & đại lý kế toán. Tự động đồng bộ hóa đơn Mua vào - Bán ra từ Tổng cục Thuế, tải trọn bộ XML & PDF gốc từ 136+ nhà cung cấp.",
+    "Giải pháp tự động hóa quản lý hóa đơn điện tử cho doanh nghiệp & đại lý kế toán. Đồng bộ hóa đơn Mua vào - Bán ra từ Tổng cục Thuế, hỗ trợ tải file XML & PDF gốc từ các nhà cung cấp phổ biến.",
   keywords: [
     "hóa đơn điện tử",
     "đồng bộ hóa đơn tổng cục thuế",

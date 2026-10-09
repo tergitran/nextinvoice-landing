@@ -24,7 +24,7 @@ export default function HeroSection() {
         <div className="flex flex-col items-center text-center">
           <div className="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-50/80 px-4 py-1.5 text-xs sm:text-sm font-semibold text-blue-700 shadow-xs mb-6 backdrop-blur-xs">
             <Sparkles className="h-4 w-4 text-blue-600" />
-            <span>Đồng bộ tự động 100% từ Cổng Tổng cục Thuế (TCT)</span>
+            <span>Đồng bộ hóa đơn Mua vào & Bán ra từ Cổng Tổng cục Thuế</span>
           </div>
 
           <h1 className="max-w-4xl text-3xl font-extrabold tracking-tight text-slate-900 sm:text-5xl lg:text-6xl sm:leading-[1.15]">
@@ -35,7 +35,7 @@ export default function HeroSection() {
           </h1>
 
           <p className="mt-6 max-w-2xl text-base sm:text-lg text-slate-600 leading-relaxed">
-            Chấm dứt việc tra cứu và tải hóa đơn thủ công. Next Invoice tự động cào hóa đơn Mua vào & Bán ra, giải Captcha bằng AI, tải trọn bộ file XML & PDF gốc từ 136+ nhà cung cấp và cảnh báo rủi ro thuế tức thì.
+            Chấm dứt việc tra cứu và tải hóa đơn thủ công. Next Invoice hỗ trợ đồng bộ hóa đơn Mua vào & Bán ra, giải Captcha bằng AI, hỗ trợ tải file gốc XML & PDF từ các nhà cung cấp phổ biến và kiểm tra trạng thái người bán tức thì.
           </p>
 
           {/* Action Buttons */}
@@ -87,9 +87,9 @@ export default function HeroSection() {
                 </div>
               </div>
               <div className="flex items-center gap-2">
-                <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-50 px-2.5 py-0.5 text-xs font-semibold text-emerald-700">
-                  <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                  Đang đồng bộ tự động
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-blue-50 px-2.5 py-0.5 text-xs font-semibold text-blue-700">
+                  <span className="h-1.5 w-1.5 rounded-full bg-blue-500 animate-pulse" />
+                  Đồng bộ theo kỳ tra cứu
                 </span>
               </div>
             </div>
@@ -113,10 +113,10 @@ export default function HeroSection() {
                   </div>
                 </div>
                 <div className="rounded-xl bg-white p-3.5 border border-slate-200/70 shadow-2xs">
-                  <span className="text-xs font-medium text-slate-500">Tải đủ XML & PDF</span>
+                  <span className="text-xs font-medium text-slate-500">Hỗ trợ tải PDF/XML gốc</span>
                   <div className="mt-1 flex items-baseline justify-between">
-                    <span className="text-xl sm:text-2xl font-extrabold text-emerald-600">100%</span>
-                    <span className="text-xs font-semibold text-emerald-600">Đầy đủ</span>
+                    <span className="text-xl sm:text-2xl font-extrabold text-emerald-600">~80%</span>
+                    <span className="text-xs font-semibold text-emerald-600">Các NCC lớn</span>
                   </div>
                 </div>
                 <div className="rounded-xl bg-white p-3.5 border border-slate-200/70 shadow-2xs">
@@ -221,11 +221,11 @@ export default function HeroSection() {
             {/* Floating Quick Feature Pill */}
             <div className="absolute -bottom-5 -right-3 sm:right-6 hidden sm:flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-2.5 shadow-lg">
               <div className="rounded-lg bg-blue-100 p-1.5 text-blue-600">
-                <RefreshCw className="h-4 w-4 animate-spin text-blue-600" />
+                <RefreshCw className="h-4 w-4 text-blue-600" />
               </div>
               <div className="text-xs">
-                <span className="font-bold text-slate-800">Tự động đồng bộ mỗi sáng</span>
-                <p className="text-slate-500">Đã đồng bộ 28 hóa đơn mới lúc 06:00 AM</p>
+                <span className="font-bold text-slate-800">Tự động giải Captcha bằng AI</span>
+                <p className="text-slate-500">Đã giải mã Captcha TCT trong 0.4s • Kéo 28 hóa đơn</p>
               </div>
             </div>
           </div>

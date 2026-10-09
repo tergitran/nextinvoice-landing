@@ -68,9 +68,87 @@ const plans = [
   },
 ];
 
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselPrevious,
+  CarouselNext,
+  CarouselDots,
+} from "@/components/ui/carousel";
+
+function PricingCard({ plan }: { plan: (typeof plans)[0] }) {
+  return (
+    <div
+      className={`relative flex h-full flex-col justify-between rounded-2xl p-6 sm:p-8 transition-all ${
+        plan.popular
+          ? "border-2 border-blue-600 bg-white shadow-xl shadow-blue-500/10 ring-4 ring-blue-50"
+          : "border border-slate-200 bg-white text-slate-900 hover:border-slate-300 hover:shadow-xs"
+      }`}
+    >
+      <div>
+        <div className="flex items-center justify-between mb-3">
+          <span
+            className={`inline-flex rounded-full px-3 py-1 text-xs font-bold ${
+              plan.popular
+                ? "bg-blue-600 text-white shadow-xs"
+                : "bg-slate-100 text-slate-600"
+            }`}
+          >
+            {plan.badge}
+          </span>
+        </div>
+
+        <h3 className="text-xl font-bold tracking-tight text-slate-950">
+          {plan.name}
+        </h3>
+        <p className="mt-2 text-xs leading-relaxed text-slate-500 min-h-[36px]">
+          {plan.description}
+        </p>
+
+        {/* Price Display */}
+        <div className="mt-6 flex items-baseline gap-1">
+          <span className="text-3xl sm:text-4xl font-extrabold tracking-tight font-mono text-slate-950">
+            {plan.price}
+          </span>
+          <span className="text-xs font-semibold text-slate-500">
+            đ / {plan.period}
+          </span>
+        </div>
+        <div className="mt-1 text-xs font-bold text-blue-700">
+          {plan.quota}
+        </div>
+
+        <div className="mt-6 border-t border-slate-100 pt-6 space-y-2.5">
+          {plan.features.map((feature, fIdx) => (
+            <div key={fIdx} className="flex items-start gap-2.5 text-xs sm:text-sm">
+              <Check className="h-4 w-4 shrink-0 mt-0.5 text-emerald-600 font-bold" />
+              <span className="text-slate-600">{feature}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="mt-8 pt-4">
+        <Link
+          href={plan.ctaLink}
+          className={`w-full inline-flex items-center justify-center gap-2 rounded-xl py-3.5 px-4 text-xs sm:text-sm font-bold transition-all ${
+            plan.popular
+              ? "bg-blue-600 text-white hover:bg-blue-700 shadow-md shadow-blue-500/25 active:scale-[0.98]"
+              : "bg-blue-50 text-blue-700 hover:bg-blue-100 border border-blue-200/60 active:scale-[0.98]"
+          }`}
+        >
+          <span>{plan.ctaText}</span>
+          <ArrowRight className="h-4 w-4" />
+        </Link>
+      </div>
+    </div>
+  );
+}
+
 export default function PricingSection() {
   return (
-    <section id="pricing" className="py-20 lg:py-28 bg-white border-b border-slate-200/70">
+    <section id="pricing" className="py-20 lg:py-28 bg-white border-b border-slate-200/70 overflow-hidden">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <ScrollReveal className="mx-auto max-w-3xl text-center">
           <span className="text-xs font-semibold uppercase tracking-widest text-slate-400">
@@ -84,79 +162,43 @@ export default function PricingSection() {
           </p>
         </ScrollReveal>
 
-        {/* Pricing Cards Grid */}
+        {/* Mobile View: shadcn Carousel with Center Alignment & Peeking Slides */}
+        <div className="mt-12 block md:hidden">
+          <Carousel
+            opts={{
+              align: "center",
+              startIndex: 1,
+              loop: false,
+            }}
+            className="w-full relative px-1"
+          >
+            <CarouselContent className="-ml-3 py-4">
+              {plans.map((plan, idx) => (
+                <CarouselItem key={idx} className="basis-[82%] pl-3">
+                  <PricingCard plan={plan} />
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious className="left-0 size-9 bg-white/95 shadow-md border-slate-200" />
+            <CarouselNext className="right-0 size-9 bg-white/95 shadow-md border-slate-200" />
+            <CarouselDots />
+          </Carousel>
+        </div>
+
+        {/* Desktop View: 3-column Grid */}
         <StaggerContainer
-          className="mt-14 grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch"
+          className="mt-14 hidden md:grid md:grid-cols-3 gap-8 items-stretch"
           delayChildren={0.1}
           staggerChildren={0.1}
         >
           {plans.map((plan, idx) => (
             <StaggerItem
               key={idx}
-              className={`relative flex flex-col justify-between rounded-2xl p-7 sm:p-8 transition-all ${
-                plan.popular
-                  ? "border-2 border-blue-600 bg-white shadow-xl shadow-blue-500/10 ring-4 ring-blue-50 md:-translate-y-2"
-                  : "border border-slate-200 bg-white text-slate-900 hover:border-slate-300 hover:shadow-xs"
+              className={`h-full transition-all ${
+                plan.popular ? "md:-translate-y-2" : ""
               }`}
             >
-              <div>
-                <div className="flex items-center justify-between mb-3">
-                  <span
-                    className={`inline-flex rounded-full px-3 py-1 text-xs font-bold ${
-                      plan.popular
-                        ? "bg-blue-600 text-white shadow-xs"
-                        : "bg-slate-100 text-slate-600"
-                    }`}
-                  >
-                    {plan.badge}
-                  </span>
-                </div>
-
-                <h3 className="text-xl font-bold tracking-tight text-slate-950">
-                  {plan.name}
-                </h3>
-                <p className="mt-2 text-xs leading-relaxed text-slate-500 min-h-[36px]">
-                  {plan.description}
-                </p>
-
-                {/* Price Display */}
-                <div className="mt-6 flex items-baseline gap-1">
-                  <span className="text-3xl sm:text-4xl font-extrabold tracking-tight font-mono text-slate-950">
-                    {plan.price}
-                  </span>
-                  <span className="text-xs font-semibold text-slate-500">
-                    đ / {plan.period}
-                  </span>
-                </div>
-                <div className="mt-1 text-xs font-bold text-blue-700">
-                  {plan.quota}
-                </div>
-
-                <div className="mt-6 border-t border-slate-100 pt-6 space-y-2.5">
-                  {plan.features.map((feature, fIdx) => (
-                    <div key={fIdx} className="flex items-start gap-2.5 text-xs sm:text-sm">
-                      <Check className="h-4 w-4 shrink-0 mt-0.5 text-emerald-600 font-bold" />
-                      <span className="text-slate-600">
-                        {feature}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              <div className="mt-8 pt-4">
-                <Link
-                  href={plan.ctaLink}
-                  className={`w-full inline-flex items-center justify-center gap-2 rounded-xl py-3.5 px-4 text-xs sm:text-sm font-bold transition-all ${
-                    plan.popular
-                      ? "bg-blue-600 text-white hover:bg-blue-700 shadow-md shadow-blue-500/25 active:scale-[0.98]"
-                      : "bg-blue-50 text-blue-700 hover:bg-blue-100 border border-blue-200/60 active:scale-[0.98]"
-                  }`}
-                >
-                  <span>{plan.ctaText}</span>
-                  <ArrowRight className="h-4 w-4" />
-                </Link>
-              </div>
+              <PricingCard plan={plan} />
             </StaggerItem>
           ))}
         </StaggerContainer>

@@ -1,0 +1,88 @@
+"use client";
+
+import { useState } from "react";
+import { ChevronDown } from "lucide-react";
+
+const faqs = [
+  {
+    q: "Next Invoice có tự động giải mã Captcha của Tổng cục Thuế không?",
+    a: "Có. Hệ thống tích hợp sẵn Microservice trí tuệ nhân tạo (AI Engine) chuyên giải mã Captcha hình ảnh của Cổng HĐĐT Tổng cục Thuế với độ chính xác trên 99% trong vòng chưa đến 0.5 giây. Bạn không cần phải ngồi gõ captcha bằng tay.",
+  },
+  {
+    q: "Phần mềm có tải được file XML và PDF gốc có chữ ký số không?",
+    a: "Chắc chắn có. Next Invoice liên kết trực tiếp với cổng tra cứu của 136+ nhà cung cấp (VNPT, Viettel, MISA, BKAV, Fast, EasyInvoice...). Hệ thống tải về cả file XML chứa chữ ký số gốc và file PDF bản thể hiện sắc nét, đảm bảo đầy đủ giá trị pháp lý khi thanh kiểm tra thuế.",
+  },
+  {
+    q: "Tôi làm kế toán dịch vụ quản lý nhiều công ty (MST) thì dùng như thế nào?",
+    a: "Next Invoice có gói riêng dành cho Kế toán dịch vụ & Đại lý thuế (Agency). Bạn không bị giới hạn số lượng Mã số thuế khai báo, có thể quản lý tập trung hàng chục công ty trên cùng 1 màn hình và sử dụng chung kho Quota hóa đơn một cách linh hoạt.",
+  },
+  {
+    q: "Mật khẩu Cổng Thuế của tôi có được bảo mật an toàn không?",
+    a: "Tuyệt đối an toàn. Mật khẩu được mã hóa một chiều đa tầng (AES-256 bit). Hệ thống chỉ dùng thông tin đăng nhập trong phiên làm việc với Cổng Thuế để lấy danh sách hóa đơn theo sự ủy quyền của bạn, hoàn toàn không có bất kỳ ai có thể xem được mật khẩu của bạn.",
+  },
+  {
+    q: "Dữ liệu xuất ra có tương thích với phần mềm MISA, Fast, Bravo không?",
+    a: "Có. Next Invoice hỗ trợ bóc tách chi tiết từng dòng mặt hàng, số lượng, đơn giá, thuế suất và tiền thuế. Bảng kê xuất ra dưới định dạng Excel (.xlsx) chuẩn cấu trúc mẫu import của các phần mềm kế toán thông dụng nhất hiện nay.",
+  },
+  {
+    q: "Hóa đơn trùng lặp có bị trừ số lượng Quota trong gói không?",
+    a: "Không. Next Invoice áp dụng quy tắc trừ Quota cực kỳ công bằng: Chỉ những hóa đơn mới lần đầu tiên xuất hiện trong hệ thống và tải thành công mới được tính lượt. Khi hệ thống đồng bộ lại các ngày cũ, các hóa đơn đã có sẽ không bị trừ thêm bất kỳ lượt quota nào.",
+  },
+];
+
+export default function FaqSection() {
+  const [openIndex, setOpenIndex] = useState<number | null>(0);
+
+  const toggle = (idx: number) => {
+    setOpenIndex(openIndex === idx ? null : idx);
+  };
+
+  return (
+    <section id="faq" className="py-20 lg:py-28 bg-slate-50/70 border-b border-slate-200/80">
+      <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+        <div className="text-center">
+          <span className="text-xs sm:text-sm font-bold uppercase tracking-wider text-blue-600">
+            Giải Đáp Thắc Mắc
+          </span>
+          <h2 className="mt-2 text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl">
+            Câu hỏi thường gặp của Kế toán
+          </h2>
+          <p className="mt-4 text-base text-slate-600">
+            Mọi thông tin bạn cần biết về cơ chế hoạt động, tính pháp lý và bảo mật của Next Invoice.
+          </p>
+        </div>
+
+        {/* FAQ Accordion List */}
+        <div className="mt-12 space-y-3.5">
+          {faqs.map((faq, idx) => {
+            const isOpen = openIndex === idx;
+            return (
+              <div
+                key={idx}
+                className="overflow-hidden rounded-2xl border border-slate-200 bg-white transition-all hover:border-slate-300"
+              >
+                <button
+                  type="button"
+                  onClick={() => toggle(idx)}
+                  className="flex w-full items-center justify-between p-5 text-left text-sm sm:text-base font-bold text-slate-900 focus:outline-none"
+                >
+                  <span>{faq.q}</span>
+                  <ChevronDown
+                    className={`h-5 w-5 text-slate-400 shrink-0 transition-transform duration-200 ${
+                      isOpen ? "rotate-180 text-blue-600" : ""
+                    }`}
+                  />
+                </button>
+                {isOpen && (
+                  <div className="border-t border-slate-100 p-5 pt-3 text-xs sm:text-sm text-slate-600 leading-relaxed bg-slate-50/40">
+                    {faq.a}
+                  </div>
+                )}
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}

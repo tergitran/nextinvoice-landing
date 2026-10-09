@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { ArrowRight, PhoneCall, CheckCircle2 } from "lucide-react";
 import { ScrollReveal } from "@/components/motion";
+import { REGISTER_URL } from "@/lib/constants";
 
 export default function CtaBanner() {
   return (
@@ -27,7 +28,7 @@ export default function CtaBanner() {
               {/* Buttons with Primary Blue */}
               <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3.5">
                 <Link
-                  href="http://localhost:3000/register"
+                  href={REGISTER_URL}
                   className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl bg-blue-600 px-8 py-4 text-sm font-bold text-white shadow-lg shadow-blue-500/25 transition hover:bg-blue-700 active:scale-[0.98]"
                 >
                   <span>Dùng thử miễn phí 50 hóa đơn</span>

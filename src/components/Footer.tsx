@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ShieldCheck, Mail, Phone, MapPin } from "lucide-react";
 import { Logo } from "@/components/ui/logo";
+import { LOGIN_URL, REGISTER_URL } from "@/lib/constants";
 
 export default function Footer() {
   return (
@@ -76,12 +77,12 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="http://localhost:3000/login" className="hover:text-white transition">
+                <Link href={LOGIN_URL} className="hover:text-white transition">
                   Đăng nhập Webapp
                 </Link>
               </li>
               <li>
-                <Link href="http://localhost:3000/register" className="hover:text-white transition">
+                <Link href={REGISTER_URL} className="hover:text-white transition">
                   Đăng ký dùng thử
                 </Link>
               </li>

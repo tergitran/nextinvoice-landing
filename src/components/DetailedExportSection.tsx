@@ -3,6 +3,7 @@
 import { Download, ArrowRight, Check, FileSpreadsheet, Filter } from "lucide-react";
 import Link from "next/link";
 import { ScrollReveal } from "@/components/motion";
+import { REGISTER_URL } from "@/lib/constants";
 
 export default function DetailedExportSection() {
   return (
@@ -213,7 +214,7 @@ export default function DetailedExportSection() {
             </p>
           </div>
           <Link
-            href="http://localhost:3000/register"
+            href={REGISTER_URL}
             className="shrink-0 inline-flex items-center gap-2 rounded-xl bg-blue-600 px-5 py-2.5 text-xs sm:text-sm font-bold text-white hover:bg-blue-700 shadow-sm shadow-blue-500/20 transition"
           >
             <span>Trải nghiệm tính năng</span>

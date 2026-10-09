@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
+import { REGISTER_URL } from "@/lib/constants";
 
 export default function HeroSection() {
   return (
@@ -67,7 +68,7 @@ export default function HeroSection() {
             className="mt-8 flex flex-wrap items-center gap-4"
           >
             <Link
-              href="http://localhost:3000/register"
+              href={REGISTER_URL}
               className="group inline-flex items-center gap-3 rounded-full bg-blue-600 pl-7 pr-2.5 py-2.5 text-sm sm:text-base font-bold text-white shadow-xl shadow-blue-600/30 transition-all hover:bg-blue-500 active:scale-[0.98]"
             >
               <span>Dùng thử miễn phí</span>

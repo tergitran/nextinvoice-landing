@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { ArrowRight, Menu, X } from "lucide-react";
 import { Logo } from "@/components/ui/logo";
+import { LOGIN_URL, REGISTER_URL } from "@/lib/constants";
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -63,13 +64,13 @@ export default function Navbar() {
         {/* Desktop CTA Buttons */}
         <div className="hidden items-center gap-3 sm:flex">
           <Link
-            href="http://localhost:3000/login"
+            href={LOGIN_URL}
             className="rounded-full border border-slate-700 bg-slate-900/60 px-5 py-2.5 text-sm font-semibold text-slate-200 backdrop-blur-xs transition-all hover:border-slate-500 hover:bg-slate-800 hover:text-white active:scale-[0.98]"
           >
             Đăng nhập
           </Link>
           <Link
-            href="http://localhost:3000/register"
+            href={REGISTER_URL}
             className="group inline-flex items-center gap-2 rounded-full bg-blue-600 px-5 py-2.5 text-sm font-bold text-white shadow-sm shadow-blue-500/25 transition-all hover:bg-blue-500 active:scale-[0.98]"
           >
             <span>Dùng thử miễn phí</span>
@@ -136,13 +137,13 @@ export default function Navbar() {
             </Link>
             <div className="mt-2 flex flex-col gap-2 pt-3 border-t border-slate-800">
               <Link
-                href="http://localhost:3000/login"
+                href={LOGIN_URL}
                 className="w-full rounded-full border border-slate-700 bg-slate-900/60 py-2.5 text-center text-sm font-semibold text-slate-200 transition hover:border-slate-500 hover:text-white hover:bg-slate-800"
               >
                 Đăng nhập
               </Link>
               <Link
-                href="http://localhost:3000/register"
+                href={REGISTER_URL}
                 className="w-full rounded-full bg-blue-600 py-2.5 text-center text-sm font-bold text-white shadow-md shadow-blue-500/20 hover:bg-blue-500"
               >
                 Dùng thử miễn phí 50 hóa đơn

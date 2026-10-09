@@ -3,6 +3,7 @@
 import { ArrowRight, Check } from "lucide-react";
 import Link from "next/link";
 import { ScrollReveal } from "@/components/motion";
+import { REGISTER_URL } from "@/lib/constants";
 
 const comparisons = [
   {
@@ -82,7 +83,7 @@ export default function ComparisonSection() {
         {/* Mini CTA */}
         <ScrollReveal delay={0.2} className="mt-10 text-center">
           <Link
-            href="http://localhost:3000/register"
+            href={REGISTER_URL}
             className="inline-flex items-center gap-2 rounded-xl bg-blue-600 px-6 py-3.5 text-sm font-bold text-white shadow-md shadow-blue-500/20 transition hover:bg-blue-700 active:scale-[0.98]"
           >
             <span>Dùng thử miễn phí 50 hóa đơn</span>

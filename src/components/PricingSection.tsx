@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { Check, ArrowRight } from "lucide-react";
 import { ScrollReveal, StaggerContainer, StaggerItem } from "@/components/motion";
+import { REGISTER_URL } from "@/lib/constants";
 
 const plans = [
   {
@@ -23,7 +24,7 @@ const plans = [
       "Lưu trữ đám mây an toàn 10 năm",
     ],
     ctaText: "Bắt đầu sử dụng",
-    ctaLink: "http://localhost:3000/register",
+    ctaLink: REGISTER_URL,
   },
   {
     name: "Gói Doanh Nghiệp",
@@ -43,7 +44,7 @@ const plans = [
       "Hỗ trợ kỹ thuật ưu tiên",
     ],
     ctaText: "Đăng ký Gói Doanh Nghiệp",
-    ctaLink: "http://localhost:3000/register",
+    ctaLink: REGISTER_URL,
   },
   {
     name: "Gói Đại Lý Kế Toán",
@@ -63,7 +64,7 @@ const plans = [
       "Hỗ trợ thiết lập và hướng dẫn 1-1",
     ],
     ctaText: "Liên hệ tư vấn Đại lý",
-    ctaLink: "http://localhost:3000/register",
+    ctaLink: REGISTER_URL,
   },
 ];
 

@@ -13,9 +13,25 @@ import {
 
 export default function HeroSection() {
   return (
-    <section className="relative overflow-hidden pt-12 pb-20 md:pt-20 md:pb-32 gradient-hero">
-      {/* Background Decorative Blobs */}
-      <div className="absolute top-0 left-1/2 -z-10 -translate-x-1/2 blur-3xl opacity-30 pointer-events-none">
+    <section className="relative overflow-hidden pt-12 pb-20 md:pt-20 md:pb-32">
+      {/* Background Video Layer */}
+      <div className="absolute inset-0 -z-30 overflow-hidden pointer-events-none">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="h-full w-full object-cover object-center opacity-40"
+        >
+          <source src="/Video-background-NextInvoice.mp4" type="video/mp4" />
+        </video>
+      </div>
+
+      {/* Soft Gradient Overlay for Text Readability */}
+      <div className="absolute inset-0 -z-20 bg-gradient-to-b from-white/90 via-white/80 to-white pointer-events-none" />
+
+      {/* Decorative Blur Glow */}
+      <div className="absolute top-0 left-1/2 -z-10 -translate-x-1/2 blur-3xl opacity-25 pointer-events-none">
         <div className="h-[400px] w-[800px] bg-gradient-to-tr from-blue-600 via-indigo-500 to-sky-400 rounded-full" />
       </div>
 

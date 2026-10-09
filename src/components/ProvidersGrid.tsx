@@ -109,15 +109,21 @@ export default function ProvidersGrid() {
         </ScrollReveal>
 
         {/* Honest Transparency Quote Box */}
-        <ScrollReveal delay={0.1} className="mt-10 mx-auto max-w-3xl rounded-xl border-l-4 border-blue-600 bg-blue-50/40 p-5 sm:p-6 border border-blue-100">
-          <div className="flex flex-col gap-2">
-            <span className="text-xs font-bold uppercase tracking-wider text-blue-900">
-              Minh bạch dữ liệu & Đồng hành cùng người dùng
+        <ScrollReveal delay={0.1} className="mt-8 mx-auto max-w-3xl rounded-2xl border border-slate-200/90 bg-slate-50/80 p-6 sm:p-7">
+          <div className="flex items-center justify-between pb-3 border-b border-slate-200/80 mb-3.5">
+            <div className="flex items-center gap-2">
+              <span className="h-1.5 w-1.5 rounded-full bg-blue-600" />
+              <span className="text-xs font-bold uppercase tracking-wider text-slate-900">
+                Lưu ý minh bạch về tỷ lệ tải hóa đơn gốc
+              </span>
+            </div>
+            <span className="text-[11px] font-medium text-slate-500">
+              Đội ngũ Next Invoice
             </span>
-            <p className="text-xs sm:text-sm text-slate-700 leading-relaxed font-normal italic">
-              &ldquo;Hiện tại hệ thống đang hỗ trợ tải được tầm 80% hóa đơn gốc từ các tổ chức cung cấp giải pháp hóa đơn điện tử. Do một số nhà cung cấp không có chia sẻ dữ liệu hóa đơn gốc cho Cổng thông tin Hóa đơn điện tử của Tổng cục Thuế. Đội ngũ Next Invoice luôn lắng nghe ý kiến người dùng để mang đến trải nghiệm tốt nhất.&rdquo;
-            </p>
           </div>
+          <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
+            &ldquo;Hiện tại hệ thống đang hỗ trợ tải được tầm 80% hóa đơn gốc từ các tổ chức cung cấp giải pháp hóa đơn điện tử. Do một số nhà cung cấp không có chia sẻ dữ liệu hóa đơn gốc cho Cổng thông tin Hóa đơn điện tử của Tổng cục Thuế. Đội ngũ Next Invoice luôn lắng nghe ý kiến người dùng để mang đến trải nghiệm tốt nhất.&rdquo;
+          </p>
         </ScrollReveal>
 
         {/* Carousel Header Bar */}

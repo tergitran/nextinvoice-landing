@@ -13,29 +13,30 @@ import {
 
 export default function HeroSection() {
   return (
-    <section className="relative overflow-hidden pt-12 pb-20 md:pt-20 md:pb-32">
+    <section className="relative isolate overflow-hidden pt-12 pb-20 md:pt-20 md:pb-32">
       {/* Background Video Layer */}
-      <div className="absolute inset-0 -z-30 overflow-hidden pointer-events-none">
+      <div className="absolute inset-0 -z-20 overflow-hidden pointer-events-none">
         <video
           autoPlay
           loop
           muted
           playsInline
-          className="h-full w-full object-cover object-center opacity-40"
+          preload="auto"
+          className="h-full w-full object-cover object-center opacity-70"
         >
           <source src="/Video-background-NextInvoice.mp4" type="video/mp4" />
         </video>
       </div>
 
-      {/* Soft Gradient Overlay for Text Readability */}
-      <div className="absolute inset-0 -z-20 bg-gradient-to-b from-white/90 via-white/80 to-white pointer-events-none" />
+      {/* Soft Light Overlay for Text Contrast */}
+      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-white/65 via-white/55 to-white/95 pointer-events-none" />
 
       {/* Decorative Blur Glow */}
-      <div className="absolute top-0 left-1/2 -z-10 -translate-x-1/2 blur-3xl opacity-25 pointer-events-none">
+      <div className="absolute top-0 left-1/2 -z-10 -translate-x-1/2 blur-3xl opacity-20 pointer-events-none">
         <div className="h-[400px] w-[800px] bg-gradient-to-tr from-blue-600 via-indigo-500 to-sky-400 rounded-full" />
       </div>
 
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Header Badges & Tagline */}
         <div className="flex flex-col items-center text-center">
           <div className="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-50/80 px-4 py-1.5 text-xs sm:text-sm font-semibold text-blue-700 shadow-xs mb-6 backdrop-blur-xs">

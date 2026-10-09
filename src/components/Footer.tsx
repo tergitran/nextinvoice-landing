@@ -4,7 +4,7 @@ import { ShieldCheck, Mail, Phone, MapPin } from "lucide-react";
 
 export default function Footer() {
   return (
-    <footer className="border-t border-slate-200 bg-slate-900 text-slate-400 text-xs sm:text-sm">
+    <footer className="border-t border-slate-900 bg-slate-950 text-slate-400 text-xs sm:text-sm">
       <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
           {/* Brand Info */}

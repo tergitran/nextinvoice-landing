@@ -2,11 +2,12 @@
 
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
+import { ScrollReveal } from "@/components/motion";
 
 const faqs = [
   {
     q: "Next Invoice có tự động giải mã Captcha của Tổng cục Thuế không?",
-    a: "Có. Hệ thống tích hợp sẵn Microservice trí tuệ nhân tạo (AI Engine) chuyên giải mã Captcha hình ảnh của Cổng HĐĐT Tổng cục Thuế với độ chính xác trên 99% trong vòng chưa đến 0.5 giây. Bạn không cần phải ngồi gõ captcha bằng tay.",
+    a: "Có. Hệ thống tích hợp sẵn Microservice trí tuệ nhân tạo (AI Engine) chuyên giải mã Captcha hình ảnh của Cổng HĐĐT Tổng cục Thuế với độ chính xác cao trong vòng chưa đến 0.5 giây. Bạn không cần phải ngồi gõ captcha bằng tay.",
   },
   {
     q: "Phần mềm có tải được file XML và PDF gốc có chữ ký số không?",
@@ -18,7 +19,7 @@ const faqs = [
   },
   {
     q: "Mật khẩu Cổng Thuế của tôi có được bảo mật an toàn không?",
-    a: "Tuyệt đối an toàn. Mật khẩu được mã hóa một chiều đa tầng (AES-256 bit). Hệ thống chỉ dùng thông tin đăng nhập trong phiên làm việc với Cổng Thuế để lấy danh sách hóa đơn theo sự ủy quyền của bạn, hoàn toàn không có bất kỳ ai có thể xem được mật khẩu của bạn.",
+    a: "Tuyệt đối an toàn. Mật khẩu được mã hóa đa tầng (AES-256 bit). Hệ thống chỉ dùng thông tin đăng nhập trong phiên làm việc với Cổng Thuế để lấy danh sách hóa đơn theo sự ủy quyền của bạn, hoàn toàn không có bất kỳ ai có thể xem được mật khẩu của bạn.",
   },
   {
     q: "Dữ liệu xuất ra có tương thích với phần mềm MISA, Fast, Bravo không?",
@@ -26,7 +27,7 @@ const faqs = [
   },
   {
     q: "Hóa đơn trùng lặp có bị trừ số lượng Quota trong gói không?",
-    a: "Không. Next Invoice áp dụng quy tắc trừ Quota cực kỳ công bằng: Chỉ những hóa đơn mới lần đầu tiên xuất hiện trong hệ thống và tải thành công mới được tính lượt. Khi hệ thống đồng bộ lại các ngày cũ, các hóa đơn đã có sẽ không bị trừ thêm bất kỳ lượt quota nào.",
+    a: "Không. Next Invoice áp dụng quy tắc trừ Quota minh bạch: Chỉ những hóa đơn mới lần đầu tiên xuất hiện trong hệ thống và tải thành công mới được tính lượt. Khi hệ thống đồng bộ lại các ngày cũ, các hóa đơn đã có sẽ không bị trừ thêm bất kỳ lượt quota nào.",
   },
 ];
 
@@ -38,50 +39,50 @@ export default function FaqSection() {
   };
 
   return (
-    <section id="faq" className="py-20 lg:py-28 bg-slate-50/70 border-b border-slate-200/80">
-      <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-        <div className="text-center">
-          <span className="text-xs sm:text-sm font-bold uppercase tracking-wider text-blue-600">
-            Giải Đáp Thắc Mắc
+    <section id="faq" className="py-20 lg:py-28 bg-slate-50/50 border-b border-slate-200/70">
+      <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+        <ScrollReveal className="text-center">
+          <span className="text-xs font-semibold uppercase tracking-widest text-slate-400">
+            Hỏi đáp thường gặp
           </span>
-          <h2 className="mt-2 text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl">
+          <h2 className="mt-2 text-3xl font-extrabold tracking-tight text-slate-950 sm:text-4xl">
             Câu hỏi thường gặp của Kế toán
           </h2>
-          <p className="mt-4 text-base text-slate-600">
-            Mọi thông tin bạn cần biết về cơ chế hoạt động, tính pháp lý và bảo mật của Next Invoice.
+          <p className="mt-4 text-base text-slate-600 leading-relaxed font-normal">
+            Mọi thông tin cần biết về cơ chế hoạt động, tính pháp lý và bảo mật của Next Invoice.
           </p>
-        </div>
+        </ScrollReveal>
 
         {/* FAQ Accordion List */}
-        <div className="mt-12 space-y-3.5">
+        <ScrollReveal delay={0.1} className="mt-12 space-y-3">
           {faqs.map((faq, idx) => {
             const isOpen = openIndex === idx;
             return (
               <div
                 key={idx}
-                className="overflow-hidden rounded-2xl border border-slate-200 bg-white transition-all hover:border-slate-300"
+                className="overflow-hidden rounded-xl border border-slate-200 bg-white transition-all hover:border-slate-300"
               >
                 <button
                   type="button"
                   onClick={() => toggle(idx)}
-                  className="flex w-full items-center justify-between p-5 text-left text-sm sm:text-base font-bold text-slate-900 focus:outline-none"
+                  className="flex w-full items-center justify-between p-5 text-left text-sm sm:text-base font-semibold text-slate-900 focus:outline-none"
                 >
-                  <span>{faq.q}</span>
+                  <span className="pr-4">{faq.q}</span>
                   <ChevronDown
-                    className={`h-5 w-5 text-slate-400 shrink-0 transition-transform duration-200 ${
-                      isOpen ? "rotate-180 text-blue-600" : ""
+                    className={`h-4 w-4 text-slate-400 shrink-0 transition-transform duration-200 ${
+                      isOpen ? "rotate-180 text-slate-900" : ""
                     }`}
                   />
                 </button>
                 {isOpen && (
-                  <div className="border-t border-slate-100 p-5 pt-3 text-xs sm:text-sm text-slate-600 leading-relaxed bg-slate-50/40">
+                  <div className="border-t border-slate-100 p-5 pt-3.5 text-xs sm:text-sm text-slate-600 leading-relaxed bg-slate-50/30 font-normal">
                     {faq.a}
                   </div>
                 )}
               </div>
             );
           })}
-        </div>
+        </ScrollReveal>
       </div>
     </section>
   );

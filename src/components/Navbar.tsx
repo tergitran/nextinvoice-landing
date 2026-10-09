@@ -54,9 +54,8 @@ export default function Navbar() {
           </Link>
           <Link
             href="#security"
-            className="flex items-center gap-1.5 text-sm font-semibold text-slate-600 transition hover:text-blue-600"
+            className="text-sm font-semibold text-slate-600 transition hover:text-blue-600"
           >
-            <ShieldCheck className="h-4 w-4 text-emerald-500" />
             Bảo mật
           </Link>
           <Link

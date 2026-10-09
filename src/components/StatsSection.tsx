@@ -1,60 +1,56 @@
-import { Clock, Layers, ShieldCheck, Zap } from "lucide-react";
+"use client";
+
+import { StaggerContainer, StaggerItem } from "@/components/motion";
 
 const stats = [
   {
-    icon: Clock,
     value: "85%",
-    label: "Tiết kiệm thời gian kế toán",
-    description: "Không còn mất hàng giờ đăng nhập và tải lẻ từng hóa đơn trên cổng Thuế.",
+    label: "Tiết kiệm thời gian thao tác",
+    description: "Tự động hóa hoàn toàn việc tải lẻ và tra cứu hóa đơn thủ công trên Cổng Thuế.",
   },
   {
-    icon: Layers,
     value: "~80%",
-    label: "Hóa đơn gốc tải trực tiếp",
-    description: "Hỗ trợ tải trực tiếp hóa đơn gốc từ hầu hết các nhà cung cấp phổ biến trên thị trường.",
+    label: "Tải trực tiếp hóa đơn gốc",
+    description: "Lấy thẳng file XML ký số và PDF từ các cổng giải pháp HĐĐT phổ biến nhất.",
   },
   {
-    icon: ShieldCheck,
     value: "100%",
-    label: "Dữ liệu chuẩn Tổng cục Thuế",
-    description: "Đồng bộ đầy đủ dữ liệu Mua vào và Bán ra có mã/không mã theo chuẩn TCT.",
+    label: "Chuẩn định dạng Tổng cục Thuế",
+    description: "Đồng bộ đầy đủ hóa đơn Mua vào và Bán ra có mã/không mã theo Thông tư 78.",
   },
   {
-    icon: Zap,
     value: "0.4s",
-    label: "Giải mã Captcha TCT bằng AI",
-    description: "Xử lý Captcha hình ảnh tức thì, đồng bộ nhanh chóng theo khoảng thời gian tùy chọn.",
+    label: "Tốc độ giải Captcha AI",
+    description: "Thuật toán AI nhận diện Captcha hình ảnh tức thì, đồng bộ liên tục không gián đoạn.",
   },
 ];
 
 export default function StatsSection() {
   return (
-    <section className="border-y border-slate-200/80 bg-white py-14">
+    <section id="stats" className="border-b border-slate-200/70 bg-slate-50/50 py-16 lg:py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
-          {stats.map((stat, idx) => {
-            const Icon = stat.icon;
-            return (
-              <div
-                key={idx}
-                className="flex flex-col items-center text-center sm:items-start sm:text-left rounded-xl p-4 transition-all hover:bg-slate-50"
-              >
-                <div className="mb-3 inline-flex rounded-xl bg-blue-50 p-3 text-blue-600">
-                  <Icon className="h-6 w-6" />
-                </div>
-                <div className="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900">
-                  {stat.value}
-                </div>
-                <div className="mt-1 text-sm font-bold text-slate-800">
-                  {stat.label}
-                </div>
-                <p className="mt-1.5 text-xs sm:text-sm text-slate-500 leading-relaxed">
-                  {stat.description}
-                </p>
+        <StaggerContainer
+          className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4 sm:gap-6 lg:gap-8"
+          delayChildren={0.1}
+          staggerChildren={0.1}
+        >
+          {stats.map((stat, idx) => (
+            <StaggerItem
+              key={idx}
+              className="flex flex-col justify-start border-l-2 border-slate-900/10 pl-5 transition-all hover:border-blue-600 sm:border-l-2 sm:pl-5"
+            >
+              <div className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-slate-950">
+                {stat.value}
               </div>
-            );
-          })}
-        </div>
+              <div className="mt-2 text-sm font-semibold text-slate-900 tracking-tight">
+                {stat.label}
+              </div>
+              <p className="mt-1.5 text-xs text-slate-500 leading-relaxed font-normal">
+                {stat.description}
+              </p>
+            </StaggerItem>
+          ))}
+        </StaggerContainer>
       </div>
     </section>
   );

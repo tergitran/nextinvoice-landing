@@ -75,21 +75,32 @@ import {
   CarouselPrevious,
   CarouselNext,
   CarouselDots,
+  useCarousel,
 } from "@/components/ui/carousel";
 
-function PricingCard({ plan }: { plan: (typeof plans)[0] }) {
+function PricingCard({
+  plan,
+  isMobile = false,
+}: {
+  plan: (typeof plans)[0];
+  isMobile?: boolean;
+}) {
   return (
     <div
-      className={`relative flex h-full flex-col justify-between rounded-2xl p-6 sm:p-8 transition-all ${
+      className={`relative flex h-full flex-col justify-between rounded-2xl transition-all ${
+        isMobile ? "p-4.5" : "p-6 sm:p-8"
+      } ${
         plan.popular
           ? "border-2 border-blue-600 bg-white shadow-xl shadow-blue-500/10 ring-4 ring-blue-50"
           : "border border-slate-200 bg-white text-slate-900 hover:border-slate-300 hover:shadow-xs"
       }`}
     >
       <div>
-        <div className="flex items-center justify-between mb-3">
+        <div className={`flex items-center justify-between ${isMobile ? "mb-2" : "mb-3"}`}>
           <span
-            className={`inline-flex rounded-full px-3 py-1 text-xs font-bold ${
+            className={`inline-flex rounded-full font-bold ${
+              isMobile ? "px-2.5 py-0.5 text-[10px]" : "px-3 py-1 text-xs"
+            } ${
               plan.popular
                 ? "bg-blue-600 text-white shadow-xs"
                 : "bg-slate-100 text-slate-600"
@@ -99,49 +110,74 @@ function PricingCard({ plan }: { plan: (typeof plans)[0] }) {
           </span>
         </div>
 
-        <h3 className="text-xl font-bold tracking-tight text-slate-950">
+        <h3 className={`font-bold tracking-tight text-slate-950 ${isMobile ? "text-base" : "text-xl"}`}>
           {plan.name}
         </h3>
-        <p className="mt-2 text-xs leading-relaxed text-slate-500 min-h-[36px]">
+        <p className={`text-slate-500 leading-snug line-clamp-2 ${isMobile ? "text-[11px] mt-1 min-h-[30px]" : "text-xs mt-2 min-h-[36px]"}`}>
           {plan.description}
         </p>
 
         {/* Price Display */}
-        <div className="mt-6 flex items-baseline gap-1">
-          <span className="text-3xl sm:text-4xl font-extrabold tracking-tight font-mono text-slate-950">
+        <div className={`flex items-baseline gap-1 ${isMobile ? "mt-3" : "mt-6"}`}>
+          <span className={`font-extrabold tracking-tight font-mono text-slate-950 ${isMobile ? "text-2xl" : "text-3xl sm:text-4xl"}`}>
             {plan.price}
           </span>
-          <span className="text-xs font-semibold text-slate-500">
+          <span className={`font-semibold text-slate-500 ${isMobile ? "text-[11px]" : "text-xs"}`}>
             đ / {plan.period}
           </span>
         </div>
-        <div className="mt-1 text-xs font-bold text-blue-700">
+        <div className={`font-bold text-blue-700 ${isMobile ? "text-[11px] mt-0.5" : "text-xs mt-1"}`}>
           {plan.quota}
         </div>
 
-        <div className="mt-6 border-t border-slate-100 pt-6 space-y-2.5">
+        <div className={`border-t border-slate-100 ${isMobile ? "mt-3 pt-3 space-y-1.5" : "mt-6 pt-6 space-y-2.5"}`}>
           {plan.features.map((feature, fIdx) => (
-            <div key={fIdx} className="flex items-start gap-2.5 text-xs sm:text-sm">
-              <Check className="h-4 w-4 shrink-0 mt-0.5 text-emerald-600 font-bold" />
-              <span className="text-slate-600">{feature}</span>
+            <div key={fIdx} className={`flex items-start ${isMobile ? "gap-1.5 text-[11px]" : "gap-2.5 text-xs sm:text-sm"}`}>
+              <Check className={`shrink-0 text-emerald-600 font-bold ${isMobile ? "h-3.5 w-3.5 mt-0.5" : "h-4 w-4 mt-0.5"}`} />
+              <span className="text-slate-600 leading-tight">{feature}</span>
             </div>
           ))}
         </div>
       </div>
 
-      <div className="mt-8 pt-4">
+      <div className={isMobile ? "mt-4 pt-2" : "mt-8 pt-4"}>
         <Link
           href={plan.ctaLink}
-          className={`w-full inline-flex items-center justify-center gap-2 rounded-xl py-3.5 px-4 text-xs sm:text-sm font-bold transition-all ${
+          className={`w-full inline-flex items-center justify-center rounded-xl font-bold transition-all ${
+            isMobile ? "py-2.5 px-3 text-xs gap-1.5" : "py-3.5 px-4 text-xs sm:text-sm gap-2"
+          } ${
             plan.popular
               ? "bg-blue-600 text-white hover:bg-blue-700 shadow-md shadow-blue-500/25 active:scale-[0.98]"
               : "bg-blue-50 text-blue-700 hover:bg-blue-100 border border-blue-200/60 active:scale-[0.98]"
           }`}
         >
           <span>{plan.ctaText}</span>
-          <ArrowRight className="h-4 w-4" />
+          <ArrowRight className={isMobile ? "h-3.5 w-3.5" : "h-4 w-4"} />
         </Link>
       </div>
+    </div>
+  );
+}
+
+function PricingCarouselCard({
+  plan,
+  index,
+}: {
+  plan: (typeof plans)[0];
+  index: number;
+}) {
+  const { selectedIndex } = useCarousel();
+  const isActive = selectedIndex === index;
+
+  return (
+    <div
+      className={`h-full transition-all duration-300 ${
+        isActive
+          ? "scale-100 opacity-100"
+          : "scale-[0.94] opacity-65"
+      }`}
+    >
+      <PricingCard plan={plan} isMobile={true} />
     </div>
   );
 }
@@ -163,7 +199,7 @@ export default function PricingSection() {
         </ScrollReveal>
 
         {/* Mobile View: shadcn Carousel with Center Alignment & Peeking Slides */}
-        <div className="mt-12 block md:hidden">
+        <div className="mt-10 block md:hidden">
           <Carousel
             opts={{
               align: "center",
@@ -172,15 +208,15 @@ export default function PricingSection() {
             }}
             className="w-full relative px-1"
           >
-            <CarouselContent className="-ml-3 py-4">
+            <CarouselContent className="-ml-3 py-3">
               {plans.map((plan, idx) => (
-                <CarouselItem key={idx} className="basis-[82%] pl-3">
-                  <PricingCard plan={plan} />
+                <CarouselItem key={idx} className="basis-[70%] pl-3">
+                  <PricingCarouselCard plan={plan} index={idx} />
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <CarouselPrevious className="left-0 size-9 bg-white/95 shadow-md border-slate-200" />
-            <CarouselNext className="right-0 size-9 bg-white/95 shadow-md border-slate-200" />
+            <CarouselPrevious className="left-0.5 size-8 bg-white/95 shadow-md border-slate-200 text-slate-700" />
+            <CarouselNext className="right-0.5 size-8 bg-white/95 shadow-md border-slate-200 text-slate-700" />
             <CarouselDots />
           </Carousel>
         </div>

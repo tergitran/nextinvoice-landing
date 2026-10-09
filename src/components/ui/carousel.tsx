@@ -106,6 +106,9 @@ function Carousel({
 
   React.useEffect(() => {
     if (!api) return;
+    if (typeof opts?.startIndex === "number") {
+      api.scrollTo(opts.startIndex, true);
+    }
     setScrollSnaps(api.scrollSnapList());
     onSelect(api);
     api.on("reInit", (emblaApi) => {
@@ -117,7 +120,7 @@ function Carousel({
     return () => {
       api?.off("select", onSelect);
     };
-  }, [api, onSelect]);
+  }, [api, onSelect, opts?.startIndex]);
 
   return (
     <CarouselContext.Provider

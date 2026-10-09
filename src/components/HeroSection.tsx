@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 
 export default function HeroSection() {
   return (
-    <section className="relative isolate overflow-hidden pt-16 pb-16 md:pt-24 md:pb-24 border-b border-slate-200/70">
+    <section className="relative isolate overflow-hidden min-h-[580px] lg:min-h-[660px] flex items-center pt-24 pb-20 md:pt-28 md:pb-24 border-b border-slate-800 bg-slate-950">
       {/* Background Video Layer */}
       <div className="absolute inset-0 -z-20 overflow-hidden pointer-events-none">
         <video
@@ -15,68 +15,71 @@ export default function HeroSection() {
           muted
           playsInline
           preload="auto"
-          className="h-full w-full object-cover object-center opacity-70"
+          className="h-full w-full object-cover object-[75%_center] lg:object-center opacity-85"
         >
           <source src="/Video-background-NextInvoice.mp4" type="video/mp4" />
         </video>
       </div>
 
-      {/* Soft Light Overlay for Text Contrast */}
-      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-white/70 via-white/60 to-white/95 pointer-events-none" />
+      {/* Sapo-style Horizontal Vignette: Deep dark on left for text, transparent on right for video */}
+      <div className="absolute inset-0 -z-10 bg-gradient-to-r from-slate-950 via-slate-950/85 to-slate-950/25 pointer-events-none" />
+      <div className="absolute inset-0 -z-10 bg-gradient-to-t from-slate-950/60 via-transparent to-transparent pointer-events-none" />
 
-      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col items-center text-center">
-          {/* Subtle Monochrome Pill Badge */}
-          <motion.div
+      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full">
+        {/* Left-Aligned Hero Content (Sapo Style) */}
+        <div className="max-w-2xl text-left">
+          {/* Category Tag (Sapo Style) */}
+          <motion.p
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, ease: "easeOut" }}
-            className="inline-flex items-center gap-2 rounded-full border border-slate-200/90 bg-white/80 px-3.5 py-1 text-xs font-medium text-slate-700 shadow-2xs backdrop-blur-md mb-6"
+            className="text-base sm:text-lg font-normal text-slate-200"
           >
-            <span className="h-1.5 w-1.5 rounded-full bg-blue-600 animate-pulse" />
-            <span>Đồng bộ hóa đơn Mua vào & Bán ra trực tiếp từ Tổng cục Thuế</span>
-          </motion.div>
+            Nền tảng
+          </motion.p>
 
-          {/* Crisp Editorial Headline */}
+          {/* Crisp, Balanced Headline */}
           <motion.h1
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1, ease: [0.21, 0.47, 0.32, 0.98] }}
-            className="max-w-4xl text-3xl font-extrabold tracking-tight text-slate-950 sm:text-5xl lg:text-6xl sm:leading-[1.15]"
+            className="mt-3 text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white leading-[1.2]"
           >
-            Tự động hóa Quản lý Hóa đơn Điện tử <br className="hidden sm:inline" />
-            <span className="text-blue-700">Chính xác & Tiết kiệm 85% thời gian</span>
+            Quản lý & Tự động đồng bộ <br className="hidden sm:inline" />
+            Hóa đơn Điện tử từ Cổng Thuế
           </motion.h1>
 
-          {/* Clear Subheading */}
+          {/* Compact, Highly Readable Subtitle */}
           <motion.p
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2, ease: [0.21, 0.47, 0.32, 0.98] }}
-            className="mt-6 max-w-2xl text-base sm:text-lg text-slate-600 leading-relaxed font-normal"
+            className="mt-4 max-w-xl text-sm sm:text-base text-slate-300 leading-relaxed font-normal"
           >
-            Chấm dứt việc tra cứu thủ công từng tờ hóa đơn. Next Invoice tự động kéo dữ liệu từ Cổng Thuế, giải mã Captcha bằng AI trong 0.4s và hỗ trợ tải trọn bộ file gốc XML, PDF có chữ ký số.
+            Tiên phong công nghệ AI giải mã Captcha 0.4s, Next Invoice mang đến giải pháp tự động đồng bộ & quản lý trọn bộ hóa đơn gốc XML, PDF có chữ ký số cho doanh nghiệp và kế toán.
           </motion.p>
 
-          {/* Action Buttons */}
+          {/* Sapo-style Pill Action Buttons */}
           <motion.div
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3, ease: [0.21, 0.47, 0.32, 0.98] }}
-            className="mt-8 flex flex-col sm:flex-row items-center gap-3.5 w-full sm:w-auto"
+            className="mt-8 flex flex-wrap items-center gap-4"
           >
             <Link
               href="http://localhost:3000/register"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl bg-blue-600 px-7 py-3.5 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700 active:scale-[0.99]"
+              className="group inline-flex items-center gap-3 rounded-full bg-blue-600 pl-7 pr-2.5 py-2.5 text-sm sm:text-base font-bold text-white shadow-xl shadow-blue-600/30 transition-all hover:bg-blue-500 active:scale-[0.98]"
             >
-              <span>Dùng thử miễn phí 50 hóa đơn</span>
-              <ArrowRight className="h-4 w-4" />
+              <span>Dùng thử miễn phí</span>
+              <div className="flex h-9 w-9 items-center justify-center rounded-full bg-white text-blue-600 transition-transform group-hover:translate-x-0.5 shadow-xs">
+                <ArrowRight className="h-4 w-4" />
+              </div>
             </Link>
             <Link
               href="#features"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl border border-slate-300/80 bg-white/90 px-6 py-3.5 text-sm font-semibold text-slate-700 backdrop-blur-xs transition hover:bg-slate-50 hover:border-slate-400"
+              className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-6 py-3.5 text-sm font-semibold text-white backdrop-blur-xs transition hover:bg-white/20"
             >
-              <span>Khám phá tính năng</span>
+              <span>Xem tính năng</span>
             </Link>
           </motion.div>
 
@@ -85,44 +88,19 @@ export default function HeroSection() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.7, delay: 0.4 }}
-            className="mt-9 flex flex-wrap items-center justify-center gap-y-2 gap-x-6 text-xs font-medium text-slate-500"
+            className="mt-10 flex flex-wrap items-center gap-y-2 gap-x-6 text-xs font-medium text-slate-400"
           >
-            <span className="flex items-center gap-1.5">
-              <span className="text-emerald-600 font-bold">✓</span> Không cần cài đặt phần mềm
+            <span className="flex items-center gap-1.5 text-slate-300">
+              <span className="text-emerald-400 font-bold">✓</span> Không cần cài đặt phần mềm
             </span>
-            <span className="hidden sm:inline text-slate-300">•</span>
-            <span className="flex items-center gap-1.5">
-              <span className="text-blue-600 font-bold">✓</span> Bảo mật mã hóa AES-256
+            <span className="hidden sm:inline text-slate-600">•</span>
+            <span className="flex items-center gap-1.5 text-slate-300">
+              <span className="text-blue-400 font-bold">✓</span> Bảo mật mã hóa AES-256
             </span>
-            <span className="hidden sm:inline text-slate-300">•</span>
-            <span className="flex items-center gap-1.5">
-              <span className="text-emerald-600 font-bold">✓</span> Chuẩn Thông tư 78 / NĐ 123
+            <span className="hidden sm:inline text-slate-600">•</span>
+            <span className="flex items-center gap-1.5 text-slate-300">
+              <span className="text-emerald-400 font-bold">✓</span> Chuẩn Thông tư 78 / NĐ 123
             </span>
-          </motion.div>
-
-          {/* Minimalist Scroll Indicator */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.5 }}
-            className="mt-14 flex flex-col items-center justify-center"
-          >
-            <a
-              href="#stats"
-              className="group flex flex-col items-center gap-2 text-xs font-medium text-slate-400 transition hover:text-slate-600"
-              aria-label="Cuộn xuống xem chi tiết"
-            >
-              <span className="tracking-widest uppercase text-[10px] font-semibold text-slate-400 group-hover:text-slate-600">
-                Cuộn để khám phá
-              </span>
-              <div className="flex h-7 w-4.5 items-start justify-center rounded-full border border-slate-300/80 p-0.5">
-                <motion.div
-                  animate={{ y: [0, 8, 0] }}
-                  transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
-                  className="h-1.5 w-1 rounded-full bg-slate-400"
-                />
-              </div>
-            </a>
           </motion.div>
         </div>
       </div>

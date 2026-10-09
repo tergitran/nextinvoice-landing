@@ -76,14 +76,14 @@ export default function DetailedExportSection() {
         </ScrollReveal>
 
         {/* Mockup Bảng Tính Excel Chuẩn Màu Sắc Excel */}
-        <ScrollReveal delay={0.2} className="mt-10 overflow-hidden rounded-2xl border border-slate-300 bg-white shadow-xl shadow-slate-200/50">
+        <ScrollReveal delay={0.2} className="mt-10 overflow-hidden rounded-2xl border border-slate-300 bg-white shadow-xl shadow-slate-200/50 max-w-full">
           {/* Excel Application Header Bar (Màu xanh lá Excel chuẩn) */}
-          <div className="flex items-center justify-between bg-emerald-800 px-4 py-2.5 text-white">
-            <div className="flex items-center gap-2.5">
-              <div className="rounded bg-emerald-700 p-1">
+          <div className="flex items-center justify-between bg-emerald-800 px-3.5 sm:px-4 py-2.5 text-white gap-2">
+            <div className="flex items-center gap-2 min-w-0">
+              <div className="rounded bg-emerald-700 p-1 shrink-0">
                 <FileSpreadsheet className="h-4 w-4 text-white" />
               </div>
-              <span className="text-xs sm:text-sm font-bold tracking-tight">
+              <span className="text-xs sm:text-sm font-bold tracking-tight truncate max-w-[170px] sm:max-w-none">
                 Bang_Ke_Chi_Tiet_Hoa_Don_Mua_Vao_Q3_2026.xlsx
               </span>
             </div>

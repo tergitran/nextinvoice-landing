@@ -87,9 +87,9 @@ export default function FeatureTabsSection() {
           </p>
         </ScrollReveal>
 
-        {/* Minimal Tab Bar */}
-        <ScrollReveal delay={0.1} className="mt-12 flex justify-center">
-          <div className="inline-flex rounded-xl border border-slate-200/80 bg-slate-100/70 p-1 max-w-2xl w-full">
+        {/* Minimal Tab Bar - Responsive 2x2 grid on mobile, 4 tabs on desktop */}
+        <ScrollReveal delay={0.1} className="mt-12 flex justify-center w-full">
+          <div className="grid grid-cols-2 sm:grid-cols-4 rounded-xl border border-slate-200/80 bg-slate-100/70 p-1.5 max-w-2xl w-full gap-1.5">
             {features.map((item, idx) => {
               const isActive = activeTab === idx;
               return (
@@ -97,9 +97,9 @@ export default function FeatureTabsSection() {
                   key={item.id}
                   type="button"
                   onClick={() => setActiveTab(idx)}
-                  className={`flex-1 rounded-lg py-2.5 px-3 text-xs sm:text-sm font-semibold transition-all ${
+                  className={`rounded-lg py-2.5 px-2 text-xs sm:text-sm font-semibold transition-all text-center flex items-center justify-center ${
                     isActive
-                      ? "bg-white text-slate-950 shadow-2xs font-bold"
+                      ? "bg-white text-slate-950 shadow-xs font-bold"
                       : "text-slate-600 hover:text-slate-900"
                   }`}
                 >
@@ -111,7 +111,7 @@ export default function FeatureTabsSection() {
         </ScrollReveal>
 
         {/* Tab Content Display */}
-        <ScrollReveal delay={0.2} className="mt-8 rounded-2xl border border-slate-200/80 bg-slate-50/40 p-6 sm:p-8 lg:p-10">
+        <ScrollReveal delay={0.2} className="mt-8 rounded-2xl border border-slate-200/80 bg-slate-50/40 p-5 sm:p-8 lg:p-10 overflow-hidden">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
             {/* Left Column: Feature Details */}
             <div className="lg:col-span-5 flex flex-col justify-center">
@@ -137,37 +137,37 @@ export default function FeatureTabsSection() {
             </div>
 
             {/* Right Column: Clean Interactive Preview Mockup */}
-            <div className="lg:col-span-7">
-              <div className="rounded-xl border border-slate-200 bg-white p-5 sm:p-6 shadow-2xs">
+            <div className="lg:col-span-7 min-w-0">
+              <div className="rounded-xl border border-slate-200 bg-white p-4 sm:p-6 shadow-2xs overflow-hidden">
                 {/* Dynamic Preview 1: Sync */}
                 {current.previewType === "sync" && (
                   <div className="space-y-4">
-                    <div className="flex items-center justify-between border-b border-slate-100 pb-3">
-                      <div className="flex items-center gap-2">
-                        <Bot className="h-4 w-4 text-slate-900" />
-                        <span className="font-semibold text-slate-900 text-sm">AI Captcha Engine Log</span>
+                    <div className="flex items-center justify-between border-b border-slate-100 pb-3 gap-2">
+                      <div className="flex items-center gap-2 min-w-0">
+                        <Bot className="h-4 w-4 text-slate-900 shrink-0" />
+                        <span className="font-semibold text-slate-900 text-sm truncate">AI Captcha Engine Log</span>
                       </div>
-                      <span className="rounded-full bg-emerald-50 px-2.5 py-0.5 text-xs font-semibold text-emerald-700">
+                      <span className="shrink-0 rounded-full bg-emerald-50 px-2.5 py-0.5 text-xs font-semibold text-emerald-700">
                         Đang kết nối TCT
                       </span>
                     </div>
 
                     <div className="space-y-2 font-mono text-xs text-slate-600">
-                      <div className="flex items-center justify-between rounded-md bg-slate-50 p-2.5 border border-slate-100">
-                        <span>[10:15:01] Khởi tạo phiên kết nối Cổng HĐĐT...</span>
-                        <span className="text-emerald-700 font-semibold">200 OK</span>
+                      <div className="flex flex-col sm:flex-row sm:items-center justify-between rounded-md bg-slate-50 p-2.5 border border-slate-100 gap-1">
+                        <span className="truncate">[10:15:01] Khởi tạo phiên kết nối Cổng HĐĐT...</span>
+                        <span className="text-emerald-700 font-semibold shrink-0">200 OK</span>
                       </div>
-                      <div className="flex items-center justify-between rounded-md bg-slate-50 p-2.5 border border-slate-100">
-                        <span>[10:15:02] Giải mã Captcha hình ảnh TCT...</span>
-                        <span className="text-blue-700 font-semibold">Thành công (0.4s)</span>
+                      <div className="flex flex-col sm:flex-row sm:items-center justify-between rounded-md bg-slate-50 p-2.5 border border-slate-100 gap-1">
+                        <span className="truncate">[10:15:02] Giải mã Captcha hình ảnh TCT...</span>
+                        <span className="text-blue-700 font-semibold shrink-0">Thành công (0.4s)</span>
                       </div>
-                      <div className="flex items-center justify-between rounded-md bg-slate-50 p-2.5 border border-slate-100">
-                        <span>[10:15:04] Kéo hóa đơn Mua vào theo kỳ tra cứu...</span>
-                        <span className="text-slate-800 font-semibold">Tìm thấy 48 hóa đơn</span>
+                      <div className="flex flex-col sm:flex-row sm:items-center justify-between rounded-md bg-slate-50 p-2.5 border border-slate-100 gap-1">
+                        <span className="truncate">[10:15:04] Kéo hóa đơn Mua vào theo kỳ tra cứu...</span>
+                        <span className="text-slate-800 font-semibold shrink-0">Tìm thấy 48 hóa đơn</span>
                       </div>
-                      <div className="flex items-center justify-between rounded-md bg-emerald-50/60 p-2.5 text-emerald-900 border border-emerald-200/60 font-semibold">
-                        <span>[10:15:06] Hoàn tất nạp dữ liệu vào hệ thống!</span>
-                        <span>Hoàn tất</span>
+                      <div className="flex flex-col sm:flex-row sm:items-center justify-between rounded-md bg-emerald-50/60 p-2.5 text-emerald-900 border border-emerald-200/60 font-semibold gap-1">
+                        <span className="truncate">[10:15:06] Hoàn tất nạp dữ liệu vào hệ thống!</span>
+                        <span className="shrink-0">Hoàn tất</span>
                       </div>
                     </div>
                   </div>
@@ -258,25 +258,27 @@ export default function FeatureTabsSection() {
                       </span>
                     </div>
 
-                    <div className="rounded-lg border border-slate-200 overflow-hidden text-xs">
-                      <div className="grid grid-cols-4 bg-slate-50 p-2 font-semibold text-slate-700 border-b border-slate-200">
-                        <span>Tên hàng hóa</span>
-                        <span className="text-center">Số lượng</span>
-                        <span className="text-center">Thuế suất</span>
-                        <span className="text-right">Tiền thuế (VNĐ)</span>
-                      </div>
-                      <div className="divide-y divide-slate-100 bg-white">
-                        <div className="grid grid-cols-4 p-2 text-slate-700">
-                          <span className="truncate">Máy chủ Dell R750</span>
-                          <span className="text-center">02</span>
-                          <span className="text-center font-mono">10%</span>
-                          <span className="text-right font-mono">14.500.000</span>
+                    <div className="rounded-lg border border-slate-200 overflow-x-auto text-xs">
+                      <div className="min-w-[320px]">
+                        <div className="grid grid-cols-4 bg-slate-50 p-2 font-semibold text-slate-700 border-b border-slate-200">
+                          <span>Tên hàng hóa</span>
+                          <span className="text-center">Số lượng</span>
+                          <span className="text-center">Thuế suất</span>
+                          <span className="text-right">Tiền thuế (VNĐ)</span>
                         </div>
-                        <div className="grid grid-cols-4 p-2 text-slate-700">
-                          <span className="truncate">Dịch vụ bảo trì Cloud</span>
-                          <span className="text-center">12 tháng</span>
-                          <span className="text-center font-mono">8%</span>
-                          <span className="text-right font-mono">2.880.000</span>
+                        <div className="divide-y divide-slate-100 bg-white">
+                          <div className="grid grid-cols-4 p-2 text-slate-700">
+                            <span className="truncate">Máy chủ Dell R750</span>
+                            <span className="text-center">02</span>
+                            <span className="text-center font-mono">10%</span>
+                            <span className="text-right font-mono">14.500.000</span>
+                          </div>
+                          <div className="grid grid-cols-4 p-2 text-slate-700">
+                            <span className="truncate">Dịch vụ bảo trì Cloud</span>
+                            <span className="text-center">12 tháng</span>
+                            <span className="text-center font-mono">8%</span>
+                            <span className="text-right font-mono">2.880.000</span>
+                          </div>
                         </div>
                       </div>
                     </div>

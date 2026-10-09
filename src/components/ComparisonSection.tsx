@@ -83,7 +83,7 @@ export default function ComparisonSection() {
         <ScrollReveal delay={0.2} className="mt-10 text-center">
           <Link
             href="http://localhost:3000/register"
-            className="inline-flex items-center gap-2 rounded-xl bg-slate-950 px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-slate-800"
+            className="inline-flex items-center gap-2 rounded-xl bg-blue-600 px-6 py-3.5 text-sm font-bold text-white shadow-md shadow-blue-500/20 transition hover:bg-blue-700 active:scale-[0.98]"
           >
             <span>Dùng thử miễn phí 50 hóa đơn</span>
             <ArrowRight className="h-4 w-4" />

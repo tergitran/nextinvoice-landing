@@ -79,7 +79,7 @@ export default function PricingSection() {
             Chi phí minh bạch, không phụ phí ẩn
           </h2>
           <p className="mt-4 text-base text-slate-600 leading-relaxed font-normal">
-            Tính phí theo số lượng hóa đơn phát sinh thực tế. Đăng ký ngay để nhận ngay <strong className="text-slate-900 font-semibold">50 hóa đơn dùng thử miễn phí</strong>.
+            Tính phí theo số lượng hóa đơn phát sinh thực tế. Đăng ký ngay để nhận ngay <strong className="text-blue-700 font-semibold">50 hóa đơn dùng thử miễn phí</strong>.
           </p>
         </ScrollReveal>
 
@@ -94,16 +94,16 @@ export default function PricingSection() {
               key={idx}
               className={`relative flex flex-col justify-between rounded-2xl p-7 sm:p-8 transition-all ${
                 plan.popular
-                  ? "border border-slate-900 bg-slate-950 text-white shadow-xl md:-translate-y-2"
-                  : "border border-slate-200 bg-white text-slate-900 hover:border-slate-300"
+                  ? "border-2 border-blue-600 bg-white shadow-xl shadow-blue-500/10 ring-4 ring-blue-50 md:-translate-y-2"
+                  : "border border-slate-200 bg-white text-slate-900 hover:border-slate-300 hover:shadow-xs"
               }`}
             >
               <div>
                 <div className="flex items-center justify-between mb-3">
                   <span
-                    className={`inline-flex rounded-full px-2.5 py-0.5 text-xs font-semibold ${
+                    className={`inline-flex rounded-full px-3 py-1 text-xs font-bold ${
                       plan.popular
-                        ? "bg-slate-800 text-slate-200"
+                        ? "bg-blue-600 text-white shadow-xs"
                         : "bg-slate-100 text-slate-600"
                     }`}
                   >
@@ -111,35 +111,31 @@ export default function PricingSection() {
                   </span>
                 </div>
 
-                <h3 className={`text-xl font-bold tracking-tight ${plan.popular ? "text-white" : "text-slate-950"}`}>
+                <h3 className="text-xl font-bold tracking-tight text-slate-950">
                   {plan.name}
                 </h3>
-                <p className={`mt-2 text-xs leading-relaxed min-h-[36px] ${plan.popular ? "text-slate-400" : "text-slate-500"}`}>
+                <p className="mt-2 text-xs leading-relaxed text-slate-500 min-h-[36px]">
                   {plan.description}
                 </p>
 
                 {/* Price Display */}
                 <div className="mt-6 flex items-baseline gap-1">
-                  <span className={`text-3xl sm:text-4xl font-extrabold tracking-tight font-mono ${plan.popular ? "text-white" : "text-slate-950"}`}>
+                  <span className="text-3xl sm:text-4xl font-extrabold tracking-tight font-mono text-slate-950">
                     {plan.price}
                   </span>
-                  <span className={`text-xs font-semibold ${plan.popular ? "text-slate-400" : "text-slate-500"}`}>
+                  <span className="text-xs font-semibold text-slate-500">
                     đ / {plan.period}
                   </span>
                 </div>
-                <div className={`mt-1 text-xs font-semibold ${plan.popular ? "text-blue-400" : "text-blue-700"}`}>
+                <div className="mt-1 text-xs font-bold text-blue-700">
                   {plan.quota}
                 </div>
 
-                <div className={`mt-6 border-t pt-6 space-y-2.5 ${plan.popular ? "border-slate-800" : "border-slate-100"}`}>
+                <div className="mt-6 border-t border-slate-100 pt-6 space-y-2.5">
                   {plan.features.map((feature, fIdx) => (
                     <div key={fIdx} className="flex items-start gap-2.5 text-xs sm:text-sm">
-                      <Check
-                        className={`h-4 w-4 shrink-0 mt-0.5 ${
-                          plan.popular ? "text-blue-400" : "text-slate-950"
-                        }`}
-                      />
-                      <span className={plan.popular ? "text-slate-300" : "text-slate-600"}>
+                      <Check className="h-4 w-4 shrink-0 mt-0.5 text-emerald-600 font-bold" />
+                      <span className="text-slate-600">
                         {feature}
                       </span>
                     </div>
@@ -150,10 +146,10 @@ export default function PricingSection() {
               <div className="mt-8 pt-4">
                 <Link
                   href={plan.ctaLink}
-                  className={`w-full inline-flex items-center justify-center gap-2 rounded-xl py-3 px-4 text-xs sm:text-sm font-semibold transition-all ${
+                  className={`w-full inline-flex items-center justify-center gap-2 rounded-xl py-3.5 px-4 text-xs sm:text-sm font-bold transition-all ${
                     plan.popular
-                      ? "bg-blue-600 text-white hover:bg-blue-500"
-                      : "border border-slate-200 bg-slate-50 text-slate-800 hover:bg-slate-100 hover:border-slate-300"
+                      ? "bg-blue-600 text-white hover:bg-blue-700 shadow-md shadow-blue-500/25 active:scale-[0.98]"
+                      : "bg-blue-50 text-blue-700 hover:bg-blue-100 border border-blue-200/60 active:scale-[0.98]"
                   }`}
                 >
                   <span>{plan.ctaText}</span>

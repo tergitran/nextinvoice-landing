@@ -37,16 +37,16 @@ const securityFeatures = [
 
 export default function SecuritySection() {
   return (
-    <section id="security" className="py-20 lg:py-28 bg-slate-950 text-white border-b border-slate-900">
+    <section id="security" className="py-20 lg:py-28 bg-slate-50/60 text-slate-900 border-b border-slate-200/70">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <ScrollReveal className="mx-auto max-w-3xl text-center">
           <span className="text-xs font-semibold uppercase tracking-widest text-slate-400">
             An toàn thông tin
           </span>
-          <h2 className="mt-2 text-3xl font-extrabold tracking-tight sm:text-4xl text-white">
+          <h2 className="mt-2 text-3xl font-extrabold tracking-tight sm:text-4xl text-slate-950">
             Bảo mật tối đa dữ liệu Tài chính - Kế toán
           </h2>
-          <p className="mt-4 text-base text-slate-400 leading-relaxed font-normal">
+          <p className="mt-4 text-base text-slate-600 leading-relaxed font-normal">
             Chúng tôi hiểu rằng dữ liệu hóa đơn là tài sản bí mật cốt lõi của doanh nghiệp. Next Invoice áp dụng các tiêu chuẩn an toàn thông tin nghiêm ngặt nhất.
           </p>
         </ScrollReveal>
@@ -60,15 +60,15 @@ export default function SecuritySection() {
           {securityFeatures.map((sec, idx) => (
             <StaggerItem
               key={idx}
-              className="rounded-xl border border-slate-800/80 bg-slate-900/40 p-6 transition-colors hover:border-slate-700"
+              className="rounded-2xl border border-slate-200 bg-white p-6 sm:p-7 shadow-2xs transition-all hover:border-blue-300 hover:shadow-md"
             >
-              <div className="text-xs font-mono font-semibold text-slate-400">
+              <div className="inline-flex items-center justify-center rounded-lg bg-blue-50 px-2.5 py-1 text-xs font-mono font-bold text-blue-700">
                 {sec.num}
               </div>
-              <h4 className="mt-3 text-base font-bold text-white tracking-tight">
+              <h4 className="mt-4 text-base font-bold text-slate-950 tracking-tight">
                 {sec.title}
               </h4>
-              <p className="mt-2 text-xs sm:text-sm text-slate-400 leading-relaxed font-normal">
+              <p className="mt-2 text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
                 {sec.description}
               </p>
             </StaggerItem>

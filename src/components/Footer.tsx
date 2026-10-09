@@ -54,8 +54,8 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="#features" className="hover:text-white transition">
-                  Xuất bảng kê Excel
+                <Link href="#export" className="hover:text-white transition">
+                  Xuất bảng kê chi tiết (.xlsx)
                 </Link>
               </li>
               <li>

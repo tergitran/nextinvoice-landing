@@ -41,6 +41,12 @@ export default function Navbar() {
             Tính năng
           </Link>
           <Link
+            href="#export"
+            className="text-sm font-semibold text-slate-600 transition hover:text-blue-600"
+          >
+            Xuất bảng kê chi tiết
+          </Link>
+          <Link
             href="#providers"
             className="text-sm font-semibold text-slate-600 transition hover:text-blue-600"
           >
@@ -105,6 +111,13 @@ export default function Navbar() {
               className="text-base font-semibold text-slate-700 hover:text-blue-600"
             >
               Tính năng nổi bật
+            </Link>
+            <Link
+              href="#export"
+              onClick={() => setMobileMenuOpen(false)}
+              className="text-base font-semibold text-slate-700 hover:text-blue-600"
+            >
+              Xuất bảng kê chi tiết
             </Link>
             <Link
               href="#providers"

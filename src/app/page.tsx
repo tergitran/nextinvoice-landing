@@ -2,6 +2,7 @@ import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import StatsSection from "@/components/StatsSection";
 import FeatureTabsSection from "@/components/FeatureTabsSection";
+import DetailedExportSection from "@/components/DetailedExportSection";
 import ProvidersGrid from "@/components/ProvidersGrid";
 import ComparisonSection from "@/components/ComparisonSection";
 import SecuritySection from "@/components/SecuritySection";
@@ -18,6 +19,7 @@ export default function Home() {
         <HeroSection />
         <StatsSection />
         <FeatureTabsSection />
+        <DetailedExportSection />
         <ProvidersGrid />
         <ComparisonSection />
         <SecuritySection />

@@ -1,9 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Menu, X, ShieldCheck } from "lucide-react";
+import { ArrowRight, Menu, X } from "lucide-react";
+import { Logo } from "@/components/ui/logo";
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -11,25 +11,13 @@ export default function Navbar() {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-slate-200/80 bg-white/85 backdrop-blur-md transition-all">
       <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-        {/* Brand Logo */}
-        <Link href="/" className="flex items-center gap-3">
-          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-600 text-white shadow-md shadow-blue-500/20">
-            <Image
-              src="/logo-icon.svg"
-              alt="Next Invoice Icon"
-              width={26}
-              height={26}
-              className="brightness-0 invert"
-            />
-          </div>
-          <div className="flex flex-col">
-            <span className="text-xl font-extrabold tracking-tight text-slate-900">
-              Next<span className="text-blue-600">Invoice</span>
-            </span>
-            <span className="text-[10px] font-semibold uppercase tracking-wider text-slate-400">
-              Đồng bộ HĐĐT tự động
-            </span>
-          </div>
+        {/* Brand Logo Standardized */}
+        <Link
+          href="/"
+          className="inline-flex items-center transition-transform hover:opacity-95 active:scale-98"
+          aria-label="Trang chủ Next Invoice"
+        >
+          <Logo size="md" />
         </Link>
 
         {/* Desktop Navigation */}

@@ -1,6 +1,6 @@
-import Image from "next/image";
 import Link from "next/link";
 import { ShieldCheck, Mail, Phone, MapPin } from "lucide-react";
+import { Logo } from "@/components/ui/logo";
 
 export default function Footer() {
   return (
@@ -9,19 +9,12 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
           {/* Brand Info */}
           <div className="lg:col-span-2 space-y-4">
-            <Link href="/" className="flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-600 text-white shadow-md">
-                <Image
-                  src="/logo-icon.svg"
-                  alt="Next Invoice"
-                  width={26}
-                  height={26}
-                  className="brightness-0 invert"
-                />
-              </div>
-              <span className="text-xl font-extrabold tracking-tight text-white">
-                Next<span className="text-blue-500">Invoice</span>
-              </span>
+            <Link
+              href="/"
+              className="inline-flex items-center transition-transform hover:opacity-95 active:scale-98"
+              aria-label="Trang chủ Next Invoice"
+            >
+              <Logo size="md" theme="dark" />
             </Link>
             <p className="text-slate-400 text-xs sm:text-sm leading-relaxed max-w-sm">
               Hệ thống tự động hóa đồng bộ, lưu trữ và quản lý hóa đơn điện tử từ Cổng Tổng cục Thuế dành cho Doanh nghiệp & Đại lý kế toán tại Việt Nam.

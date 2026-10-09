@@ -64,7 +64,7 @@ export default function Navbar() {
         <div className="hidden items-center gap-3 sm:flex">
           <Link
             href="http://localhost:3000/login"
-            className="rounded-lg px-4 py-2 text-sm font-bold text-slate-300 transition hover:text-white hover:bg-slate-900"
+            className="rounded-full border border-slate-700 bg-slate-900/60 px-5 py-2.5 text-sm font-semibold text-slate-200 backdrop-blur-xs transition-all hover:border-slate-500 hover:bg-slate-800 hover:text-white active:scale-[0.98]"
           >
             Đăng nhập
           </Link>
@@ -137,7 +137,7 @@ export default function Navbar() {
             <div className="mt-2 flex flex-col gap-2 pt-3 border-t border-slate-800">
               <Link
                 href="http://localhost:3000/login"
-                className="w-full rounded-lg border border-slate-800 py-2.5 text-center text-sm font-bold text-slate-300 hover:text-white hover:bg-slate-900"
+                className="w-full rounded-full border border-slate-700 bg-slate-900/60 py-2.5 text-center text-sm font-semibold text-slate-200 transition hover:border-slate-500 hover:text-white hover:bg-slate-800"
               >
                 Đăng nhập
               </Link>

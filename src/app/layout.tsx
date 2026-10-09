@@ -51,6 +51,20 @@ export const metadata: Metadata = {
     title: "Next Invoice — Phần mềm Quản lý Hóa đơn Điện tử",
     description: "Tự động hóa đồng bộ hóa đơn Mua vào & Bán ra từ Cổng Thuế.",
   },
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "32x32" },
+      { url: "/icon.svg", type: "image/svg+xml" },
+      { url: "/icon-48.png", sizes: "48x48", type: "image/png" },
+      { url: "/icon-192.png", sizes: "192x192", type: "image/png" },
+      { url: "/icon-512.png", sizes: "512x512", type: "image/png" },
+    ],
+    shortcut: "/favicon.ico",
+    apple: [
+      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+    ],
+  },
+  manifest: "/manifest.webmanifest",
 };
 
 const jsonLd = {

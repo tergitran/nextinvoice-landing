@@ -15,7 +15,7 @@ const faqs = [
   },
   {
     q: "Tôi làm kế toán dịch vụ quản lý nhiều công ty (MST) thì dùng như thế nào?",
-    a: "Next Invoice có gói riêng dành cho Kế toán dịch vụ & Đại lý thuế (Agency). Bạn không bị giới hạn số lượng Mã số thuế khai báo, có thể quản lý tập trung hàng chục công ty trên cùng 1 màn hình và sử dụng chung kho Quota hóa đơn một cách linh hoạt.",
+    a: "Next Invoice có gói riêng dành cho Kế toán dịch vụ & Đại lý thuế (Agency). Bạn không bị giới hạn số lượng Mã số thuế khai báo, có thể quản lý tập trung hàng chục công ty trên cùng 1 màn hình và sử dụng chung kho hạn mức hóa đơn một cách linh hoạt.",
   },
   {
     q: "Mật khẩu Cổng Thuế của tôi có được bảo mật an toàn không?",
@@ -26,8 +26,8 @@ const faqs = [
     a: "Có. Next Invoice hỗ trợ bóc tách chi tiết từng dòng mặt hàng, số lượng, đơn giá, thuế suất và tiền thuế. Bảng kê xuất ra dưới định dạng Excel (.xlsx) chuẩn cấu trúc mẫu import của các phần mềm kế toán thông dụng nhất hiện nay.",
   },
   {
-    q: "Hóa đơn trùng lặp có bị trừ số lượng Quota trong gói không?",
-    a: "Không. Next Invoice áp dụng quy tắc trừ Quota minh bạch: Chỉ những hóa đơn mới lần đầu tiên xuất hiện trong hệ thống và tải thành công mới được tính lượt. Khi hệ thống đồng bộ lại các ngày cũ, các hóa đơn đã có sẽ không bị trừ thêm bất kỳ lượt quota nào.",
+    q: "Hóa đơn trùng lặp có bị trừ hạn mức trong gói không?",
+    a: "Không. Next Invoice áp dụng quy tắc trừ hạn mức minh bạch: Chỉ những hóa đơn mới lần đầu tiên xuất hiện trong hệ thống và tải thành công mới được tính lượt. Khi hệ thống đồng bộ lại các ngày cũ, các hóa đơn đã có sẽ không bị trừ thêm bất kỳ lượt hạn mức nào.",
   },
 ];
 

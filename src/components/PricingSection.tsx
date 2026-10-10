@@ -56,7 +56,7 @@ const plans = [
     popular: false,
     features: [
       "Không giới hạn số lượng Mã số thuế (MST)",
-      "Dùng chung Quota linh hoạt cho tất cả khách hàng",
+      "Dùng chung hạn mức linh hoạt cho tất cả khách hàng",
       "Quản lý tập trung hàng chục công ty trên 1 tài khoản",
       "Xuất báo cáo thuế hàng loạt theo từng doanh nghiệp",
       "Nạp thêm hạn mức hóa đơn linh hoạt bất kỳ lúc nào",

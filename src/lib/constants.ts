@@ -6,3 +6,4 @@
 export const APP_URL = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
 export const LOGIN_URL = `${APP_URL}/login`;
 export const REGISTER_URL = `${APP_URL}/register`;
+export const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001/api";

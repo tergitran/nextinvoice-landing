@@ -29,31 +29,36 @@ export default function Footer() {
           {/* Col 1: Tính năng */}
           <div>
             <h4 className="text-sm font-bold text-white uppercase tracking-wider mb-4">
-              Sản Phẩm
+              Sản Phẩm & Tiện Ích
             </h4>
             <ul className="space-y-2.5">
               <li>
-                <Link href="#features" className="hover:text-white transition">
+                <Link href="/tra-cuu-ma-so-thue" className="hover:text-blue-400 text-blue-300/90 font-medium transition flex items-center gap-1.5">
+                  <span>Tra cứu mã số thuế (TCT)</span>
+                </Link>
+              </li>
+              <li>
+                <Link href="/doc-file-xml" className="hover:text-emerald-400 text-emerald-300/90 font-medium transition flex items-center gap-1.5">
+                  <span>Đọc file XML hóa đơn</span>
+                </Link>
+              </li>
+              <li>
+                <Link href="/#features" className="hover:text-white transition">
                   Đồng bộ hóa đơn TCT
                 </Link>
               </li>
               <li>
-                <Link href="#features" className="hover:text-white transition">
+                <Link href="/#features" className="hover:text-white transition">
                   Tải file XML & PDF gốc
                 </Link>
               </li>
               <li>
-                <Link href="#features" className="hover:text-white transition">
-                  Rà soát rủi ro đối tác
-                </Link>
-              </li>
-              <li>
-                <Link href="#export" className="hover:text-white transition">
+                <Link href="/#export" className="hover:text-white transition">
                   Xuất bảng kê chi tiết (.xlsx)
                 </Link>
               </li>
               <li>
-                <Link href="#providers" className="hover:text-white transition">
+                <Link href="/#providers" className="hover:text-white transition">
                   Nhà cung cấp hỗ trợ
                 </Link>
               </li>
@@ -67,12 +72,12 @@ export default function Footer() {
             </h4>
             <ul className="space-y-2.5">
               <li>
-                <Link href="#pricing" className="hover:text-white transition">
+                <Link href="/#pricing" className="hover:text-white transition">
                   Gói Doanh nghiệp SMB
                 </Link>
               </li>
               <li>
-                <Link href="#pricing" className="hover:text-white transition">
+                <Link href="/#pricing" className="hover:text-white transition">
                   Gói Đại lý Kế toán
                 </Link>
               </li>
@@ -87,7 +92,7 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="#faq" className="hover:text-white transition">
+                <Link href="/#faq" className="hover:text-white transition">
                   Câu hỏi thường gặp
                 </Link>
               </li>

@@ -14,7 +14,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${baseUrl}/tra-cuu-ma-so-thue`,
       lastModified: new Date(),
       changeFrequency: "daily",
-      priority: 0.9,
+      priority: 1.0,
     },
     {
       url: `${baseUrl}/doc-file-xml`,

@@ -4,7 +4,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import CtaBanner from '@/components/CtaBanner';
 import { XmlReaderTool } from '@/components/xml-viewer/XmlReaderTool';
-import { ShieldCheck, Zap, Printer, Lock, CheckCircle2 } from 'lucide-react';
+import { ShieldCheck, Zap, Printer, Lock } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: 'Đọc File XML Hóa đơn Điện tử Chuẩn Tổng Cục Thuế Miễn phí | Next Invoice',

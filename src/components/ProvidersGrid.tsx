@@ -52,19 +52,20 @@ export default function ProvidersGrid() {
   }, []);
 
   const maxIndex = Math.max(0, supportedPdfProviders.length - itemsPerPage);
-
-  useEffect(() => {
-    if (currentIndex > maxIndex) {
-      setCurrentIndex(maxIndex);
-    }
-  }, [itemsPerPage, maxIndex, currentIndex]);
+  const safeIndex = Math.min(currentIndex, maxIndex);
 
   const handlePrev = useCallback(() => {
-    setCurrentIndex((prev) => (prev <= 0 ? maxIndex : prev - 1));
+    setCurrentIndex((prev) => {
+      const clamped = Math.min(prev, maxIndex);
+      return clamped <= 0 ? maxIndex : clamped - 1;
+    });
   }, [maxIndex]);
 
   const handleNext = useCallback(() => {
-    setCurrentIndex((prev) => (prev >= maxIndex ? 0 : prev + 1));
+    setCurrentIndex((prev) => {
+      const clamped = Math.min(prev, maxIndex);
+      return clamped >= maxIndex ? 0 : clamped + 1;
+    });
   }, [maxIndex]);
 
   useEffect(() => {
@@ -134,7 +135,7 @@ export default function ProvidersGrid() {
 
           <div className="flex items-center gap-2">
             <span className="text-xs font-mono font-medium text-slate-400 mr-2">
-              {currentIndex + 1} / {totalPages}
+              {safeIndex + 1} / {totalPages}
             </span>
             <button
               type="button"
@@ -167,7 +168,7 @@ export default function ProvidersGrid() {
           <div
             className="flex transition-transform duration-500 ease-out -mx-2.5"
             style={{
-              transform: `translateX(-${currentIndex * (100 / itemsPerPage)}%)`,
+              transform: `translateX(-${safeIndex * (100 / itemsPerPage)}%)`,
             }}
           >
             {supportedPdfProviders.map((p, idx) => (

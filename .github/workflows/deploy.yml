@@ -109,7 +109,11 @@ jobs:
 
             echo "🔄 [3/4] Restarting landing-page container..."
             cd /var/www/next-invoice
-            docker compose --env-file deploy/.env.prod -f deploy/docker-compose.prod.yml up -d --no-deps landing-prod
+            if [ -f "deploy/docker-compose.prod.yml" ]; then
+              docker compose --env-file deploy/.env.prod -f deploy/docker-compose.prod.yml up -d --no-deps landing-prod
+            else
+              docker compose --env-file .env.prod -f docker-compose.prod.yml up -d --no-deps landing-prod
+            fi
 
             echo "🧹 [4/4] Cleaning up dangling images..."
             docker image prune -f

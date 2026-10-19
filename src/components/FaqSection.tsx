@@ -7,8 +7,8 @@ import { SectionHeader } from "@/components/ui/section-header";
 
 const faqs = [
   {
-    q: "Next Invoice có tự động giải mã Captcha của Tổng cục Thuế không?",
-    a: "Có. Hệ thống tích hợp sẵn Microservice trí tuệ nhân tạo (AI Engine) chuyên giải mã Captcha hình ảnh của Cổng HĐĐT Tổng cục Thuế với độ chính xác cao trong vòng chưa đến 0.5 giây. Bạn không cần phải ngồi gõ captcha bằng tay.",
+    q: "Next Invoice có tự động đồng bộ hóa đơn mà không cần thao tác thủ công không?",
+    a: "Có. Hệ thống tự động xử lý toàn bộ quy trình kết nối và đồng bộ dữ liệu hóa đơn Mua vào & Bán ra từ Cổng HĐĐT Tổng cục Thuế. Bạn chỉ cần chọn khoảng thời gian cần tra cứu hoặc đặt lịch tự động, hệ thống sẽ kéo toàn bộ dữ liệu về một cách chính xác.",
   },
   {
     q: "Phần mềm có tải được file XML và PDF gốc có chữ ký số không?",

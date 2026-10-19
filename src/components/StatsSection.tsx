@@ -19,9 +19,9 @@ const stats = [
     description: "Đồng bộ đầy đủ hóa đơn Mua vào và Bán ra có mã/không mã theo Thông tư 78.",
   },
   {
-    value: "0.4s",
-    label: "Tốc độ giải Captcha AI",
-    description: "Thuật toán AI nhận diện Captcha hình ảnh tức thì, đồng bộ liên tục không gián đoạn.",
+    value: "< 1s",
+    label: "Tốc độ xử lý dữ liệu",
+    description: "Tự động hóa kết nối và cập nhật hóa đơn tức thì, vận hành ổn định không gián đoạn.",
   },
 ];
 

@@ -10,12 +10,12 @@ const features = [
   {
     id: "sync",
     tabTitle: "Đồng bộ hóa đơn TCT",
-    badge: "AI Captcha Engine",
+    badge: "Đồng bộ Tự động",
     title: "Đồng bộ hóa đơn Mua vào & Bán ra từ Tổng cục Thuế",
     description:
-      "Khai báo tài khoản Thuế an toàn, chọn khoảng thời gian cần tra cứu và tiến hành đồng bộ. Hệ thống tự động giải mã Captcha bằng AI và kéo toàn bộ danh sách hóa đơn theo thời gian thực.",
+      "Khai báo tài khoản Thuế an toàn, chọn khoảng thời gian cần tra cứu và tiến hành đồng bộ. Hệ thống tự động thiết lập phiên làm việc và kéo toàn bộ danh sách hóa đơn theo thời gian thực.",
     highlights: [
-      "Tự động giải mã Captcha hình ảnh TCT với độ chính xác cao trong 0.4s",
+      "Tự động kết nối và đồng bộ trực tiếp với Cổng HĐĐT Tổng cục Thuế",
       "Tùy chọn khoảng thời gian đồng bộ linh hoạt theo ngày, tháng, quý",
       "Kéo đầy đủ danh sách hóa đơn Mua vào và Bán ra có mã/không mã",
       "Theo dõi tiến trình đồng bộ trực quan theo từng phân đoạn",
@@ -143,7 +143,7 @@ export default function FeatureTabsSection() {
                     <div className="flex items-center justify-between border-b border-slate-100 pb-3 gap-2">
                       <div className="flex items-center gap-2 min-w-0">
                         <Bot className="h-4 w-4 text-slate-900 shrink-0" />
-                        <span className="font-semibold text-slate-900 text-sm truncate">AI Captcha Engine Log</span>
+                        <span className="font-semibold text-slate-900 text-sm truncate">Auto Sync Engine Log</span>
                       </div>
                       <span className="shrink-0 rounded-full bg-emerald-50 px-2.5 py-0.5 text-xs font-semibold text-emerald-700">
                         Đang kết nối TCT
@@ -156,7 +156,7 @@ export default function FeatureTabsSection() {
                         <span className="text-emerald-700 font-semibold shrink-0">200 OK</span>
                       </div>
                       <div className="flex flex-col sm:flex-row sm:items-center justify-between rounded-md bg-slate-50 p-2.5 border border-slate-100 gap-1">
-                        <span className="truncate">[10:15:02] Giải mã Captcha hình ảnh TCT...</span>
+                        <span className="truncate">[10:15:02] Xác thực phiên làm việc an toàn...</span>
                         <span className="text-blue-700 font-semibold shrink-0">Thành công (0.4s)</span>
                       </div>
                       <div className="flex flex-col sm:flex-row sm:items-center justify-between rounded-md bg-slate-50 p-2.5 border border-slate-100 gap-1">

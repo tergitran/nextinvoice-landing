@@ -66,7 +66,7 @@ export default function HeroSection() {
             transition={{ duration: 0.5, delay: 0.16, ease: [0.16, 1, 0.3, 1] }}
             className="mt-4 text-base sm:text-lg text-slate-700 leading-relaxed font-normal"
           >
-            Tiên phong công nghệ <strong>AI giải mã Captcha 0.4s</strong>, Next Invoice tự động đồng bộ hóa đơn Mua vào - Bán ra, tải trọn bộ XML & PDF gốc có chữ ký số và cảnh báo rủi ro người bán tức thì.
+            Tự động hóa toàn diện quy trình đồng bộ hóa đơn Mua vào - Bán ra trực tiếp từ Cổng Thuế theo thời gian thực, tải trọn bộ XML & PDF gốc có chữ ký số và cảnh báo rủi ro người bán tức thì.
           </motion.p>
 
           {/* CTA Action Buttons */}

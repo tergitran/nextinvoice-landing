@@ -9,8 +9,8 @@ import { REGISTER_URL } from "@/lib/constants";
 const comparisons = [
   {
     feature: "Đăng nhập & Lấy dữ liệu Tổng cục Thuế",
-    manual: "Đăng nhập thủ công, gõ captcha nhiều lần, trang Thuế thường xuyên quá tải hoặc gián đoạn.",
-    nextInvoice: "Đồng bộ nhanh chóng theo khoảng thời gian tùy chọn (ngày, tháng, quý), tự động giải Captcha bằng AI trong 0.4s.",
+    manual: "Đăng nhập thủ công từng lần, tra cứu đơn lẻ, trang Thuế thường xuyên quá tải hoặc gián đoạn.",
+    nextInvoice: "Đồng bộ tự động theo khoảng thời gian tùy chọn (ngày, tháng, quý) nhanh chóng chỉ với 1 cú click.",
   },
   {
     feature: "Tải file bản gốc XML & PDF",

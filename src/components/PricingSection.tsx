@@ -18,7 +18,7 @@ const plans = [
     features: [
       "Quản lý 01 Mã số thuế (MST)",
       "Đồng bộ hóa đơn Mua vào & Bán ra từ TCT",
-      "Tự động giải Captcha bằng AI",
+      "Tự động đồng bộ hóa đơn thông minh",
       "Tải file gốc XML ký số & PDF bản in",
       "Kiểm tra rủi ro trạng thái Người bán",
       "Xuất bảng kê Excel chuẩn kế toán",
@@ -38,7 +38,7 @@ const plans = [
     features: [
       "Quản lý lên tới 03 Mã số thuế (MST)",
       "Đồng bộ nhanh không giới hạn lượt tra cứu",
-      "Ưu tiên tốc độ giải Captcha AI tức thì",
+      "Ưu tiên tốc độ đồng bộ và băng thông cao",
       "Tải trọn bộ file ZIP hóa đơn gốc",
       "Cảnh báo rủi ro thuế & hóa đơn hủy",
       "Xuất Excel định dạng chuẩn MISA / Fast / Bravo",

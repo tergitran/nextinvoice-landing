@@ -16,7 +16,7 @@ export function ScrollReveal({
   className = "",
   delay = 0,
   direction = "up",
-  distance = 16,
+  distance = 12,
 }: ScrollRevealProps) {
   const getInitialPosition = () => {
     switch (direction) {
@@ -37,11 +37,11 @@ export function ScrollReveal({
     <motion.div
       initial={getInitialPosition()}
       whileInView={{ x: 0, y: 0, opacity: 1 }}
-      viewport={{ once: true, margin: "-60px" }}
+      viewport={{ once: true, margin: "-20px" }}
       transition={{
-        duration: 0.6,
+        duration: 0.5,
         delay,
-        ease: [0.21, 0.47, 0.32, 0.98],
+        ease: [0.16, 1, 0.3, 1],
       }}
       className={className}
     >
@@ -60,14 +60,14 @@ interface StaggerContainerProps {
 export function StaggerContainer({
   children,
   className = "",
-  delayChildren = 0.1,
-  staggerChildren = 0.08,
+  delayChildren = 0.05,
+  staggerChildren = 0.06,
 }: StaggerContainerProps) {
   return (
     <motion.div
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, margin: "-60px" }}
+      viewport={{ once: true, margin: "-20px" }}
       variants={{
         hidden: {},
         visible: {
@@ -87,7 +87,7 @@ export function StaggerContainer({
 export function StaggerItem({
   children,
   className = "",
-  distance = 16,
+  distance = 12,
 }: {
   children: ReactNode;
   className?: string;
@@ -101,8 +101,8 @@ export function StaggerItem({
           opacity: 1,
           y: 0,
           transition: {
-            duration: 0.5,
-            ease: [0.21, 0.47, 0.32, 0.98],
+            duration: 0.45,
+            ease: [0.16, 1, 0.3, 1],
           },
         },
       }}

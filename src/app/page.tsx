@@ -13,9 +13,9 @@ import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen flex-col bg-white overflow-x-hidden w-full max-w-full">
+    <div className="flex min-h-screen flex-col bg-white w-full">
       <Navbar />
-      <main className="flex-1 overflow-x-hidden w-full max-w-full">
+      <main className="flex-1 w-full max-w-full">
         <HeroSection />
         <StatsSection />
         <FeatureTabsSection />

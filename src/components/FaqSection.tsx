@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
 import { ScrollReveal } from "@/components/motion";
+import { SectionHeader } from "@/components/ui/section-header";
 
 const faqs = [
   {
@@ -41,16 +42,12 @@ export default function FaqSection() {
   return (
     <section id="faq" className="py-20 lg:py-28 bg-slate-50/50 border-b border-slate-200/70">
       <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
-        <ScrollReveal className="text-center">
-          <span className="text-xs font-semibold uppercase tracking-widest text-slate-400">
-            Hỏi đáp thường gặp
-          </span>
-          <h2 className="mt-2 text-3xl font-extrabold tracking-tight text-slate-950 sm:text-4xl">
-            Câu hỏi thường gặp của Kế toán
-          </h2>
-          <p className="mt-4 text-base text-slate-600 leading-relaxed font-normal">
-            Mọi thông tin cần biết về cơ chế hoạt động, tính pháp lý và bảo mật của Next Invoice.
-          </p>
+        <ScrollReveal>
+          <SectionHeader
+            badge="Hỏi đáp thường gặp"
+            title="Câu hỏi thường gặp của Kế toán"
+            description="Mọi thông tin cần biết về cơ chế hoạt động, tính pháp lý và bảo mật của Next Invoice."
+          />
         </ScrollReveal>
 
         {/* FAQ Accordion List */}

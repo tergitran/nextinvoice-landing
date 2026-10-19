@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { Check, ArrowRight } from "lucide-react";
 import { ScrollReveal, StaggerContainer, StaggerItem } from "@/components/motion";
+import { SectionHeader } from "@/components/ui/section-header";
 import { REGISTER_URL } from "@/lib/constants";
 
 const plans = [
@@ -186,16 +187,17 @@ export default function PricingSection() {
   return (
     <section id="pricing" className="py-20 lg:py-28 bg-white border-b border-slate-200/70 overflow-hidden">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <ScrollReveal className="mx-auto max-w-3xl text-center">
-          <span className="text-xs font-semibold uppercase tracking-widest text-slate-400">
-            Bảng giá dịch vụ
-          </span>
-          <h2 className="mt-2 text-3xl font-extrabold tracking-tight text-slate-950 sm:text-4xl">
-            Chi phí minh bạch, không phụ phí ẩn
-          </h2>
-          <p className="mt-4 text-base text-slate-600 leading-relaxed font-normal">
-            Tính phí theo số lượng hóa đơn phát sinh thực tế. Đăng ký ngay để nhận ngay <strong className="text-blue-700 font-semibold">50 hóa đơn dùng thử miễn phí</strong>.
-          </p>
+        <ScrollReveal>
+          <SectionHeader
+            badge="Bảng giá dịch vụ"
+            title="Chi phí minh bạch, không phụ phí ẩn"
+            description={
+              <>
+                Tính phí theo số lượng hóa đơn phát sinh thực tế. Đăng ký ngay để nhận ngay{" "}
+                <strong className="text-blue-600 font-semibold">50 hóa đơn dùng thử miễn phí</strong>.
+              </>
+            }
+          />
         </ScrollReveal>
 
         {/* Mobile View: shadcn Carousel with Center Alignment & Peeking Slides */}

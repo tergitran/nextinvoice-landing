@@ -8,6 +8,7 @@ import {
   CheckCircle2,
 } from "lucide-react";
 import { ScrollReveal } from "@/components/motion";
+import { SectionHeader } from "@/components/ui/section-header";
 
 const supportedPdfProviders = [
   { name: "VNPT-Invoice", org: "Tập đoàn Bưu chính Viễn thông VNPT", tag: "PDF & XML gốc", color: "bg-blue-50 text-blue-700 border-blue-200" },
@@ -97,16 +98,12 @@ export default function ProvidersGrid() {
     <section id="providers" className="py-20 lg:py-28 bg-white border-b border-slate-200/70">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <ScrollReveal className="mx-auto max-w-3xl text-center">
-          <span className="text-xs font-semibold uppercase tracking-widest text-slate-400">
-            Tương thích hệ thống
-          </span>
-          <h2 className="mt-2 text-3xl font-extrabold tracking-tight text-slate-950 sm:text-4xl">
-            Hỗ trợ tải Hóa đơn gốc từ các Nhà Cung Cấp phổ biến
-          </h2>
-          <p className="mt-4 text-base text-slate-600 leading-relaxed font-normal">
-            Hệ thống tự động nhận diện đơn vị phát hành và hỗ trợ tải trực tiếp file PDF bản in và XML ký số từ hầu hết các cổng hóa đơn điện tử lớn.
-          </p>
+        <ScrollReveal>
+          <SectionHeader
+            badge="Tương thích hệ thống"
+            title="Hỗ trợ tải Hóa đơn gốc từ các Nhà Cung Cấp phổ biến"
+            description="Hệ thống tự động nhận diện đơn vị phát hành và hỗ trợ tải trực tiếp file PDF bản in và XML ký số từ hầu hết các cổng hóa đơn điện tử lớn."
+          />
         </ScrollReveal>
 
         {/* Honest Transparency Quote Box */}

@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { ArrowRight, PhoneCall, CheckCircle2 } from "lucide-react";
 import { ScrollReveal } from "@/components/motion";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 import { REGISTER_URL } from "@/lib/constants";
 
 export default function CtaBanner() {
@@ -10,11 +12,13 @@ export default function CtaBanner() {
     <section className="py-16 sm:py-24 bg-white">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <ScrollReveal>
-          <div className="relative overflow-hidden rounded-3xl border border-blue-200 bg-gradient-to-br from-blue-50/90 via-sky-50/70 to-indigo-50/80 p-8 sm:p-14 lg:p-16 text-slate-950 shadow-sm">
+          <div className="relative overflow-hidden rounded-3xl border border-blue-200/80 bg-gradient-to-br from-blue-50/90 via-sky-50/60 to-indigo-50/80 p-8 sm:p-14 lg:p-16 text-slate-950 shadow-sm">
             <div className="relative z-10 mx-auto max-w-3xl text-center">
-              <span className="inline-flex items-center rounded-full bg-blue-100/80 px-3.5 py-1 text-xs font-bold text-blue-800 mb-6 border border-blue-200">
-                Tặng ngay 50 Hóa đơn trải nghiệm khi Đăng ký mới
-              </span>
+              <div className="mb-6">
+                <Badge variant="blue" size="lg" className="shadow-xs">
+                  Tặng ngay 50 Hóa đơn trải nghiệm khi Đăng ký mới
+                </Badge>
+              </div>
 
               <h2 className="text-3xl font-extrabold tracking-tight sm:text-5xl leading-tight text-slate-950">
                 Bắt đầu tiết kiệm 85% thời gian <br className="hidden sm:inline" />
@@ -25,22 +29,21 @@ export default function CtaBanner() {
                 Không cần cài đặt phần mềm phức tạp, không rủi ro pháp lý. Trải nghiệm giải pháp tự động hóa quản lý hóa đơn thông minh cho doanh nghiệp.
               </p>
 
-              {/* Buttons with Primary Blue */}
+              {/* Action Buttons */}
               <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3.5">
-                <Link
-                  href={REGISTER_URL}
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl bg-blue-600 px-8 py-4 text-sm font-bold text-white shadow-lg shadow-blue-500/25 transition hover:bg-blue-700 active:scale-[0.98]"
-                >
-                  <span>Dùng thử miễn phí 50 hóa đơn</span>
-                  <ArrowRight className="h-4 w-4" />
-                </Link>
-                <a
-                  href="tel:0901234567"
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl border border-slate-300 bg-white px-7 py-4 text-sm font-bold text-slate-700 shadow-2xs transition hover:bg-slate-50"
-                >
-                  <PhoneCall className="h-4 w-4 text-slate-500" />
-                  <span>Hotline: 090 123 4567</span>
-                </a>
+                <Button size="lg" variant="pill" asChild className="w-full sm:w-auto shadow-lg shadow-blue-500/25">
+                  <Link href={REGISTER_URL} className="group">
+                    <span>Dùng thử miễn phí 50 hóa đơn</span>
+                    <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                  </Link>
+                </Button>
+
+                <Button size="lg" variant="outline" asChild className="w-full sm:w-auto rounded-full bg-white shadow-xs">
+                  <a href="tel:0901234567">
+                    <PhoneCall className="h-4 w-4 text-slate-500" />
+                    <span>Hotline: 090 123 4567</span>
+                  </a>
+                </Button>
               </div>
 
               <div className="mt-8 flex flex-wrap items-center justify-center gap-6 text-xs text-slate-600 font-medium">

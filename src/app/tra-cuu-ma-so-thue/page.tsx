@@ -56,14 +56,14 @@ const jsonLd = {
 
 export default function TaxLookupPage() {
   return (
-    <div className="flex min-h-screen flex-col bg-slate-950 text-slate-100 overflow-x-hidden w-full">
+    <div className="flex min-h-screen flex-col bg-slate-950 text-slate-100 overflow-x-clip w-full">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <Navbar />
 
-      <main className="flex-1 overflow-x-hidden w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16">
+      <main className="flex-1 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16">
         {/* Breadcrumb & Hero Header */}
         <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-14">
           <div className="inline-flex items-center gap-2 rounded-full border border-blue-500/20 bg-blue-500/10 px-3.5 py-1 text-xs font-semibold text-blue-400 mb-4">

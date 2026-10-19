@@ -3,6 +3,7 @@
 import { ArrowRight, Check } from "lucide-react";
 import Link from "next/link";
 import { ScrollReveal } from "@/components/motion";
+import { SectionHeader } from "@/components/ui/section-header";
 import { REGISTER_URL } from "@/lib/constants";
 
 const comparisons = [
@@ -37,16 +38,12 @@ export default function ComparisonSection() {
   return (
     <section className="py-20 lg:py-28 bg-slate-50/50 border-b border-slate-200/70">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <ScrollReveal className="mx-auto max-w-3xl text-center">
-          <span className="text-xs font-semibold uppercase tracking-widest text-slate-400">
-            Hiệu quả thực tế
-          </span>
-          <h2 className="mt-2 text-3xl font-extrabold tracking-tight text-slate-950 sm:text-4xl">
-            Sự khác biệt khi ứng dụng tự động hóa
-          </h2>
-          <p className="mt-4 text-base text-slate-600 leading-relaxed font-normal">
-            So sánh trực quan giữa phương thức xử lý thủ công truyền thống và Next Invoice.
-          </p>
+        <ScrollReveal>
+          <SectionHeader
+            badge="Hiệu quả thực tế"
+            title="Sự khác biệt khi ứng dụng tự động hóa"
+            description="So sánh trực quan giữa phương thức xử lý thủ công truyền thống và Next Invoice."
+          />
         </ScrollReveal>
 
         {/* Comparison Table */}

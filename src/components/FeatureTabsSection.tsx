@@ -3,6 +3,8 @@
 import { useState } from "react";
 import { Check, Download, AlertOctagon, Bot, ShieldCheck } from "lucide-react";
 import { ScrollReveal } from "@/components/motion";
+import { SectionHeader } from "@/components/ui/section-header";
+import { Badge } from "@/components/ui/badge";
 
 const features = [
   {
@@ -75,16 +77,12 @@ export default function FeatureTabsSection() {
     <section id="features" className="py-20 lg:py-28 bg-white border-b border-slate-200/70">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <ScrollReveal className="mx-auto max-w-3xl text-center">
-          <span className="text-xs font-semibold uppercase tracking-widest text-slate-400">
-            Năng lực cốt lõi
-          </span>
-          <h2 className="mt-2 text-3xl font-extrabold tracking-tight text-slate-950 sm:text-4xl">
-            Tối ưu toàn diện quy trình xử lý hóa đơn
-          </h2>
-          <p className="mt-4 text-base text-slate-600 leading-relaxed font-normal">
-            Từ khâu kết nối dữ liệu Tổng cục Thuế đến lưu trữ file gốc và xuất bảng kê chi tiết cho phần mềm kế toán.
-          </p>
+        <ScrollReveal>
+          <SectionHeader
+            badge="Năng lực cốt lõi"
+            title="Tối ưu toàn diện quy trình xử lý hóa đơn"
+            description="Từ khâu kết nối dữ liệu Tổng cục Thuế đến lưu trữ file gốc và xuất bảng kê chi tiết cho phần mềm kế toán."
+          />
         </ScrollReveal>
 
         {/* Minimal Tab Bar - Responsive 2x2 grid on mobile, 4 tabs on desktop */}
@@ -115,9 +113,9 @@ export default function FeatureTabsSection() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
             {/* Left Column: Feature Details */}
             <div className="lg:col-span-5 flex flex-col justify-center">
-              <span className="inline-flex w-fit items-center rounded-md border border-slate-200 bg-white px-2.5 py-1 text-xs font-medium text-slate-700 mb-4 shadow-2xs">
-                {current.badge}
-              </span>
+              <div className="mb-4">
+                <Badge variant="blue">{current.badge}</Badge>
+              </div>
               <h3 className="text-xl sm:text-2xl font-bold text-slate-950 tracking-tight leading-snug">
                 {current.title}
               </h3>

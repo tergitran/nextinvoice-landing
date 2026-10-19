@@ -3,6 +3,8 @@
 import { Download, ArrowRight, Check, FileSpreadsheet, Filter } from "lucide-react";
 import Link from "next/link";
 import { ScrollReveal } from "@/components/motion";
+import { SectionHeader } from "@/components/ui/section-header";
+import { Badge } from "@/components/ui/badge";
 import { REGISTER_URL } from "@/lib/constants";
 
 export default function DetailedExportSection() {
@@ -10,16 +12,16 @@ export default function DetailedExportSection() {
     <section id="export" className="py-20 lg:py-28 bg-white border-b border-slate-200/70">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <ScrollReveal className="mx-auto max-w-3xl text-center">
-          <span className="text-xs font-semibold uppercase tracking-widest text-slate-400">
-            Nghiệp vụ chuyên sâu
-          </span>
-          <h2 className="mt-2 text-3xl font-extrabold tracking-tight text-slate-950 sm:text-4xl">
-            Xuất Bảng Kê Chi Tiết Cấp Dòng Hàng (.xlsx)
-          </h2>
-          <p className="mt-4 text-base text-slate-600 leading-relaxed font-normal">
-            Không chỉ xuất bảng kê tổng hợp 1 dòng/hóa đơn, Next Invoice tự động bóc tách từng mặt hàng từ dữ liệu gốc thành nhiều dòng: <strong className="text-slate-900 font-semibold">Tên hàng, ĐVT, Số lượng, Đơn giá, Thuế suất 8% / 10%</strong>. Sẵn sàng nạp vào MISA, Fast, Bravo trong 1 giây.
-          </p>
+        <ScrollReveal>
+          <SectionHeader
+            badge="Nghiệp vụ chuyên sâu"
+            title="Xuất Bảng Kê Chi Tiết Cấp Dòng Hàng (.xlsx)"
+            description={
+              <>
+                Không chỉ xuất bảng kê tổng hợp 1 dòng/hóa đơn, Next Invoice tự động bóc tách từng mặt hàng từ dữ liệu gốc thành nhiều dòng: <strong className="text-slate-900 font-semibold">Tên hàng, ĐVT, Số lượng, Đơn giá, Thuế suất 8% / 10%</strong>. Sẵn sàng nạp vào MISA, Fast, Bravo trong 1 giây.
+              </>
+            }
+          />
         </ScrollReveal>
 
         {/* 2 Lựa chọn xuất Excel (Màu sắc đồng bộ, bỏ text Chế độ 01/02) */}

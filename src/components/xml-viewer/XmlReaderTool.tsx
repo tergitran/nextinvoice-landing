@@ -5,11 +5,9 @@ import {
   FileText,
   Upload,
   Printer,
-  Download,
   RotateCcw,
   ShieldCheck,
   AlertCircle,
-  ExternalLink,
   Sparkles,
 } from 'lucide-react';
 import { ParsedXmlInvoice } from './xml-types';
@@ -92,66 +90,6 @@ export function XmlReaderTool() {
 
   const handlePrint = () => {
     window.print();
-  };
-
-  const handleOpenPrintTab = () => {
-    if (!invoice) return;
-    const printWindow = window.open('', '_blank');
-    if (!printWindow) {
-      alert('Trình duyệt đang chặn cửa sổ bật lên. Vui lòng cho phép popup để mở tab in hóa đơn.');
-      return;
-    }
-
-    const printElement = document.getElementById('invoice-print-content');
-    const invoiceHtml = printElement ? printElement.outerHTML : '';
-
-    const html = `<!DOCTYPE html>
-<html lang="vi">
-<head>
-  <meta charset="utf-8" />
-  <title>In Hóa đơn ${invoice.shdon} (${invoice.khhdon || '—'})</title>
-  <style>
-    @page { size: A4 portrait; margin: 0; }
-    * { box-sizing: border-box; }
-    body { margin: 0; padding: 20px 0; background: #525659; font-family: "Times New Roman", Times, serif; }
-    .toolbar { position: sticky; top: 0; background: #0f172a; color: white; padding: 12px 24px; display: flex; justify-content: space-between; align-items: center; z-index: 999; box-shadow: 0 4px 12px rgba(0,0,0,0.3); font-family: sans-serif; font-size: 13px; }
-    .toolbar button { background: #2563eb; color: white; border: none; padding: 8px 18px; border-radius: 8px; font-weight: bold; cursor: pointer; }
-    .toolbar button:hover { background: #1d4ed8; }
-    .print-box { display: flex; justify-content: center; }
-    @media print {
-      .toolbar { display: none !important; }
-      body { background: white !important; padding: 0 !important; }
-      .print-box { display: block !important; }
-    }
-  </style>
-</head>
-<body>
-  <div class="toolbar">
-    <div>Hóa đơn ${invoice.shdon} - ${invoice.nbten}</div>
-    <button onclick="window.print()">In Hóa Đơn (Ctrl + P)</button>
-  </div>
-  <div class="print-box">
-    ${invoiceHtml}
-  </div>
-</body>
-</html>`;
-
-    printWindow.document.open();
-    printWindow.document.write(html);
-    printWindow.document.close();
-  };
-
-  const handleDownloadXml = () => {
-    if (!invoice) return;
-    const blob = new Blob([invoice.rawXmlContent], { type: 'application/xml;charset=utf-8' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = invoice.rawFileName || `invoice_${invoice.shdon}.xml`;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
   };
 
   const handleReset = () => {
@@ -282,24 +220,6 @@ export function XmlReaderTool() {
               >
                 <Printer className="h-4 w-4" />
                 <span>In / Lưu PDF</span>
-              </button>
-
-              <button
-                type="button"
-                onClick={handleOpenPrintTab}
-                className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-slate-800 hover:bg-slate-700 text-slate-200 transition"
-              >
-                <ExternalLink className="h-4 w-4" />
-                <span>Mở tab riêng</span>
-              </button>
-
-              <button
-                type="button"
-                onClick={handleDownloadXml}
-                className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-slate-800 hover:bg-slate-700 text-slate-200 transition"
-              >
-                <Download className="h-4 w-4" />
-                <span>Tải XML</span>
               </button>
 
               <button

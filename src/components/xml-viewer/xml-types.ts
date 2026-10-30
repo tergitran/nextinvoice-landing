@@ -1,6 +1,6 @@
 export interface ParsedXmlItem {
   id?: string;
-  stt?: number | string;
+  stt?: number;
   ten?: string;
   dvt?: string;
   slung?: number;
@@ -9,9 +9,9 @@ export interface ParsedXmlItem {
   tsuat?: string;
   tthue?: number;
   tchat?: number | string;
-  tthhdtrung?: any;
-  lhhdtrung?: any;
-  ttkhac?: any;
+  tthhdtrung?: unknown;
+  lhhdtrung?: unknown;
+  ttkhac?: Record<string, unknown> | unknown[] | null;
 }
 
 export interface ParsedTaxBreakdown {
@@ -21,6 +21,7 @@ export interface ParsedTaxBreakdown {
 }
 
 export interface ParsedXmlInvoice {
+  [key: string]: unknown;
   id?: string;
   shdon: string;
   khmshdon?: string;
@@ -81,8 +82,8 @@ export interface ParsedXmlInvoice {
   signingTime?: string;
 
   // Raw Json & Metadata
-  rawJson?: Record<string, any>;
-  syncMetadata?: Record<string, any>;
+  rawJson?: Record<string, unknown>;
+  syncMetadata?: Record<string, unknown>;
   rawFileName?: string;
   rawXmlContent?: string;
 }

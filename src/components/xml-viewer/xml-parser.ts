@@ -146,7 +146,7 @@ export function parseInvoiceXml(xmlString: string, fileName = 'invoice.xml'): Pa
       if (ten || thtien !== undefined) {
         items.push({
           id: `item-${i + 1}`,
-          stt: isNaN(Number(stt)) ? stt : Number(stt),
+          stt: isNaN(Number(stt)) ? i + 1 : Number(stt),
           ten,
           dvt,
           slung,
@@ -223,7 +223,7 @@ export function parseInvoiceXml(xmlString: string, fileName = 'invoice.xml'): Pa
   }
 
   // Tạo đối tượng rawJson chuẩn hóa đồng bộ 100% với backend/frontend portal
-  const rawJson: Record<string, any> = {
+  const rawJson: Record<string, unknown> = {
     dlhdon: {
       ttchung: {
         thdon,

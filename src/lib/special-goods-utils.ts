@@ -123,7 +123,7 @@ export function getItemSpecialGoodsInfo(item?: InvoiceItemLike | null): SpecialG
     return null;
   }
 
-  let list = item.tthhdtrung || ttkhac.tthhdtrung || ttkhac.TTHHDTrung;
+  const list = item.tthhdtrung || ttkhac.tthhdtrung || ttkhac.TTHHDTrung;
   if (!list) return null;
 
   let entries: Record<string, unknown>[] = [];

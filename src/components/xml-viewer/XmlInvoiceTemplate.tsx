@@ -8,20 +8,25 @@ import { getOriginalInvoiceInfo, extractTaxBreakdown, resolveItemTaxRate } from 
 import { getItemNatureLabel, getItemSpecialGoodsInfo } from '@/lib/special-goods-utils';
 import type { ParsedXmlInvoice } from './xml-types';
 
+type RawFieldMap = Record<string, string | number | boolean | null | undefined>;
+
 export interface XmlInvoiceTemplateProps {
   invoice: ParsedXmlInvoice;
   className?: string;
 }
 
 export function XmlInvoiceTemplate({ invoice, className = '' }: XmlInvoiceTemplateProps) {
-  const raw = invoice.rawJson || {};
-  const root = raw.data || raw;
-  const hdon = root.hdhnhan?.hdon || root.hdon || root;
-  const dlHDon = hdon.dlhdon || hdon;
-  const ttChung = dlHDon.ttchung || {};
-  const nBan = dlHDon.ndhdon?.nban || {};
-  const nMua = dlHDon.ndhdon?.nmua || {};
-  const tToan = dlHDon.ndhdon?.ttoan || {};
+  const rawObj = (invoice.rawJson || {}) as Record<string, unknown>;
+  const raw = rawObj as RawFieldMap;
+  const root = (rawObj.data && typeof rawObj.data === 'object' ? rawObj.data : rawObj) as Record<string, unknown>;
+  const rootHdhnhan = root.hdhnhan as Record<string, unknown> | undefined;
+  const hdon = (rootHdhnhan?.hdon || root.hdon || root) as Record<string, unknown>;
+  const dlHDon = (hdon.dlhdon || hdon) as Record<string, unknown>;
+  const ndhdon = dlHDon.ndhdon as Record<string, unknown> | undefined;
+  const ttChung = (dlHDon.ttchung || {}) as RawFieldMap;
+  const nBan = (ndhdon?.nban || {}) as RawFieldMap;
+  const nMua = (ndhdon?.nmua || {}) as RawFieldMap;
+  const tToan = (ndhdon?.ttoan || {}) as RawFieldMap;
 
   const dateObj = invoice.tdlap ? new Date(invoice.tdlap) : new Date();
   const day = String(dateObj.getDate()).padStart(2, '0');
@@ -29,15 +34,15 @@ export function XmlInvoiceTemplate({ invoice, className = '' }: XmlInvoiceTempla
   const year = dateObj.getFullYear();
 
   // QR Code payload (chuẩn TCT Version 9 Level L)
-  const qrData = generateTctQrCode(invoice as any);
+  const qrData = generateTctQrCode(invoice);
 
   // Seller Information Resolution
-  const sellerName = raw.nbten || nBan.ten || invoice.nbten || '—';
-  const sellerMst = raw.nbmst || nBan.mst || invoice.nbmst || '';
-  const sellerAddress = raw.nbdchi || (invoice as any).nbdchi || invoice.nbdiachi || nBan.dchi || '';
-  const sellerPhone = raw.nbsdthoai || nBan.sdthoai || raw.SDThoai || '';
-  const sellerAccount = raw.nbstkhoan || nBan.stknhang || raw.STKNHang || '';
-  const sellerBankName = raw.nbtnhang || nBan.tnhang || raw.TNHang || '';
+  const sellerName = String(raw.nbten || nBan.ten || invoice.nbten || '—');
+  const sellerMst = String(raw.nbmst || nBan.mst || invoice.nbmst || '');
+  const sellerAddress = String(raw.nbdchi || invoice.nbdchi || invoice.nbdiachi || nBan.dchi || '');
+  const sellerPhone = String(raw.nbsdthoai || nBan.sdthoai || raw.SDThoai || '');
+  const sellerAccount = String(raw.nbstkhoan || nBan.stknhang || raw.STKNHang || '');
+  const sellerBankName = String(raw.nbtnhang || nBan.tnhang || raw.TNHang || '');
   const sellerBank = sellerAccount
     ? sellerBankName
       ? `${sellerAccount}   ${sellerBankName}`
@@ -45,16 +50,16 @@ export function XmlInvoiceTemplate({ invoice, className = '' }: XmlInvoiceTempla
     : sellerBankName;
 
   // Buyer Information Resolution
-  const buyerName = raw.nmten || nMua.ten || invoice.nmten || '—';
-  const buyerContactName = raw.nmtnmua || raw.HVTNMHang || nMua.hvtnmua || '';
-  const buyerMst = raw.nmmst || invoice.nmdmst || nMua.mst || '';
-  const buyerDvcqhn = raw.nmmdvqhnsach || nMua.dvcqhnsnn || raw.DVCQHNSNN || '';
-  const buyerCccd = raw.nmcmnd || nMua.cccd || raw.CCCDan || '';
-  const buyerPassport = raw.nmshchieu || nMua.shchieu || raw.SHChieu || '';
-  const buyerAddress = raw.nmdchi || (invoice as any).nmdchi || invoice.nmdiachi || nMua.dchi || '';
-  const buyerPaymentMethod = raw.thtttoan || ttChung.httoan || raw.HTTToan || 'Chuyển khoản';
-  const buyerAccount = raw.nmstkhoan || nMua.stknhang || raw.STKNHang || '';
-  const buyerBankName = raw.nmtnhang || nMua.tnhang || '';
+  const buyerName = String(raw.nmten || nMua.ten || invoice.nmten || '—');
+  const buyerContactName = String(raw.nmtnmua || raw.HVTNMHang || nMua.hvtnmua || '');
+  const buyerMst = String(raw.nmmst || invoice.nmdmst || nMua.mst || '');
+  const buyerDvcqhn = String(raw.nmmdvqhnsach || nMua.dvcqhnsnn || raw.DVCQHNSNN || '');
+  const buyerCccd = String(raw.nmcmnd || nMua.cccd || raw.CCCDan || '');
+  const buyerPassport = String(raw.nmshchieu || nMua.shchieu || raw.SHChieu || '');
+  const buyerAddress = String(raw.nmdchi || invoice.nmdchi || invoice.nmdiachi || nMua.dchi || '');
+  const buyerPaymentMethod = String(raw.thtttoan || ttChung.httoan || raw.HTTToan || 'Chuyển khoản');
+  const buyerAccount = String(raw.nmstkhoan || nMua.stknhang || raw.STKNHang || '');
+  const buyerBankName = String(raw.nmtnhang || nMua.tnhang || '');
   const buyerBank = buyerAccount
     ? buyerBankName
       ? `${buyerAccount}   ${buyerBankName}`
@@ -62,7 +67,7 @@ export function XmlInvoiceTemplate({ invoice, className = '' }: XmlInvoiceTempla
     : buyerBankName;
 
   // MCCQT: Mã của Cơ quan thuế cấp cho hóa đơn có mã (tuyệt đối không fallback sang mã cơ quan thuế cqt)
-  const mccqt = (invoice.mscqt || invoice.mccqt || raw.mhdon || raw.MCCQT || raw.mccqt || '').trim();
+  const mccqt = String(invoice.mscqt || invoice.mccqt || raw.mhdon || raw.MCCQT || raw.mccqt || '').trim();
 
   // Signing Info from nbcks JSON string or raw
   let signerName = sellerName;
@@ -91,7 +96,7 @@ export function XmlInvoiceTemplate({ invoice, className = '' }: XmlInvoiceTempla
   }
 
   if (!formattedSigningDate) {
-    const signingTime = raw.signingTime || raw.SigningTime || invoice.signingTime || invoice.tdlap;
+    const signingTime = String(raw.signingTime || raw.SigningTime || invoice.signingTime || invoice.tdlap || '');
     if (signingTime) {
       try {
         const d = new Date(signingTime);
@@ -113,17 +118,18 @@ export function XmlInvoiceTemplate({ invoice, className = '' }: XmlInvoiceTempla
   }
 
   // Bảng phân bổ thuế suất theo từng dòng (hỗ trợ hóa đơn có 1 hoặc nhiều thuế suất)
-  const taxBreakdown = extractTaxBreakdown(invoice as any);
-  const amountInWords =
+  const taxBreakdown = extractTaxBreakdown(invoice);
+  const amountInWords = String(
     tToan.tgtttbchu ||
     tToan.TgTTTBChu ||
     raw.tgtttbchu ||
     raw.TgTTTBChu ||
     invoice.tgtttnote ||
     invoice.tgtttbchu ||
-    '—';
+    '—'
+  );
 
-  const origInfo = getOriginalInvoiceInfo(invoice as any);
+  const origInfo = getOriginalInvoiceInfo(invoice);
 
   return (
     <div
@@ -379,11 +385,11 @@ export function XmlInvoiceTemplate({ invoice, className = '' }: XmlInvoiceTempla
                 <tr key={item.id || idx} style={{ breakInside: 'avoid', pageBreakInside: 'avoid' }}>
                   <td className="border border-black p-1 text-center">{item.stt ?? idx + 1}</td>
                   <td className="border border-black p-1 text-left">
-                    {getItemNatureLabel(item as any)}
+                    {getItemNatureLabel(item)}
                   </td>
                   <td className="border border-black p-1 text-left">
                     {(() => {
-                      const spec = getItemSpecialGoodsInfo(item as any);
+                      const spec = getItemSpecialGoodsInfo(item);
                       if (!spec) return null;
                       return (
                         <div className="flex flex-col gap-0.5 leading-tight text-[12px]">
@@ -407,7 +413,7 @@ export function XmlInvoiceTemplate({ invoice, className = '' }: XmlInvoiceTempla
                   </td>
                   <td className="border border-black p-1 text-center">0</td>
                   <td className="border border-black p-1 text-center">
-                    {resolveItemTaxRate(item as any, taxBreakdown, invoice.rawJson)}
+                    {resolveItemTaxRate(item, taxBreakdown, invoice.rawJson)}
                   </td>
                   <td className="border border-black p-1 text-center">
                     {item.thtien != null ? formatVndCurrency(item.thtien) : '—'}

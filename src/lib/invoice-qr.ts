@@ -25,18 +25,19 @@ export function generateTctQrCode(invoice: {
   shdon?: string;
   tdlap?: string;
   tgtttbso?: number;
-  rawJson?: Record<string, any>;
-  syncMetadata?: Record<string, any>;
+  rawJson?: Record<string, unknown>;
+  syncMetadata?: Record<string, unknown>;
 }): string {
-  const raw = invoice.rawJson || {};
-  const meta = invoice.syncMetadata || {};
+  const raw = (invoice.rawJson || {}) as Record<string, unknown>;
+  const meta = (invoice.syncMetadata || {}) as Record<string, unknown>;
+  const rawData = raw.data as Record<string, unknown> | undefined;
   const existingQr =
     meta.DLQRCode ||
     meta.dlqrcode ||
     raw.DLQRCode ||
     raw.dlqrcode ||
-    raw.data?.DLQRCode ||
-    raw.data?.dlqrcode ||
+    rawData?.DLQRCode ||
+    rawData?.dlqrcode ||
     raw.qrcode;
 
   if (existingQr && typeof existingQr === 'string' && existingQr.length > 20) {

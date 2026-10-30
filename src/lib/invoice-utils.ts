@@ -33,17 +33,17 @@ export function formatDateVn(dateVal?: string | Date | number | null): string {
  */
 export function getOriginalInvoiceInfo(invoice: {
   tthai?: string | number | null;
-  rawJson?: Record<string, any> | null;
-  [key: string]: any;
+  rawJson?: Record<string, unknown> | null;
+  [key: string]: unknown;
 }): OriginalInvoiceInfo | null {
   if (!invoice) return null;
 
-  const raw = (invoice.rawJson || {}) as Record<string, any>;
+  const raw = (invoice.rawJson || {}) as Record<string, unknown>;
 
   const khmshdgoc = String(raw.khmshdgoc || raw.khmshdclquan || raw.khmshdon_goc || '').trim();
   const khhdgoc = String(raw.khhdgoc || raw.khhdclquan || raw.khhdon_goc || '').trim();
   const shdgoc = raw.shdgoc != null ? String(raw.shdgoc).trim() : (raw.shdclquan != null ? String(raw.shdclquan).trim() : '');
-  const tdlhdgoc = raw.tdlhdgoc || raw.tdlaphdgoc || raw.ngayhdgoc || raw.tdlap_goc || raw.ngay_goc || null;
+  const tdlhdgoc = (raw.tdlhdgoc || raw.tdlaphdgoc || raw.ngayhdgoc || raw.tdlap_goc || raw.ngay_goc || null) as string | number | Date | null | undefined;
   const ngayLap = formatDateVn(tdlhdgoc);
 
   // Nếu không có bất kỳ thông tin gốc nào thì coi như không có HĐ gốc
@@ -120,7 +120,7 @@ export interface TaxBreakdownInvoiceInput {
   tgtcthue?: number | null;
   tgtthue?: number | null;
   items?: TaxBreakdownItemInput[] | null;
-  rawJson?: Record<string, any> | null;
+  rawJson?: Record<string, unknown> | null;
 }
 
 /**
@@ -176,12 +176,13 @@ export function formatTaxRate(rate?: string | number | null): string {
  * - Nếu dòng hàng rỗng thuế suất và hóa đơn chỉ có 1 mức thuế suất duy nhất -> trả về mức thuế suất đó
  */
 export function resolveItemTaxRate(
-  item: { tsuat?: string | number | null; ttkhac?: any } | null | undefined,
+  item: { tsuat?: string | number | null; ttkhac?: Record<string, unknown> | unknown[] | null } | null | undefined,
   taxBreakdown: InvoiceTaxSummaryRow[] = [],
-  rawJson?: Record<string, any> | null
+  rawJson?: Record<string, unknown> | null
 ): string {
   if (!item) return '';
-  const rawTsuat = item.tsuat ?? item.ttkhac?.tsuat ?? item.ttkhac?.ltsuat;
+  const ttkhac = item.ttkhac && typeof item.ttkhac === 'object' && !Array.isArray(item.ttkhac) ? (item.ttkhac as Record<string, unknown>) : undefined;
+  const rawTsuat = item.tsuat ?? ttkhac?.tsuat ?? ttkhac?.ltsuat;
   const str = rawTsuat != null ? String(rawTsuat).trim() : '';
 
   // 1. Nếu dòng hàng rỗng thuế suất
@@ -195,20 +196,22 @@ export function resolveItemTaxRate(
   // 2. Nếu dòng hàng là 'KHAC' hoặc 'Khác' (không kèm con số)
   if (str.toUpperCase() === 'KHAC' || str === 'Khác') {
     // Kiểm tra trong ttkhac xem có lưu rawTsuat số thập phân không (VD: 0.0526)
-    const numericRate = item.ttkhac?.rawTsuat ?? item.ttkhac?.tsuatNum;
+    const numericRate = (ttkhac?.rawTsuat ?? ttkhac?.tsuatNum) as number | undefined;
     if (typeof numericRate === 'number' && numericRate > 0) {
       return formatTaxRate(numericRate);
     }
 
     // Tìm trong rawJson.thttltsuat xem có mức thuế khác dạng "KHAC:X%" không
-    const raw = (rawJson || {}) as Record<string, any>;
-    const root = raw.data || raw;
-    const hdon = root.hdhnhan?.hdon || root.hdon || root;
-    const dlHDon = hdon.dlhdon || hdon;
-    const tToan = dlHDon.ndhdon?.ttoan || dlHDon.ttoan || root.ttoan || {};
-    const rawTaxSummary = raw.thttltsuat || root.thttltsuat || dlHDon.thttltsuat || tToan.thttltsuat || tToan.THTTLTSuat;
+    const raw = (rawJson || {}) as Record<string, unknown>;
+    const root = (raw.data && typeof raw.data === 'object' ? raw.data : raw) as Record<string, unknown>;
+    const rootHdhnhan = root.hdhnhan as Record<string, unknown> | undefined;
+    const hdon = (rootHdhnhan?.hdon || root.hdon || root) as Record<string, unknown>;
+    const dlHDon = (hdon.dlhdon || hdon) as Record<string, unknown>;
+    const ndhdon = dlHDon.ndhdon as Record<string, unknown> | undefined;
+    const tToan = (ndhdon?.ttoan || dlHDon.ttoan || root.ttoan || {}) as Record<string, unknown>;
+    const rawTaxSummary = (raw.thttltsuat || root.thttltsuat || dlHDon.thttltsuat || tToan.thttltsuat || tToan.THTTLTSuat) as Record<string, unknown> | Array<Record<string, unknown>> | undefined;
 
-    let thttlList: any[] = [];
+    let thttlList: Array<Record<string, unknown>> = [];
     if (Array.isArray(rawTaxSummary)) {
       thttlList = rawTaxSummary;
     } else if (rawTaxSummary?.LTSuat) {
@@ -251,11 +254,18 @@ export function resolveItemTaxRate(
 export function extractTaxBreakdown(invoice: TaxBreakdownInvoiceInput): InvoiceTaxSummaryRow[] {
   if (!invoice) return [];
 
-  const raw = (invoice.rawJson || {}) as Record<string, any>;
-  const root = raw.data || raw;
-  const hdon = root.hdhnhan?.hdon || root.hdon || root;
-  const dlHDon = hdon.dlhdon || hdon;
-  const tToan = dlHDon.ndhdon?.ttoan || dlHDon.ttoan || root.ttoan || {};
+  const raw = (invoice.rawJson || {}) as Record<string, unknown>;
+  const root = (raw.data && typeof raw.data === 'object' ? raw.data : raw) as Record<string, unknown>;
+  const rootHdhnhan = root.hdhnhan as Record<string, unknown> | undefined;
+  const hdon = (rootHdhnhan?.hdon || root.hdon || root) as Record<string, unknown>;
+  const dlHDon = (hdon.dlhdon || hdon) as Record<string, unknown>;
+  const ndhdon = dlHDon.ndhdon as Record<string, unknown> | undefined;
+  const tToan = (ndhdon?.ttoan || dlHDon.ttoan || root.ttoan || {}) as Record<string, unknown>;
+
+  const ttoanTax = (tToan.thttltsuat || tToan.THTTLTSuat) as Record<string, unknown> | undefined;
+  const dlHDonNdhdon = dlHDon.ndhdon as Record<string, unknown> | undefined;
+  const dlHDonTtoan = dlHDonNdhdon?.ttoan as Record<string, unknown> | undefined;
+  const dlHDonTax = (dlHDonTtoan?.thttltsuat || dlHDonTtoan?.THTTLTSuat) as Record<string, unknown> | undefined;
 
   // 1. Tìm bảng thuế thttltsuat / THTTLTSuat trong rawJson / XML
   const rawTaxSummary =
@@ -264,23 +274,25 @@ export function extractTaxBreakdown(invoice: TaxBreakdownInvoiceInput): InvoiceT
     dlHDon.thttltsuat ||
     tToan.thttltsuat ||
     tToan.THTTLTSuat ||
-    tToan.thttltsuat?.ltsuat ||
-    tToan.THTTLTSuat?.LTSuat ||
-    dlHDon.ndhdon?.ttoan?.thttltsuat ||
-    dlHDon.ndhdon?.ttoan?.THTTLTSuat?.LTSuat ||
+    ttoanTax?.ltsuat ||
+    ttoanTax?.LTSuat ||
+    dlHDonTtoan?.thttltsuat ||
+    dlHDonTax?.LTSuat ||
+    dlHDonTax?.ltsuat ||
     raw.thttltsuatList;
 
-  let rawList: any[] = [];
+  let rawList: Array<Record<string, unknown>> = [];
   if (Array.isArray(rawTaxSummary)) {
-    rawList = rawTaxSummary;
+    rawList = rawTaxSummary as Array<Record<string, unknown>>;
   } else if (rawTaxSummary && typeof rawTaxSummary === 'object') {
-    const ltsuat = rawTaxSummary.LTSuat || rawTaxSummary.ltsuat;
+    const taxObj = rawTaxSummary as Record<string, unknown>;
+    const ltsuat = taxObj.LTSuat || taxObj.ltsuat;
     if (Array.isArray(ltsuat)) {
-      rawList = ltsuat;
+      rawList = ltsuat as Array<Record<string, unknown>>;
     } else if (ltsuat && typeof ltsuat === 'object') {
-      rawList = [ltsuat];
+      rawList = [ltsuat as Record<string, unknown>];
     } else {
-      rawList = [rawTaxSummary];
+      rawList = [taxObj];
     }
   }
 
@@ -288,7 +300,7 @@ export function extractTaxBreakdown(invoice: TaxBreakdownInvoiceInput): InvoiceT
     const rows: InvoiceTaxSummaryRow[] = [];
     for (const item of rawList) {
       if (!item || typeof item !== 'object') continue;
-      const rateRaw = item.tsuat ?? item.TSuat ?? item.rate ?? item.thuesuat;
+      const rateRaw = (item.tsuat ?? item.TSuat ?? item.rate ?? item.thuesuat) as string | number | null | undefined;
       const tsuat = formatTaxRate(rateRaw) || '—';
       const thtien = Number(item.thtien ?? item.ThTien ?? item.tgtcthue ?? 0);
       const tthue = Number(item.tthue ?? item.TThue ?? item.tgtthue ?? 0);

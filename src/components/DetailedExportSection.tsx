@@ -4,7 +4,6 @@ import { Download, ArrowRight, Check, FileSpreadsheet, Filter } from "lucide-rea
 import Link from "next/link";
 import { ScrollReveal } from "@/components/motion";
 import { SectionHeader } from "@/components/ui/section-header";
-import { Badge } from "@/components/ui/badge";
 import { REGISTER_URL } from "@/lib/constants";
 
 export default function DetailedExportSection() {

@@ -34,29 +34,20 @@ export function TctQrCode({
       qr.make();
       const count = qr.getModuleCount();
 
-      const rects: React.ReactNode[] = [];
+      const cells: Array<{ r: number; c: number }> = [];
       for (let r = 0; r < count; r++) {
         for (let c = 0; c < count; c++) {
           if (qr.isDark(r, c)) {
-            rects.push(
-              <rect
-                key={`${r}-${c}`}
-                x={c}
-                y={r}
-                width={1}
-                height={1}
-                fill={fgColor}
-              />
-            );
+            cells.push({ r, c });
           }
         }
       }
 
-      return { count, rects };
+      return { count, cells };
     } catch {
       return null;
     }
-  }, [value, fgColor]);
+  }, [value]);
 
   if (!qrData) {
     return <div style={{ width: size, height: size }} className={className} />;
@@ -72,7 +63,16 @@ export function TctQrCode({
       style={{ width: `${size}px`, height: `${size}px`, display: 'block' }}
     >
       <rect width={qrData.count} height={qrData.count} fill={bgColor} />
-      {qrData.rects}
+      {qrData.cells.map(({ r, c }) => (
+        <rect
+          key={`${r}-${c}`}
+          x={c}
+          y={r}
+          width={1}
+          height={1}
+          fill={fgColor}
+        />
+      ))}
     </svg>
   );
 }

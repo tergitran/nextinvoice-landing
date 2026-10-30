@@ -46,3 +46,79 @@ body {
   z-index: -1;
   filter: blur(40px);
 }
+
+/* Print Invoice Styling (Chuẩn TCT) */
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 0;
+  }
+
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  body * {
+    visibility: hidden;
+  }
+
+  .invoice-print-area,
+  .invoice-print-area * {
+    visibility: visible;
+  }
+
+  .invoice-print-area {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    max-width: 210mm;
+    margin: 0 auto;
+    padding: 0;
+  }
+
+  .invoice-print-container {
+    width: 100% !important;
+    max-width: 210mm !important;
+    min-height: auto !important;
+    margin: 0 auto !important;
+    padding: 3mm 4mm !important;
+    box-shadow: none !important;
+  }
+
+  .invoice-frame-box {
+    -webkit-box-decoration-break: clone !important;
+    box-decoration-break: clone !important;
+    padding: 14px !important;
+  }
+
+  table {
+    page-break-inside: auto;
+  }
+
+  thead {
+    display: table-header-group;
+  }
+
+  tr, th, td {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  .print-avoid-break {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  .invoice-page {
+    page-break-after: always;
+    break-after: page;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+}

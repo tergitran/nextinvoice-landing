@@ -5,7 +5,6 @@ import { ParsedXmlInvoice, ParsedXmlItem, ParsedTaxBreakdown } from './xml-types
  */
 function findElement(parent: Element, ...tagNames: string[]): Element | null {
   for (const name of tagNames) {
-    // 1. Thử tìm chính xác hoặc hoa/thường
     const directMatch = parent.getElementsByTagName(name)[0];
     if (directMatch) return directMatch;
 
@@ -18,7 +17,6 @@ function findElement(parent: Element, ...tagNames: string[]): Element | null {
     }
   }
 
-  // 2. Thử tìm sâu hơn với query selector
   for (const name of tagNames) {
     try {
       const match = parent.querySelector(name);
@@ -77,6 +75,8 @@ export function parseInvoiceXml(xmlString: string, fileName = 'invoice.xml'): Pa
   const tdlap = getTagText(ttChung, 'NLap', 'nlap', 'InvoiceDate', 'IssuedDate', 'tdlap') || new Date().toISOString().slice(0, 10);
   const dvtte = getTagText(ttChung, 'DVTTe', 'dvtte', 'CurrencyUnit', 'CurrencyCode') || 'VND';
   const tgia = getTagNumber(ttChung, 'TGia', 'tgia', 'ExchangeRate');
+  const sbke = getTagText(ttChung, 'SBKe', 'sbke');
+  const nbke = getTagText(ttChung, 'NBKe', 'nbke');
   const mccqt = getTagText(root, 'MCCQT', 'mccqt', 'TaxAuthorityCode', 'cqt');
 
   // Tìm node Người bán: NBan
@@ -87,6 +87,8 @@ export function parseInvoiceXml(xmlString: string, fileName = 'invoice.xml'): Pa
   const nbsdthoai = getTagText(nBan, 'SDThoai', 'sdthoai', 'Phone', 'Telephone');
   const nbstkhoan = getTagText(nBan, 'STKNHang', 'stknhang', 'AccountNumber', 'BankNumber');
   const nbtnhang = getTagText(nBan, 'TNHang', 'tnhang', 'BankName');
+  const mchdon = getTagText(nBan, 'MCHDon', 'mchdon');
+  const tchdon = getTagText(nBan, 'TCHDon', 'tchdon');
 
   // Tìm node Người mua: NMua
   const nMua = findElement(root, 'NMua', 'nmua', 'Buyer', 'buyerInfo');
@@ -97,6 +99,9 @@ export function parseInvoiceXml(xmlString: string, fileName = 'invoice.xml'): Pa
   const nmsdthoai = getTagText(nMua, 'SDThoai', 'sdthoai', 'Phone');
   const nmstkhoan = getTagText(nMua, 'STKNHang', 'stknhang', 'AccountNumber');
   const nmtnhang = getTagText(nMua, 'TNHang', 'tnhang', 'BankName');
+  const dvcqhnsnn = getTagText(nMua, 'DVCQHNSNN', 'dvcqhnsnn', 'MDVQHNSach');
+  const cccd = getTagText(nMua, 'CCCDan', 'cccd', 'CMND');
+  const shchieu = getTagText(nMua, 'SHChieu', 'shchieu');
   const thtttoan = getTagText(ttChung, 'HTTToan', 'httoan', 'PaymentMethod', 'thtttoan') || 'Chuyển khoản';
 
   // Tìm danh sách hàng hóa dịch vụ: DSHHDVu -> HHDVu
@@ -119,9 +124,29 @@ export function parseInvoiceXml(xmlString: string, fileName = 'invoice.xml'): Pa
       const tthue = getTagNumber(el, 'TThue', 'tthue', 'TaxAmount');
       const tchat = getTagText(el, 'TChat', 'tchat');
 
+      // Bóc tách hàng hóa đặc trưng (Phụ lục XV - Thông tư 78)
+      const lhhdtrung = getTagText(el, 'LHHDTrung', 'lhhdtrung');
+      let tthhdtrung = undefined;
+      const tthhdtrungNode = findElement(el, 'TTHHDTrung', 'tthhdtrung');
+      if (tthhdtrungNode) {
+        const ttinNodes = tthhdtrungNode.getElementsByTagName('TTin');
+        const list: Array<{ ttruong: string; dlieu: string }> = [];
+        for (let j = 0; j < ttinNodes.length; j++) {
+          const tNode = ttinNodes[j];
+          list.push({
+            ttruong: getTagText(tNode, 'TTruong', 'ttruong'),
+            dlieu: getTagText(tNode, 'DLieu', 'dlieu'),
+          });
+        }
+        if (list.length > 0) {
+          tthhdtrung = list;
+        }
+      }
+
       if (ten || thtien !== undefined) {
         items.push({
-          stt,
+          id: `item-${i + 1}`,
+          stt: isNaN(Number(stt)) ? stt : Number(stt),
           ten,
           dvt,
           slung,
@@ -130,6 +155,8 @@ export function parseInvoiceXml(xmlString: string, fileName = 'invoice.xml'): Pa
           tsuat,
           tthue,
           tchat,
+          lhhdtrung,
+          tthhdtrung,
         });
       }
     }
@@ -178,27 +205,78 @@ export function parseInvoiceXml(xmlString: string, fileName = 'invoice.xml'): Pa
   // Thông tin HĐ gốc nếu là HĐ thay thế hoặc điều chỉnh
   const tDChung = findElement(root, 'TTChung', 'ttchung');
   const tthaiGoc = getTagText(tDChung, 'TCHDon', 'tchdon', 'TChat', 'tchat');
+  const khmshdgoc = getTagText(tDChung, 'KHMSHDGoc', 'khmshdgoc');
+  const khhdgoc = getTagText(tDChung, 'KHHDGoc', 'khhdgoc');
+  const shdgoc = getTagText(tDChung, 'SHDGoc', 'shdgoc');
+  const tdlhdgoc = getTagText(tDChung, 'NLapGoc', 'nlapgoc');
+
   let origInvoiceInfo = undefined;
-  if (tthaiGoc === '2' || tthaiGoc === '3') {
+  if (tthaiGoc === '2' || tthaiGoc === '3' || khhdgoc || shdgoc) {
     const actionLabel = tthaiGoc === '2' ? 'Thay thế cho hóa đơn' : 'Điều chỉnh cho hóa đơn';
     origInvoiceInfo = {
       actionLabel,
-      khmshdon: getTagText(tDChung, 'KHMSHDGoc', 'khmshdgoc'),
-      khhdon: getTagText(tDChung, 'KHHDGoc', 'khhdgoc'),
-      shdon: getTagText(tDChung, 'SHDGoc', 'shdgoc'),
-      ngayLap: getTagText(tDChung, 'NLapGoc', 'nlapgoc'),
+      khmshdon: khmshdgoc,
+      khhdon: khhdgoc,
+      shdon: shdgoc,
+      ngayLap: tdlhdgoc,
     };
   }
 
-  return {
-    thdon,
-    khmshdon,
-    khhdon,
-    shdon,
-    tdlap,
-    dvtte,
-    tgia,
-    mccqt,
+  // Tạo đối tượng rawJson chuẩn hóa đồng bộ 100% với backend/frontend portal
+  const rawJson: Record<string, any> = {
+    dlhdon: {
+      ttchung: {
+        thdon,
+        khmshdon,
+        khhdon,
+        shdon,
+        nlap: tdlap,
+        dvtte,
+        tgia,
+        httoan: thtttoan,
+        sbke,
+        nbke,
+        khmshdgoc,
+        khhdgoc,
+        shdgoc,
+        tdlhdgoc,
+      },
+      ndhdon: {
+        nban: {
+          ten: nbten,
+          mst: nbmst,
+          dchi: nbdchi,
+          sdthoai: nbsdthoai,
+          stknhang: nbstkhoan,
+          tnhang: nbtnhang,
+          mchdon,
+          tchdon,
+        },
+        nmua: {
+          ten: nmten,
+          mst: nmmst,
+          dchi: nmdchi,
+          sdthoai: nmsdthoai,
+          stknhang: nmstkhoan,
+          tnhang: nmtnhang,
+          hvtnmua: nmtnmua,
+          dvcqhnsnn,
+          cccd,
+          shchieu,
+        },
+        ttoan: {
+          tgtcthue,
+          tgtthue,
+          tgtttbso,
+          tgtttbchu,
+          thttltsuat: taxBreakdowns.map((b) => ({
+            tsuat: b.tsuat,
+            thtien: b.thtien,
+            tthue: b.tthue,
+          })),
+        },
+      },
+    },
     nbmst,
     nbten,
     nbdchi,
@@ -213,15 +291,64 @@ export function parseInvoiceXml(xmlString: string, fileName = 'invoice.xml'): Pa
     nmstkhoan,
     nmtnhang,
     thtttoan,
+    mscqt: mccqt,
+    mccqt,
+    shdon,
+    khmshdon,
+    khhdon,
+    tdlap,
+    tgtcthue,
+    tgtthue,
+    tgtttbso,
+    tgtttbchu,
+    signingTime,
+    nbcks: signerName ? JSON.stringify({ SigningTime: signingTime, Subject: signerName }) : undefined,
+    khmshdgoc,
+    khhdgoc,
+    shdgoc,
+    tdlhdgoc,
+    tthai: tthaiGoc,
+  };
+
+  return {
+    id: `xml-${shdon}`,
+    thdon,
+    khmshdon,
+    khhdon,
+    shdon,
+    tdlap,
+    dvtte,
+    tgia,
+    mccqt,
+    mscqt: mccqt,
+    nbmst,
+    nbten,
+    nbdchi,
+    nbdiachi: nbdchi,
+    nbsdthoai,
+    nbstkhoan,
+    nbtnhang,
+    nmmst,
+    nmdmst: nmmst,
+    nmten,
+    nmtnmua,
+    nmdchi,
+    nmdiachi: nmdchi,
+    nmsdthoai,
+    nmstkhoan,
+    nmtnhang,
+    thtttoan,
     items,
     tgtcthue,
     tgtthue,
     tgtttbso,
     tgtttbchu,
+    tgtttnote: tgtttbchu,
     taxBreakdowns,
     origInvoiceInfo,
     signerName,
     signingTime,
+    rawJson,
     rawFileName: fileName,
     rawXmlContent: xmlString,
   };

@@ -102,33 +102,6 @@ export function XmlReaderTool() {
 
   return (
     <div className="w-full space-y-8">
-      {/* Hidden native print styling */}
-      <style jsx global>{`
-        @media print {
-          nav, header, footer, .no-print, .cta-banner {
-            display: none !important;
-          }
-          body {
-            background-color: #ffffff !important;
-            color: #000000 !important;
-            margin: 0 !important;
-            padding: 0 !important;
-          }
-          main {
-            padding: 0 !important;
-            margin: 0 !important;
-            max-width: 100% !important;
-          }
-          #invoice-print-content {
-            box-shadow: none !important;
-            margin: 0 auto !important;
-            padding: 0 !important;
-            width: 100% !important;
-            max-width: 210mm !important;
-          }
-        }
-      `}</style>
-
       {/* Hidden File Input */}
       <input
         ref={fileInputRef}
@@ -234,7 +207,7 @@ export function XmlReaderTool() {
           </div>
 
           {/* Invoice Document Paper Layout */}
-          <div className="flex justify-center overflow-x-auto py-2">
+          <div className="invoice-print-area flex justify-center overflow-x-auto py-2">
             <XmlInvoiceTemplate invoice={invoice} />
           </div>
         </div>

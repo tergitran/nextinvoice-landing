@@ -107,7 +107,7 @@ export default function Footer() {
             <ul className="space-y-3 text-xs sm:text-sm">
               <li className="flex items-center gap-2">
                 <Phone className="h-4 w-4 text-blue-400 shrink-0" />
-                <span>Hotline: 090 123 4567</span>
+                <a href="tel:0982548515" className="hover:text-white transition">Hotline: 0982 548 515</a>
               </li>
               <li className="flex items-center gap-2">
                 <Mail className="h-4 w-4 text-blue-400 shrink-0" />

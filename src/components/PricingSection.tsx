@@ -6,6 +6,8 @@ import { ScrollReveal, StaggerContainer, StaggerItem } from "@/components/motion
 import { SectionHeader } from "@/components/ui/section-header";
 import { REGISTER_URL } from "@/lib/constants";
 
+const SHOW_PRICING_CARDS = false;
+
 const plans = [
   {
     name: "Gói Khởi Đầu",
@@ -194,52 +196,86 @@ export default function PricingSection() {
             description={
               <>
                 Tính phí theo số lượng hóa đơn phát sinh thực tế. Đăng ký ngay để nhận ngay{" "}
-                <strong className="text-blue-600 font-semibold">50 hóa đơn dùng thử miễn phí</strong>.
+                <strong className="text-blue-600 font-semibold">1.000 hóa đơn dùng thử miễn phí</strong>.
               </>
             }
           />
         </ScrollReveal>
 
-        {/* Mobile View: shadcn Carousel with Center Alignment & Peeking Slides */}
-        <div className="mt-10 block md:hidden">
-          <Carousel
-            opts={{
-              align: "center",
-              startIndex: 1,
-              loop: false,
-            }}
-            className="w-full relative px-1"
-          >
-            <CarouselContent className="-ml-3 py-3">
-              {plans.map((plan, idx) => (
-                <CarouselItem key={idx} className="basis-[70%] pl-3">
-                  <PricingCarouselCard plan={plan} index={idx} />
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-            <CarouselPrevious className="left-0.5 size-8 bg-white/95 shadow-md border-slate-200 text-slate-700" />
-            <CarouselNext className="right-0.5 size-8 bg-white/95 shadow-md border-slate-200 text-slate-700" />
-            <CarouselDots />
-          </Carousel>
-        </div>
+        {/* Tạm ẩn 3 card giá */}
+        {SHOW_PRICING_CARDS ? (
+          <>
+            {/* Mobile View: shadcn Carousel with Center Alignment & Peeking Slides */}
+            <div className="mt-10 block md:hidden">
+              <Carousel
+                opts={{
+                  align: "center",
+                  startIndex: 1,
+                  loop: false,
+                }}
+                className="w-full relative px-1"
+              >
+                <CarouselContent className="-ml-3 py-3">
+                  {plans.map((plan, idx) => (
+                    <CarouselItem key={idx} className="basis-[70%] pl-3">
+                      <PricingCarouselCard plan={plan} index={idx} />
+                    </CarouselItem>
+                  ))}
+                </CarouselContent>
+                <CarouselPrevious className="left-0.5 size-8 bg-white/95 shadow-md border-slate-200 text-slate-700" />
+                <CarouselNext className="right-0.5 size-8 bg-white/95 shadow-md border-slate-200 text-slate-700" />
+                <CarouselDots />
+              </Carousel>
+            </div>
 
-        {/* Desktop View: 3-column Grid */}
-        <StaggerContainer
-          className="mt-14 hidden md:grid md:grid-cols-3 gap-8 items-stretch"
-          delayChildren={0.1}
-          staggerChildren={0.1}
-        >
-          {plans.map((plan, idx) => (
-            <StaggerItem
-              key={idx}
-              className={`h-full transition-all ${
-                plan.popular ? "md:-translate-y-2" : ""
-              }`}
+            {/* Desktop View: 3-column Grid */}
+            <StaggerContainer
+              className="mt-14 hidden md:grid md:grid-cols-3 gap-8 items-stretch"
+              delayChildren={0.1}
+              staggerChildren={0.1}
             >
-              <PricingCard plan={plan} />
-            </StaggerItem>
-          ))}
-        </StaggerContainer>
+              {plans.map((plan, idx) => (
+                <StaggerItem
+                  key={idx}
+                  className={`h-full transition-all ${
+                    plan.popular ? "md:-translate-y-2" : ""
+                  }`}
+                >
+                  <PricingCard plan={plan} />
+                </StaggerItem>
+              ))}
+            </StaggerContainer>
+          </>
+        ) : (
+          <ScrollReveal delay={0.2} className="mt-12 max-w-2xl mx-auto">
+            <div className="rounded-2xl border border-blue-100 bg-gradient-to-b from-blue-50/60 to-slate-50/50 p-8 sm:p-10 text-center shadow-xs">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-blue-100/70 text-blue-700 text-xs font-semibold mb-4">
+                Chính sách ưu đãi
+              </div>
+              <h3 className="text-xl sm:text-2xl font-bold text-slate-900 mb-3">
+                Nhận ngay 1.000 hóa đơn trải nghiệm miễn phí
+              </h3>
+              <p className="text-sm text-slate-600 mb-8 leading-relaxed max-w-lg mx-auto">
+                Bảng giá dịch vụ đang được cập nhật chính sách ưu đãi mới. Đăng ký tài khoản ngay hôm nay để trải nghiệm miễn phí đầy đủ mọi tính năng đồng bộ tự động.
+              </p>
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-3.5">
+                <Link
+                  href={REGISTER_URL}
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl bg-blue-600 px-6 py-3.5 text-sm font-bold text-white shadow-md shadow-blue-500/20 transition hover:bg-blue-700 active:scale-[0.98]"
+                >
+                  <span>Đăng ký nhận 1.000 hóa đơn</span>
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
+                <a
+                  href="tel:0982548515"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl bg-white border border-slate-200 px-6 py-3.5 text-sm font-semibold text-slate-700 shadow-xs hover:bg-slate-50 hover:border-slate-300 transition"
+                >
+                  <span>Hotline: 0982 548 515</span>
+                </a>
+              </div>
+            </div>
+          </ScrollReveal>
+        )}
       </div>
     </section>
   );

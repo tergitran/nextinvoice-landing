@@ -16,7 +16,7 @@ export default function CtaBanner() {
             <div className="relative z-10 mx-auto max-w-3xl text-center">
               <div className="mb-6">
                 <Badge variant="blue" size="lg" className="shadow-xs">
-                  Tặng ngay 50 Hóa đơn trải nghiệm khi Đăng ký mới
+                  Tặng ngay 1.000 Hóa đơn trải nghiệm khi Đăng ký mới
                 </Badge>
               </div>
 
@@ -33,15 +33,15 @@ export default function CtaBanner() {
               <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3.5">
                 <Button size="lg" variant="pill" asChild className="w-full sm:w-auto shadow-lg shadow-blue-500/25">
                   <Link href={REGISTER_URL} className="group">
-                    <span>Dùng thử miễn phí 50 hóa đơn</span>
+                    <span>Dùng thử miễn phí 1.000 hóa đơn</span>
                     <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                   </Link>
                 </Button>
 
                 <Button size="lg" variant="outline" asChild className="w-full sm:w-auto rounded-full bg-white shadow-xs">
-                  <a href="tel:0901234567">
+                  <a href="tel:0982548515">
                     <PhoneCall className="h-4 w-4 text-slate-500" />
-                    <span>Hotline: 090 123 4567</span>
+                    <span>Hotline: 0982 548 515</span>
                   </a>
                 </Button>
               </div>

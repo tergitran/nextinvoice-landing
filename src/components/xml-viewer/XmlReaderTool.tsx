@@ -101,7 +101,7 @@ export function XmlReaderTool() {
   };
 
   return (
-    <div className="w-full space-y-8">
+    <div className="w-full space-y-8 print:space-y-0 print:m-0 print:p-0 print:block">
       {/* Hidden File Input */}
       <input
         ref={fileInputRef}
@@ -113,7 +113,7 @@ export function XmlReaderTool() {
 
       {/* Upload Dropzone (Khi chưa chọn file) */}
       {!invoice && (
-        <div className="relative rounded-3xl border border-slate-800 bg-slate-900/80 p-8 sm:p-12 shadow-2xl backdrop-blur-xl text-center">
+        <div className="no-print print:hidden relative rounded-3xl border border-slate-800 bg-slate-900/80 p-8 sm:p-12 shadow-2xl backdrop-blur-xl text-center">
           <div
             onDragOver={handleDragOver}
             onDragLeave={handleDragLeave}
@@ -168,9 +168,9 @@ export function XmlReaderTool() {
 
       {/* When XML is parsed and ready to view */}
       {invoice && (
-        <div className="space-y-6">
+        <div className="space-y-6 print:space-y-0 print:m-0 print:p-0 print:block">
           {/* Action Toolbar */}
-          <div className="no-print rounded-2xl border border-slate-800 bg-slate-900/90 p-4 shadow-xl backdrop-blur-md flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="no-print print:hidden rounded-2xl border border-slate-800 bg-slate-900/90 p-4 shadow-xl backdrop-blur-md flex flex-col sm:flex-row items-center justify-between gap-4">
             <div className="flex items-center gap-3 w-full sm:w-auto">
               <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
                 <FileText className="h-5 w-5" />
@@ -207,7 +207,7 @@ export function XmlReaderTool() {
           </div>
 
           {/* Invoice Document Paper Layout */}
-          <div className="invoice-print-area flex justify-center overflow-x-auto py-2">
+          <div className="invoice-print-area flex justify-center overflow-x-auto py-2 print:overflow-visible print:p-0 print:m-0 print:block">
             <XmlInvoiceTemplate invoice={invoice} />
           </div>
         </div>

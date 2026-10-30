@@ -128,9 +128,10 @@ export function XmlInvoiceTemplate({ invoice, className = '' }: XmlInvoiceTempla
   return (
     <div
       id="invoice-print-content"
-      className={`invoice-print-container bg-white text-black leading-[1.3] font-serif antialiased text-[13pt] shadow-2xl rounded-sm ${className}`}
+      className={`invoice-print-container bg-white text-black leading-[1.3] font-serif antialiased text-[13pt] shadow-2xl rounded-sm print:shadow-none print:m-0 print:p-0 print:w-full ${className}`}
       style={{
         width: '210mm',
+        maxWidth: '100%',
         minHeight: 'auto',
         margin: '0 auto',
         padding: '4px 6px',

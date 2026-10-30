@@ -56,18 +56,18 @@ const jsonLd = {
 
 export default function XmlReaderPage() {
   return (
-    <div className="flex min-h-screen flex-col bg-slate-950 text-slate-100 overflow-x-clip w-full">
+    <div className="flex min-h-screen flex-col bg-slate-950 text-slate-100 overflow-x-clip w-full print:min-h-0 print:bg-white print:text-black print:overflow-visible print:block print:p-0 print:m-0">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <div className="no-print">
+      <div className="no-print print:hidden">
         <Navbar />
       </div>
 
-      <main className="flex-1 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16">
+      <main className="flex-1 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16 print:p-0 print:m-0 print:max-w-none print:w-full print:block">
         {/* Breadcrumb & Hero Header */}
-        <div className="no-print text-center max-w-3xl mx-auto mb-10 sm:mb-14">
+        <div className="no-print print:hidden text-center max-w-3xl mx-auto mb-10 sm:mb-14">
           <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/20 bg-emerald-500/10 px-3.5 py-1 text-xs font-semibold text-emerald-400 mb-4">
             <Link href="/" className="hover:text-emerald-300 transition">
               Trang chủ
@@ -109,7 +109,7 @@ export default function XmlReaderPage() {
         <XmlReaderTool />
 
         {/* Information & Features Section for SEO */}
-        <section className="no-print mt-20 pt-16 border-t border-slate-800/80 space-y-12">
+        <section className="no-print print:hidden mt-20 pt-16 border-t border-slate-800/80 space-y-12">
           <div className="text-center max-w-2xl mx-auto">
             <h2 className="text-2xl sm:text-3xl font-bold text-white">
               Tại sao nên đọc file XML hóa đơn với Next Invoice?
@@ -198,12 +198,12 @@ export default function XmlReaderPage() {
         </section>
 
         {/* CTA Banner */}
-        <div className="no-print mt-20">
+        <div className="no-print print:hidden mt-20">
           <CtaBanner />
         </div>
       </main>
 
-      <div className="no-print">
+      <div className="no-print print:hidden">
         <Footer />
       </div>
     </div>

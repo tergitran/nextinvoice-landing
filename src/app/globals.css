@@ -54,45 +54,52 @@ body {
     margin: 0;
   }
 
-  body {
-    background: #ffffff !important;
-    color: #000000 !important;
+  *, *:before, *:after {
     -webkit-print-color-adjust: exact !important;
     print-color-adjust: exact !important;
   }
 
-  body * {
-    visibility: hidden;
+  html, body {
+    background: #ffffff !important;
+    background-color: #ffffff !important;
+    color: #000000 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    min-height: auto !important;
+    height: auto !important;
+    overflow: visible !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
   }
 
-  .invoice-print-area,
-  .invoice-print-area * {
-    visibility: visible;
+  .no-print,
+  .print\:hidden {
+    display: none !important;
   }
 
   .invoice-print-area {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    max-width: 210mm;
-    margin: 0 auto;
-    padding: 0;
+    width: 100% !important;
+    max-width: 210mm !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+    display: block !important;
   }
 
   .invoice-print-container {
-    width: 100% !important;
+    width: 210mm !important;
     max-width: 210mm !important;
     min-height: auto !important;
     margin: 0 auto !important;
     padding: 3mm 4mm !important;
     box-shadow: none !important;
+    border: none !important;
+    background-color: #ffffff !important;
   }
 
   .invoice-frame-box {
     -webkit-box-decoration-break: clone !important;
     box-decoration-break: clone !important;
-    padding: 14px !important;
+    padding: 12px !important;
   }
 
   table {
@@ -116,9 +123,5 @@ body {
   .invoice-page {
     page-break-after: always;
     break-after: page;
-  }
-
-  .no-print {
-    display: none !important;
   }
 }

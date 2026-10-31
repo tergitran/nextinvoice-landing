@@ -1,3 +1,4 @@
+# syntax=docker/dockerfile:1
 # ==========================================
 # Next Invoice Landing Page — Production Dockerfile
 # Multi-stage build with Next.js Standalone
@@ -9,7 +10,7 @@ RUN apk add --no-cache libc6-compat
 WORKDIR /app
 
 COPY package.json package-lock.json* ./
-RUN npm ci
+RUN --mount=type=cache,target=/root/.npm npm ci
 
 # 2. Builder Stage
 FROM node:22-alpine AS builder
@@ -36,6 +37,11 @@ ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
 ENV PORT=3000
 ENV HOSTNAME="0.0.0.0"
+
+ARG SOURCE_REVISION
+ARG SOURCE_URL
+LABEL org.opencontainers.image.revision=$SOURCE_REVISION \
+      org.opencontainers.image.source=$SOURCE_URL
 
 RUN addgroup --system --gid 1001 nodejs && \
     adduser --system --uid 1001 nextjs

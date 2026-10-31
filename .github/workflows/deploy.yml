@@ -78,6 +78,7 @@ jobs:
           cache-to: type=gha,mode=max
           build-args: |
             NEXT_PUBLIC_APP_URL=${{ secrets.NEXT_PUBLIC_APP_URL || 'https://app.nextinvoice.pro.vn' }}
+            NEXT_PUBLIC_API_URL=${{ secrets.NEXT_PUBLIC_API_URL || 'https://api.nextinvoice.pro.vn/api' }}
 
   # ────────────────────────────────────
   # 2. CD: Pull & Deploy Container on VPS

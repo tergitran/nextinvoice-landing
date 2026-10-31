@@ -8,7 +8,6 @@ import {
   AlertCircle,
   Clipboard,
   Trash2,
-  Sparkles,
   StopCircle,
   Copy,
   Check,
@@ -18,15 +17,6 @@ import { TaxLookupItem, TaxLookupProgress, TaxStatusCategory, TaxLookupStreamEve
 import { TaxStatusBadge, getTaxStatusCategory } from './tax-status-badge';
 import { exportTaxLookupToExcel } from './export-excel';
 import { LimitModal } from './limit-modal';
-
-const SAMPLE_TAX_CODES = [
-  '0106713804', // CÔNG TY TNHH PHẦN MỀM KẾ TOÁN NEXT
-  '1102175794', // CÔNG TY TNHH TMDV MINH TÚ TN
-  '0318332328', // CÔNG TY TNHH GIẢI PHÁP SỐ TOÀN CẦU
-  '0100109106-001', // TỔNG CÔNG TY HÀNG KHÔNG VIỆT NAM - CHI NHÁNH
-  '0300588569', // TẬP ĐOÀN VINGROUP
-  '0100109106', // TỔNG CÔNG TY HÀNG KHÔNG VIỆT NAM
-];
 
 export function TaxLookupTool() {
   const [inputText, setInputText] = useState('');
@@ -58,11 +48,6 @@ export function TaxLookupTool() {
       .filter((t) => t.length >= 10);
     return Array.from(new Set(tokens));
   }, [inputText]);
-
-  const handleUseSample = () => {
-    setInputText(SAMPLE_TAX_CODES.join('\n'));
-    setErrorMessage(null);
-  };
 
   const handlePasteClipboard = async () => {
     try {
@@ -311,14 +296,6 @@ export function TaxLookupTool() {
               <Clipboard className="h-3.5 w-3.5" />
               <span>Dán clipboard</span>
             </button>
-            <button
-              type="button"
-              onClick={handleUseSample}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-blue-500/10 hover:bg-blue-500/20 text-blue-400 border border-blue-500/20 transition"
-            >
-              <Sparkles className="h-3.5 w-3.5" />
-              <span>Dữ liệu mẫu</span>
-            </button>
             {inputText && (
               <button
                 type="button"
@@ -340,7 +317,7 @@ export function TaxLookupTool() {
             value={inputText}
             onChange={(e) => setInputText(e.target.value)}
             disabled={progress.isProcessing}
-            placeholder={`0106713804\n1102175794\n0318332328\n0100109106-001`}
+            placeholder={`0102345678\n0301234567\n0409876543\n0102345678-001`}
             className="w-full rounded-2xl border border-slate-800 bg-slate-950/80 p-4 text-sm font-mono text-slate-100 placeholder:text-slate-600 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-hidden transition"
           />
         </div>

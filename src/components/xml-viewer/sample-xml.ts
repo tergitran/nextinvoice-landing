@@ -11,12 +11,12 @@ export const SAMPLE_INVOICE_XML = `<?xml version="1.0" encoding="UTF-8"?>
       <DVTTe>VND</DVTTe>
       <TGia>1</TGia>
       <HTTToan>Chuyển khoản</HTTToan>
-      <MSTTCGP>0106713804</MSTTCGP>
+      <MSTTCGP>0102345678</MSTTCGP>
     </TTChung>
     <NDHDon>
       <NBan>
         <Ten>CÔNG TY CỔ PHẦN CÔNG NGHỆ NEXT INVOICE</Ten>
-        <MST>0106713804</MST>
+        <MST>0102345678</MST>
         <DChi>Tòa nhà Landmark 72, Đường Phạm Hùng, Phường Mễ Trì, Quận Nam Từ Liêm, Hà Nội</DChi>
         <SDThoai>024.7300.8888</SDThoai>
         <STKNHang>19034567890123</STKNHang>
@@ -24,7 +24,7 @@ export const SAMPLE_INVOICE_XML = `<?xml version="1.0" encoding="UTF-8"?>
       </NBan>
       <NMua>
         <Ten>CÔNG TY TNHH GIẢI PHÁP SỐ TOÀN CẦU</Ten>
-        <MST>0318332328</MST>
+        <MST>0301234567</MST>
         <HVTNMHang>Nguyễn Văn Hoàng</HVTNMHang>
         <DChi>Số 123 Đường Nguyễn Huệ, Phường Bến Nghé, Quận 1, TP. Hồ Chí Minh</DChi>
         <SDThoai>0903.123.456</SDThoai>

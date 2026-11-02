@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { ArrowRight, ChevronDown, FileText, Menu, Search, X } from "lucide-react";
+import { ArrowRight, ChevronDown, FileCheck2, FileText, Menu, Search, X } from "lucide-react";
 import { Logo } from "@/components/ui/logo";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -158,6 +158,29 @@ export default function Navbar() {
                     </Link>
 
                     <Link
+                      href="/tra-cuu-hoa-don-goc"
+                      onClick={() => setToolsDropdownOpen(false)}
+                      className="group flex items-start gap-3.5 rounded-xl p-3 transition-colors hover:bg-slate-50"
+                    >
+                      <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-purple-50 text-purple-600 border border-purple-100 group-hover:bg-purple-600 group-hover:text-white transition-colors">
+                        <FileCheck2 className="h-5 w-5" />
+                      </div>
+                      <div className="flex-1">
+                        <div className="flex items-center gap-2">
+                          <span className="text-sm font-bold text-slate-900 group-hover:text-purple-600 transition-colors">
+                            Tra cứu hóa đơn gốc (PDF)
+                          </span>
+                          <Badge variant="purple" size="sm">
+                            Mới
+                          </Badge>
+                        </div>
+                        <p className="mt-1 text-xs text-slate-500 leading-snug">
+                          Tải và xem file PDF gốc có chữ ký số trực tiếp từ cổng nhà cung cấp phát hành
+                        </p>
+                      </div>
+                    </Link>
+
+                    <Link
                       href="/doc-file-xml"
                       onClick={() => setToolsDropdownOpen(false)}
                       className="group flex items-start gap-3.5 rounded-xl p-3 transition-colors hover:bg-slate-50"
@@ -268,6 +291,21 @@ export default function Navbar() {
                     <div className="flex-1">
                       <div>Tra cứu mã số thuế (TCT)</div>
                       <div className="text-[11px] font-normal text-slate-500">Kiểm tra thông tin DN Cổng Thuế</div>
+                    </div>
+                  </Link>
+
+                  <Link
+                    href="/tra-cuu-hoa-don-goc"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="flex items-center gap-2.5 rounded-lg bg-white p-2.5 text-xs font-semibold text-slate-900 shadow-xs border border-slate-200/60 hover:text-purple-600"
+                  >
+                    <FileCheck2 className="h-4 w-4 text-purple-600 shrink-0" />
+                    <div className="flex-1">
+                      <div className="flex items-center justify-between">
+                        <span>Tra cứu hóa đơn gốc (PDF)</span>
+                        <Badge variant="purple" size="sm">Mới</Badge>
+                      </div>
+                      <div className="text-[11px] font-normal text-slate-500">Tải file PDF gốc từ Nhà cung cấp</div>
                     </div>
                   </Link>
 

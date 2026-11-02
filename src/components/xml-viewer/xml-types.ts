@@ -82,6 +82,10 @@ export interface ParsedXmlInvoice {
   signingTime?: string;
 
   // Raw Json & Metadata
+  msttcgp?: string;
+  lookupCode?: string;
+  portalLink?: string;
+  dlhdonId?: string;
   rawJson?: Record<string, unknown>;
   syncMetadata?: Record<string, unknown>;
   rawFileName?: string;

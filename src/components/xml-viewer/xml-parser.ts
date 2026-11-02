@@ -78,6 +78,29 @@ export function parseInvoiceXml(xmlString: string, fileName = 'invoice.xml'): Pa
   const sbke = getTagText(ttChung, 'SBKe', 'sbke');
   const nbke = getTagText(ttChung, 'NBKe', 'nbke');
   const mccqt = getTagText(root, 'MCCQT', 'mccqt', 'TaxAuthorityCode', 'cqt');
+  const msttcgp = getTagText(ttChung, 'MSTTCGP', 'msttcgp', 'ProviderTaxCode');
+
+  // Trích xuất DLHDon Id (dùng cho BKAV Invoice GUID)
+  const dlhdonNode = findElement(root, 'DLHDon', 'dlhdon');
+  const dlhdonId = dlhdonNode?.getAttribute('Id') || '';
+
+  // Trích xuất lookupCode & portalLink từ TTin / TTKhac
+  let lookupCode = getTagText(root, 'MHDON', 'mhdon');
+  let portalLink = '';
+  const ttinNodes = root.getElementsByTagName('TTin');
+  for (let i = 0; i < ttinNodes.length; i++) {
+    const ttin = ttinNodes[i];
+    const ttruong = getTagText(ttin, 'TTruong', 'ttruong');
+    const dlieu = getTagText(ttin, 'DLieu', 'dlieu');
+    if (!ttruong || !dlieu) continue;
+
+    if (!lookupCode && /(?:Mã số bí mật|Mã tra cứu|fkey|SecretCode|Mã bảo mật|MaTraCuu|ReservationCode)/i.test(ttruong)) {
+      lookupCode = dlieu;
+    }
+    if (!portalLink && /(?:Link tra cứu|TrangTraCuu|Website|LinkTraCuu)/i.test(ttruong)) {
+      portalLink = dlieu;
+    }
+  }
 
   // Tìm node Người bán: NBan
   const nBan = findElement(root, 'NBan', 'nban', 'Seller', 'sellerInfo');
@@ -307,6 +330,11 @@ export function parseInvoiceXml(xmlString: string, fileName = 'invoice.xml'): Pa
     khhdgoc,
     shdgoc,
     tdlhdgoc,
+    msttcgp,
+    mhdon: lookupCode,
+    fkey: lookupCode,
+    portalLink,
+    dlhdonId,
     tthai: tthaiGoc,
   };
 
@@ -321,6 +349,10 @@ export function parseInvoiceXml(xmlString: string, fileName = 'invoice.xml'): Pa
     tgia,
     mccqt,
     mscqt: mccqt,
+    msttcgp,
+    lookupCode,
+    portalLink,
+    dlhdonId,
     nbmst,
     nbten,
     nbdchi,

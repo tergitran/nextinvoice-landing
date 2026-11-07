@@ -86,8 +86,9 @@ const jsonLd = [
   {
     "@context": "https://schema.org",
     "@type": "WebSite",
+    "@id": "https://nextinvoice.pro.vn/#website",
     name: "Next Invoice",
-    alternateName: ["NextInvoice", "nextinvoice.pro.vn", "Phần mềm Next Invoice"],
+    alternateName: ["NextInvoice", "Phần mềm Next Invoice"],
     url: "https://nextinvoice.pro.vn",
   },
   {

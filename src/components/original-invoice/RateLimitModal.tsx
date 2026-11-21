@@ -36,9 +36,9 @@ export function RateLimitModal({ open, onClose, resetInSeconds: initialSeconds }
     <div
       role="dialog"
       aria-modal="true"
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm animate-in fade-in-0 duration-200"
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 animate-in fade-in-0 duration-200"
     >
-      <div className="relative w-full max-w-lg overflow-hidden rounded-2xl border border-purple-500/30 bg-slate-900 p-6 shadow-2xl text-slate-100 sm:p-8 animate-in zoom-in-95 duration-200">
+      <div className="relative w-full max-w-lg max-h-[calc(100dvh-2rem)] overflow-y-auto rounded-2xl border border-purple-500/30 bg-slate-900 p-6 shadow-2xl text-slate-100 sm:p-8 animate-in zoom-in-95 duration-200">
         {/* Glow accent */}
         <div className="absolute -top-24 -right-24 h-48 w-48 rounded-full bg-purple-500/20 blur-3xl pointer-events-none" />
 

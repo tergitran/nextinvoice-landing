@@ -2,8 +2,9 @@
 
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { Sparkles, ArrowRight, X, Clock, Check, LogIn } from 'lucide-react';
+import { Sparkles, ArrowRight, Clock, Check, LogIn } from 'lucide-react';
 import { REGISTER_URL, LOGIN_URL } from '@/lib/constants';
+import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 
 interface RateLimitModalProps {
   open: boolean;
@@ -26,32 +27,17 @@ export function RateLimitModal({ open, onClose, resetInSeconds: initialSeconds }
     return () => clearInterval(timer);
   }, [open, secondsLeft]);
 
-  if (!open) return null;
-
   const minutes = Math.floor(secondsLeft / 60);
   const remainingSeconds = secondsLeft % 60;
   const timeFormatted = `${minutes > 0 ? `${minutes} phút ` : ''}${remainingSeconds} giây`;
 
   return (
-    <div
-      role="dialog"
-      aria-modal="true"
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 animate-in fade-in-0 duration-200"
-    >
-      <div className="relative w-full max-w-lg max-h-[calc(100dvh-2rem)] overflow-y-auto rounded-2xl border border-purple-500/30 bg-slate-900 p-6 shadow-2xl text-slate-100 sm:p-8 animate-in zoom-in-95 duration-200">
+    <Dialog open={open} onOpenChange={(nextOpen) => { if (!nextOpen) onClose(); }}>
+      <DialogContent tone="purple">
         {/* Glow accent */}
         <div className="absolute -top-24 -right-24 h-48 w-48 rounded-full bg-purple-500/20 blur-3xl pointer-events-none" />
 
-        <button
-          type="button"
-          onClick={onClose}
-          className="absolute top-4 right-4 rounded-lg p-1.5 text-slate-400 hover:text-white hover:bg-slate-800 transition cursor-pointer"
-          aria-label="Đóng thông báo"
-        >
-          <X className="h-5 w-5" />
-        </button>
-
-        <div className="flex items-start gap-4">
+        <DialogHeader className="flex-row gap-4">
           <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-purple-500/10 text-purple-400 border border-purple-500/20">
             <Clock className="h-6 w-6" />
           </div>
@@ -62,14 +48,14 @@ export function RateLimitModal({ open, onClose, resetInSeconds: initialSeconds }
               <span>Giới hạn 10 hóa đơn / 1 giờ</span>
             </div>
 
-            <h3 className="text-xl font-bold text-white">
+            <DialogTitle>
               Bạn đã vượt quá số lần tra cứu trong 1 giờ này
-            </h3>
-            <p className="mt-2 text-sm text-slate-300 leading-relaxed">
+            </DialogTitle>
+            <DialogDescription>
               Công cụ vãng lai miễn phí giới hạn tối đa <strong className="text-white">10 hóa đơn mỗi giờ</strong> trên một thiết bị.
-            </p>
+            </DialogDescription>
           </div>
-        </div>
+        </DialogHeader>
 
         {/* Countdown Box */}
         <div className="mt-4 rounded-xl border border-purple-500/20 bg-purple-500/5 p-3.5 flex items-center justify-between text-xs sm:text-sm">
@@ -102,14 +88,10 @@ export function RateLimitModal({ open, onClose, resetInSeconds: initialSeconds }
         </div>
 
         {/* Action Buttons */}
-        <div className="mt-6 flex flex-col-reverse sm:flex-row items-center justify-end gap-3">
-          <button
-            type="button"
-            onClick={onClose}
-            className="w-full sm:w-auto px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-300 hover:text-white hover:bg-slate-800 transition text-center cursor-pointer"
-          >
+        <DialogFooter>
+          <DialogClose>
             Đóng
-          </button>
+          </DialogClose>
           <Link
             href={LOGIN_URL}
             className="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-200 bg-slate-800 hover:bg-slate-700 transition text-center"
@@ -124,8 +106,8 @@ export function RateLimitModal({ open, onClose, resetInSeconds: initialSeconds }
             <span>Đăng ký sử dụng</span>
             <ArrowRight className="h-4 w-4" />
           </Link>
-        </div>
-      </div>
-    </div>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
   );
 }

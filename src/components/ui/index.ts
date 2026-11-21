@@ -5,3 +5,4 @@ export * from "./section-header";
 export * from "./navigation-menu";
 export * from "./logo";
 export * from "./carousel";
+export * from "./dialog";

@@ -1,6 +1,13 @@
 @import "tailwindcss";
 
 @theme {
+  --color-dialog: #0f172a;
+  --color-dialog-foreground: #f1f5f9;
+  --color-dialog-muted: #cbd5e1;
+  --color-dialog-accent: #1e293b;
+  --color-dialog-overlay: rgb(2 6 23 / 0.8);
+  --color-dialog-blue: rgb(59 130 246 / 0.3);
+  --color-dialog-purple: rgb(168 85 247 / 0.3);
   --font-sans: var(--font-inter), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --color-brand-50: #eff6ff;
   --color-brand-100: #dbeafe;
